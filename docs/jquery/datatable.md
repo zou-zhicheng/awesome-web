@@ -4,9 +4,17 @@
 
 # 数据
 
+## 处理模式(processing-mode)
+
+### 客户端处理(Client-side processing)
+
+### 服务器端处理(Server-side processing)
+
+## 数据类型(data types)
+
 datatable支持多种数据类型
 
-## 数组
+### 数组(arrays)
 
 ```json
 vardata = [
@@ -29,7 +37,7 @@ vardata = [
 ]
 ```
 
-## 对象
+### 对象(objects)
 
 ```json
 [
@@ -52,7 +60,7 @@ vardata = [
 ]
 ```
 
-## 自定义实例
+### 实例(instances)
 
 ```javascript
 functionEmployee ( name, position, salary, office ) {
@@ -81,7 +89,9 @@ $('#example').DataTable( {
 
 
 
-## DOM/HTML5
+## 数据源(data sources)
+
+### DOM
 
 如果没有指定data，ajax选项，则DataTable会将当前table的html标签上内容转换成对应的数据（Array数据形式）。
 
@@ -92,6 +102,12 @@ Data-* 标签上可以指定不同的值，用于排序和查找，td内部标�
     21st November 2016
 </td>
 ```
+
+### JavaScript
+
+### Ajax sourced data
+
+
 
 
 
@@ -169,15 +185,20 @@ $(function () {
     // 是否允许翻页，设成false，翻页按钮不显示
     "paging": false,
     // 水平滚动条
-    "scrollX": false,
+    "scrollX": true,
     // 垂直滚动条
-    "scrollY": false,
-    // 
+    // 如果在一个固定高度的容器里放table，这个时候可能需要用到垂直滚动条，才能展示所有数据。
+    // 开启垂直滚动条很简单，只要设置scrollY和scrollCollapse选项即可
+    // "scrollY": "200px", "scrollCollapse": "true",
+    // 使用动态高度	"scrollY": "50vh", "scrollCollapse": "true",
+    "scrollY": "500px",
     "scrollCollapse": true,
     // 件数选择功能 默认true
     "lengthChange": false,
     // 件数选择下拉框内容
     "lengthMenu": [10, 25, 50, 75, 100],
+    // 如果存在全部选择的时候, 请注意-1和All
+    // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]], 
     // 每页的初期件数 用户可以操作lengthMenu上的值覆盖
     "pageLength": 50,
     //翻页按钮样式
@@ -205,16 +226,29 @@ $(function () {
     // http://cdn.datatables.net/plug-ins/be7019ee387/integration/jqueryui/dataTables.jqueryui.css
     "jQueryUI": true
     "language": {
+    	// 使用文件配置
+    	// https://datatables.net/examples/advanced_init/language_file.html
+    	// http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json
+    	"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
       "processing": "DataTables is currently busy",
       // 当前页显示多少条
       "lengthMenu": "Display _MENU_ records",
       // _START_（当前页的第一条的序号） ,_END_（当前页的最后一条的序号）,_TOTAL_（筛选后的总件数）,
       // _MAX_(总件数),_PAGE_(当前页号),_PAGES_（总页数）
       "info": "Showing page _PAGE_ of _PAGES_",
+    	// 
+      "infoEmpty": "No records available",
+    	// 搜索出来的结果信息在info栏的显示
+      // Showing page 1 of 1 (filtered from 57 total records)
+      "infoFiltered": "(filtered from _MAX_ total records)"
       // 没有数据的显示（可选），如果没指定，会用zeroRecords的内容
       "emptyTable": "No data available in table",
       // 筛选后，没有数据的表示信息，注意emptyTable优先级更高
       "zeroRecords": "No records to display",
+      // 自定义小数点分割符
+      "decimal": ",",
+      // 千位数分割符
+      "thousands": "."
       // 千分位的符号，只对显示有效，默认就是","  一般不要改写
       //"thousands": "'",
       // 小数点位的符号，对输入解析有影响，默认就是"." 一般不要改写
@@ -334,8 +368,19 @@ $(function () {
             return '<input type="input" class="form-control dt-body-center ' + cname + '" ' + readonly + ' value="' + data + '">';
           }
           return data;
-        },
-      }],
+        }, 
+      },
+      // 这里可以隐藏第3列和第4
+      {
+        "targets": [ 2 ],
+        "visible": false,
+        "searchable": false
+      },
+      {
+        "targets": [ 3 ],
+        "visible": false
+      }
+    ],
     // 每一行创建完调用的函数
     "createdRow": function (row, data, dataIndex) {
       // row : tr dom
