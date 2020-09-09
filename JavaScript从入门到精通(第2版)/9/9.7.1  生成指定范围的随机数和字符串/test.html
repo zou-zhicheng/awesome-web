@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例1】获取指定范围的随机数。
+var  getRand = function(min, max) {
+    return Math.random() * (max - min) + min;
+}
+console.log( getRand(10.1, 20.9) );	//18.69690815702027
+
+
+//【示例2】获取指定范围的随机整数。
+var  getRand = function(min, max) {
+    return parseInt (Math.random() * (max - min)) + min;
+}
+console.log( getRand(2, 4) );	//3
+
+//【示例3】获取指定长度的随机字符串。
+var  getRandStr = function( length ) {
+	var _string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	   _string += 'abcdefghijklmnopqrstuvwxyz';
+	   _string += '0123456789-_';
+	var _temp = '', _length = _string.length - 1 ;
+	
+	for (var i = 0; i < length; i++ ) {
+		var n = parseInt (Math.random() * _length );
+		_temp += _string[n];
+	}
+    return _temp;
+}
+console.log( getRandStr( 16 ) );	//Gz0BvwHEaGnILNge 
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

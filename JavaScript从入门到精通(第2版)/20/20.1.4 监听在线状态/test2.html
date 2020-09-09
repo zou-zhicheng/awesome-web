@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html manifest="cacheData.manifest">
+<head>
+<title></title>
+<meta charset="utf-8">
+</head>
+<body>
+<script>	
+
+var cache = window.applicationcache;
+
+/*oncached事件表示：当更新已经处理完成，并且存储。
+ * 如果一切正常，这里cache的状态应该是4
+ */ 
+cache.addEventListener('cached', function() {
+    console.log('Cached,Status:' + cache.status);
+}, false);
+/*onchecking事件表示：当更新已经开始进行，但资源还没有开始下载，意思就是说：刚刚获取到最新的资源。
+ * 如果一切正常，这里cache的状态应该是2
+ */
+cache.addEventListener('checking', function() {
+    console.log('Checking,Status:' + cache.status);
+}, false);
+/*ondownloading事件表示：开始下载最新的资源。
+ * 如果一切正常，这里cache的状态应该是3
+ */
+cache.addEventListener('downloading', function() {
+    console.log('Downloading,Status:' + cache.status);
+}, false);
+/*onerror事件表示：有错误发生，manifest文件找不到或服务端有错误发错或资源找不到都会触发onerror事件。
+ * 如果一切正常，这里cache的状态应该是0
+ */
+cache.addEventListener('error', function() {
+    console.log('Error,Status:' + cache.status);
+}, false);
+/*onnoupdate事件表示：更新已经处理完成，但是manifest文件还未改变，处理闲置状态。
+ * 如果一切正常，这里cache的状态应该是1
+ */
+cache.addEventListener('noupdate', function() {
+    console.log('Noupdate,Status:' + cache.status);
+}, false);
+/*onupdateready事件表示：更新已经处理完成，新的缓存可以使用。
+ * 如果一切正常，这里cache的状态应该是4
+ */
+cache.addEventListener('updateready', function() {
+    console.log('Updateready,Status:' + cache.status);
+    cache.swapCache();
+}, false);
+
+</script>
+</body>
+</html>

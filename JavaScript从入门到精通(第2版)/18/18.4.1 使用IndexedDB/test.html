@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Examples</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<div id="box"></div>
+<script type="text/javascript">
+
+
+
+
+//新建数据库以后，第一件事是新建对象仓库，即新建表。
+request.onupgradeneeded = function(event) {
+    db = event.target.result;
+    var objectStore = db.createObjectStore('person', { keyPath: 'id' });
+}
+
+request.onupgradeneeded = function (event) {
+    db = event.target.result;
+    var objectStore;
+    if (!db.objectStoreNames.contains('person')) {
+        objectStore = db.createObjectStore('person', { keyPath: 'id' });
+    }
+}
+
+var objectStore = db.createObjectStore(
+    'person',
+    { autoIncrement: true }
+);
+
+//新建对象仓库以后，下一步可以新建索引。
+request.onupgradeneeded = function(event) {
+    db = event.target.result;
+    var objectStore = db.createObjectStore('person', { keyPath: 'id' });
+    objectStore.createIndex('name', 'name', { unique: false });
+    objectStore.createIndex('email', 'email', { unique: true });
+}
+
+//新增数据就是向对象仓库写入数据记录。这需要通过事务完成。
+function add() {
+    var request = db.transaction(['person'], 'readwrite')
+      .objectStore('person')
+      .add({ id: 1, name: '张三', age: 24, email: 'zhangsan@example.com' });
+    request.onsuccess = function (event) {
+        console.log('数据写入成功');
+    };
+    request.onerror = function (event) {
+        console.log('数据写入失败');
+    }
+}
+add();
+
+//读取数据也需要通过事务完成。例如：
+function read() {
+    var transaction = db.transaction(['person']);
+    var objectStore = transaction.objectStore('person');
+    var request = objectStore.get(1);
+    request.onerror = function(event) {
+        console.log('事务失败');
+    };
+    request.onsuccess = function( event) {
+        if (request.result) {
+            console.log('Name: ' + request.result.name);
+            console.log('Age: ' + request.result.age);
+            console.log('Email: ' + request.result.email);
+        } else {
+            console.log('未获得数据记录');
+        }
+    };
+}
+read();
+
+//遍历数据表中所有记录，需要使用指针对象IDBCursor。例如：
+function readAll() {
+    var objectStore = db.transaction('person').objectStore('person');
+    objectStore.openCursor().onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+            console.log('Id: ' + cursor.key);
+            console.log('Name: ' + cursor.value.name);
+            console.log('Age: ' + cursor.value.age);
+            console.log('Email: ' + cursor.value.email);
+            cursor.continue();
+        } else {
+            console.log('没有更多数据了！');
+        }
+    };
+}
+readAll();
+
+//使用IDBObject.put()方法可以更新数据。例如：
+function update() {
+    var request = db.transaction(['person'], 'readwrite')
+        .objectStore('person')
+        .put({ id: 1, name: '李四', age: 35, email: 'lisi@example.com' });
+    request.onsuccess = function (event) {
+        console.log('数据更新成功');
+    };
+    request.onerror = function (event) {
+        console.log('数据更新失败');
+    }
+}
+update();
+
+//使用IDBObjectStore.delete()方法可以删除记录。例如：
+function remove() {
+    var request = db.transaction(['person'], 'readwrite')
+        .objectStore('person')
+        .delete(1);
+    request.onsuccess = function (event) {
+        console.log('数据删除成功');
+    };
+}
+remove();
+
+//下面就可以从name找到对应的数据记录。
+var transaction = db.transaction(['person'], 'readonly');
+var store = transaction.objectStore('person');
+var index = store.index('name');
+var request = index.get('李四');
+request.onsuccess = function (e) {
+    var result = e.target.result;
+    if (result) {
+        //执行结果处理
+    } else {
+        //执行其他代码
+    }
+}
+
+
+
+</script>
+</body>
+</html>

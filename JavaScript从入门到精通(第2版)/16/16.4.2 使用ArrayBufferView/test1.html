@@ -1,0 +1,24 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+
+//【示例1】在下面示例代码中，根据相同的ArrayBuffer对象，可以创建32位的整数数组和8位的无符号整数数组。
+//根据ArrayBuffer对象创建32位整数数组
+var array1 = new Int32Array(Arrayeuffer);
+//根据同一个ArrayBuffer对象创建8位无符号整数数组
+var array2 = new Uint8Array(ArrayBuffer);
+
+
+//【示例2】下面示例代码演示了如何存取ArrayBuffer缓存区中的数据。
+var byte = array2[4];	//读取第5个字节的数据
+array2[4] = 1;	//设置第5个字节的数据
+
+
+</script>
+</head>
+<body>
+</body>
+</html> 

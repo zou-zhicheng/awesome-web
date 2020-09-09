@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+<script>
+ 
+var result = "12345678".replace(/(?=\d{3}$)/g, ',')
+console.log(result);				// => "12345,678"
+
+
+var result = "12345678".replace(/(?=(\d{3})+$)/g, ',')
+console.log(result);		// => "12,345,678"
+
+
+var result = "123456789".replace(/(?=(\d{3})+$)/g, ',')
+console.log(result);			// => ",123,456,789"
+
+
+var regex = /(?!^)(?=(\d{3})+$)/g;
+var result = "12345678".replace(regex, ',')
+console.log(result);		// => "12,345,678"
+result = "123456789".replace(regex, ',');
+console.log(result);		// => "123,456,789"
+
+
+
+var string = "12345678 123456789",
+regex = /(?!\b)(?=(\d{3})+\b)/g;
+var result = string.replace(regex, ',')
+console.log(result);			// => "12,345,678 123,456,789"
+
+
+
+function format (num) {
+    return num.toFixed(2).replace(/\B(?=(\d{3})+\b)/g, ",").replace(/^/, "$$ ");
+};
+console.log( format(1888) );				// => "$ 1,888.00"
+
+
+
+
+</script>
+</body>
+</html>

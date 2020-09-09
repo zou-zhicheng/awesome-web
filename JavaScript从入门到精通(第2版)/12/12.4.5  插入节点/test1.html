@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+</script>
+</head>
+<body>
+
+
+
+<div id="box"></div>
+<script>
+
+var p = document.createElement("p");	// 创建段落节点
+var txt = document.createTextNode("盒模型");
+// 创建文本节点，文本内容为“盒模型”
+p.appendChild(txt); 	// 把文本节点增加到段落节点中
+document.getElementById("box").appendChild(p); 
+// 获取id为box的元素，把段落节点增加进来
+
+</script>
+
+
+
+</body>
+</html> 

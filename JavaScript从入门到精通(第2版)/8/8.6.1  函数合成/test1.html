@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+
+
+var compose = function (f, g) {	//两个函数合成
+    return function (x) {
+        return f(g(x));
+    };
+};
+var add = function (x) { return x + 1;} 	//加法运算
+var mul = function (x) { return x * 5;} 	//乘法运算
+console.log( compose(mul, add)(2) );   	//合并加法运算和乘法运算，返回15
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

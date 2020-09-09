@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html manifest="cacheData.manifest">
+<head>
+<title></title>
+<meta charset="utf-8">
+</head>
+<body>
+<script>	
+
+// 当页面加载时，设置状态为online或者offline
+function loadDemo() { 
+    if(navigator.onLine) {
+        log("Online");
+    } else {
+        log("Offline");
+    }
+}
+//增加事件监听，当在线状态发生变化时，将触发响应
+window.addEventListener("online", function(e) {
+    log("Online");
+}, true);
+window.addEventListener("offline", function(e) {
+    log("Offline");
+}, true);
+
+
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+//【示例1】使用function语句声明两个相互嵌套的函数体结构。
+function f(x, y){	//外层函数
+    function e(a, b){	//内层函数
+        return a * b;
+    }
+    return x + y;
+}
+
+
+//【示例2】嵌套的函数只能够在函数体内部可见，函数外不允许直接调用。
+function f(x, y){
+    function e(a, b){
+        return a * b;
+    }
+    return e(3, 6) + y;	//内层函数参与表达式运算有效
+    console.log(e(3, 6));	//无效的调用
+}
+console.log(f(3, 6));	//调用外层函数
+
+
+
+</script>
+
+
+
+</body>
+</html>

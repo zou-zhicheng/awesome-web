@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+//扩展指针函数：
+//parentNode、nextSibling、previousSibling、firstChild和lastChild
+
+
+//获取指定元素的第一个子元素，参数为指定父元素，返回值为第一个子元素或者null。
+function first(e){
+    var e = e.firstChild;			// 获取元素的第一个子节点
+    while (e && e.nodeType != 1){// 如果存在该子节点，且类型不等于元素，则搜索下一个节点，直到节点类型为元素
+        e = e.nextSibling;
+    }
+    return e;
+}
+
+//获取指定元素的最后一个子元素，参数为指定父元素，返回值为最后一个子元素或者null。
+function last(e){
+    var e = e.lastChild; 			// 获取元素的最后一个子节点
+    while (e && e.nodeType != 1) {	// 如果存在该子节点，且类型不等于元素，则搜索上一个节点，直到节点类型为元素
+        e = e.previousSibling;
+    }
+    return e;
+}
+
+//parentNode能够获取指定节点的父元素，不过本例扩展该属性，设计一次可以访问多级父元素。
+// 扩展parentNode指针的功能，实现一次能够操纵多个父元素
+// 参数：e表示当前节点，n表示要操纵的父元素级数
+// 返回值：返回指定层级的父元素
+function parent(e, n){
+    var n = n || 1;	
+	// 如果没有指定第二个参数值，则表示获取上一级父元素
+    for(var i = 0; i < n; i ++ ) {			// 逐层遍历父元素
+        if(e.nodeType == 9) break; 			// 如果到了根节点，则返回根元素
+        if(e != null) e = e.parentNode;		// 获取上一级父元素
+    }
+    return e;
+}
+//e = parent(e, 3);
+//相当于
+//e = e.parentNode.parentNode. parentNode;。
+
+//获取指定元素的上一个相邻元素，参数为指定元素，返回值为上一个相邻元素或者null：
+function pre(e){
+    var e = e.previousSibling;
+    while (e && e.nodeType != 1){
+        e = e.previousSibling;
+    }
+    return e;
+}
+
+//获取指定元素的下一个相邻元素，参数为指定元素，返回值为下一个相邻元素或者null：
+function next(e){
+    var e = e.nextSibling;
+    while (e && e.nodeType != 1){
+        e = e.nextSibling;
+    }
+    return e;
+}
+</script>
+</head>
+<body>
+<p class="red">p</p>
+<div>元素
+    <span class="red">span</span>
+    <i>i</i>
+    <strong>strong</strong>
+</div>
+<b>b</b>
+<script>
+var e = document.getElementsByTagName("div")[0];	// 获取div元素
+e = next(e); 					// 利用扩展函数获取相应指针元素
+alert(e.nodeName); 				// 显示指针元素的标签名
+</script>
+</body>
+</html> 

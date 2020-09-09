@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//1. 正向声明
+
+var s = "one:1;two=2";
+var r = /\w*(?==)/;	//使用正向声明，指定执行匹配必须满足的条件
+var a = s.match(r);	//返回数组["two"]
+console.log(a);
+
+//2. 反向声明
+var r = /\w*(?!=)/;	//使用反向声明，指定执行匹配不必满足的条件
+var a = s.match(r);	//返回数组["one"]
+console.log(a);
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<style type="text/css">
+#login {
+    position: relative;
+    width: 300px;
+}
+#title {
+    position: absolute;
+    right: 20px;
+    top: 80px;
+}
+</style>
+<script type="text/javascript">
+
+window.onload = function()
+{
+    var b = document.getElementById("submit");
+    b.onclick = login;
+}
+var login = function()
+{
+    var user = document.getElementById("user");
+    var pass = document.getElementById("pass");
+    var s = "server.php?user=" + user.value + "&pass=" + pass.value;
+    imgRequest(s);
+}
+//img异步通信函数 
+var imgRequest = function( url ){
+	if(typeof url != "string" ) return;
+	var image = new Image();
+	image.src = url;
+	image.onload = function() {
+		var  title = document.getElementById("title");
+		title.innerHTML = "";
+		if(this.width > 2) {
+			console.log("登录成功");
+			var image1 = new Image();
+			image1.src = "2.png";
+			title.appendChild(image1);			
+
+		} else {
+			console.log("你输入的用户名或密码有误，请重新输入");
+			var image1 = new Image();
+			image1.src = "1.png";
+			title.appendChild(image1);
+		}
+	};
+	image.onerror = function() {
+		console.log("加载失败");
+	};
+
+}
+</script>
+<meta charset="utf-8">
+</head>
+<body>
+<div id="login">
+    <h1>用户登录</h1>
+    用户名
+    <input name="" id="user" type="text">
+    <br>
+    <br>
+    密　码
+    <input name="" id="pass"  type="password">
+    <br>
+    <br>
+    <input name="submit" type="button" id="submit" value="提交">
+<span id="title"></span> </div>
+</body>
+</html>

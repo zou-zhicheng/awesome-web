@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+// 检测特殊字符，参数为特殊字符列表，返回true表示存在，否则不存在
+String.prototype.filter = function(){
+    if(arguments.length < 1) throw new Error("缺少参数");// 如果没有参数，则抛出异常
+    var a = [], _this = this; 	// 定义空数组，把字符串存储在内部变量中
+    for(var i = 0 ; i < arguments.length; i ++ ){ // 遍历参数，把参数列表转换为数组
+        a.push(arguments[i]); 	// 把每个参数值推入数组
+    }
+    var i = - 1; 	// 初始化临时变量为-1
+    a.forEach(function(key){	// 迭代数组，检测字符串中是否包含特殊字符
+        if(i != - 1) return true; 	// 如果临时变量不等于-1，提前返回true
+        i = _this.indexOf(key)	// 检索到的字符串下标位置
+    });
+    if(i == - 1){  // 如果i等于-1，返回false，说明没有检测到特殊字符
+        return false;
+    }else{      // 如果i不等于-1，返回true，说明检测到特殊字符
+        return true;
+    }
+}
+
+var  s = '<script language="javascript" type="text/javascript">';
+	// 定义字符串直接量
+var b = s.filter("<",">");	// 调用String类型的扩展方法，检测字符串
+console.log(b); 	// 返回true，说明存在特殊的字符"<"或">"，即存在标签
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

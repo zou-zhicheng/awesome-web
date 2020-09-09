@@ -1,0 +1,32 @@
+<html> 
+<head>
+<title>服务器端响应和处理页面</title>
+<meta charset="gb2312">
+<script>
+window.onload = function(){
+	// 服务器响应处理函数，当该页面被请求加载时触发
+    var query = location.search.substring(1); 
+	// 获取HTTP请求的URL中所包含的查询字符串
+    var a = query.split("&");					// 劈开查询字符串为数组
+    var o ={};	// 临时对象直接量
+    for(var i = 0; i < a.length; i ++ ){ 		// 遍历查询字符串数组
+        var pos = a[i].indexOf("=");			// 找到等号的下标位置
+        if(pos == - 1) continue; 				// 如果没有等号，则忽略
+        var name = a[i].substring(0, pos); 		// 获取等号前面的字符串
+        var value = a[i].substring(pos + 1); 	// 获取等号后面的字符串
+        o[name] = unescape(value); 				// 把名/值对传递给对象
+    }
+    var n, b;
+    ((o["user"]) && o["user"] == "admin") ? (n = o["user"]) : (n = null );
+	// 如果用户名存在，且等于"admin"，则记录该信息，否则设置为null
+    ((o["pass"]) && o["pass"] == "123456") ? (b = true ) : (b = false ) ; 
+	// 如果密码存在，且等于"1234556"，则设置变量b为true，否则为false
+    parent.frames[0].callback(b, n); 
+	// 调用客户端框架集中第1个框架中的回调函数，并把处理的信息传递给它
+}
+</script>
+</head>
+<body>
+<h1>服务器端响应和处理页面</h1>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+//【示例3】JavaScript不支持二维数组，用户可以模仿二维数组的语法格式来定义数组。下面写法在语法上虽然不符合规定，但是JavaScript不会抛出异常。
+var a = [];
+a[0,0] = 1;
+a[0,1] = 2;
+a[1,0] = 3;
+a[1,1] = 4;
+
+console.log(a.length);	//返回2，说明仅有两个元素有效
+console.log(a[0]);	//返回3
+console.log(a[1]);	//返回3
+
+
+var a = [], i = 1;	//初始化变量
+while( i < 10 ){	//指定循环次数
+    a[i *= 2 , i] = i;	//指定下标为2的幂数时才进行赋值
+}
+console.log( a.length );	//返回17
+console.log( a );	//返回数组[,,2,, 4,,,, 8,,,,,,,, 16]
+
+
+
+</script>
+
+
+</body>
+</html>

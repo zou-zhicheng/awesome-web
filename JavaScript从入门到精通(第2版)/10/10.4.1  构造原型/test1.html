@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+function Book(){	//声明构造函数
+}
+Book.prototype.o = {x:1,y:2}	//构造函数的原型属性o是一个对象
+var book1 = new Book();	//实例化对象book1
+var book2 = new Book();	//实例化对象book2
+console.log(book1.o.x);	//返回1
+console.log(book2.o.x);	//返回1
+book2.o.x = 3;	//修改实例化对象book2中的属性x的值
+console.log(book1.o.x);	//返回3
+console.log(book2.o.x);	//返回3
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

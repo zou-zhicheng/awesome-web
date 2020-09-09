@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+var storage = window.localStorage; 
+for (var i=0, len = storage.length; i < len; i++){
+    var key = storage.key(i);
+    var value = storage.getItem(key);
+    console.log(key + "=" + value); 
+}
+
+ 
+
+
+</script>
+</head>
+<body>
+
+
+</body>
+</html>

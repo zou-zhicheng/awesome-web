@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//如果匹配任意ASCII字符：
+var r = /[\u0000-\u00ff]/g;
+
+//如果匹配任意双字节的汉字：
+var r = /[^\u0000-\u00ff]/g;
+
+//如果要匹配任意大小写字母和数字计：
+var r = /[a-zA-Z0-9]/g;
+
+//使用Unicode编码设计，匹配数字：
+var r = /[\u0030-\u0039]/g;
+
+//使用下面字符模式可以匹配任意大写字母：
+var r = /[\u0041-\u004A]/g;
+
+//使用下面字符模式可以匹配任意小写字母：
+var r = /[\u0061-\u007A]/g;
+
+//【示例2】在字符范围内可以混用各种字符模式。
+var s = "abcdez";	//字符串直接量
+var r = /[abce-z]/g;	//字符a、b、c，以及从e~z之间的任意字符
+var a = s.match(r);	//返回数组["a","b","c","e","z"]
+console.log(a);
+
+//【示例3】在中括号内不要有空格，否则会误解为还要匹配空格。
+var r = /[0-9 ]/g;
+var a = s.match(r);
+console.log(a);
+
+//【示例4】字符范围可以组合使用，以便设计更灵活的匹配模式。
+var s = "abc4 abd6 abe3 abf1 abg7";	//字符串直接量
+var r = /ab[c-g][1-7]/g; 	//前两个字符为ab，第三个字符为从c到g，
+	////第四个字符为1~7的任意数字
+var a = s.match(r); 	//返回数组["abc4"," abd6"," abe3"," abf1"," abg7"]
+console.log(a);
+
+//【示例5】使用反义字符范围可以匹配很多无法直接描述的字符，实现以少应多的目的。
+var r = /[^0123456789]/g;
+
+
+
+</script>
+
+</body>
+</html>

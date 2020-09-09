@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<style type="text/css">
+/* 使视频拉伸以填充在WebKit的屏幕 */
+:-webkit-full-screen #videoElement {
+    width: 100%;
+    height: 100%;
+}
+</style>
+</head>
+<body>
+<p>注意：按回车键切换全屏模式</p>
+<video id="videoElement" autoplay controls width="480" height="270">
+    <source src="video/chrome.webm" type="video/webm" />
+    <source src="video/chrome.ogv" type="video/ogg" />
+    <source src="video/chrome.mp4" type="video/mp4; codecs='avc1.42E01E, mp4a.40.2'" />
+</video>
+</body>
+<script>
+var videoElement = document.getElementById("videoElement");
+function toggleFullScreen() {
+	if (!document.mozFullScreen && !document.webkitFullScreen) {
+		if (videoElement.mozRequestFullScreen) {
+			videoElement.mozRequestFullScreen();
+		} else { 
+			videoElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+		}
+	} else {
+		if (document.mozCancelFullScreen) {
+			document.mozCancelFullScreen();
+		} else {
+			document.webkitCancelFullScreen();
+		}
+	}
+}
+document.addEventListener("keydown", function(e) {
+    if (e.keyCode == 13) {
+        toggleFullScreen();
+    }
+}, false);
+</script>
+</html>

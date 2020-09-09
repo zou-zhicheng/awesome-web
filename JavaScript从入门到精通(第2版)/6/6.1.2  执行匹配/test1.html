@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+var s = "JavaScript";	//测试使用的字符串直接量
+var r = /\w/g;	//匹配模式
+while((a = r.exec(s)) ){	//循环执行匹配操作
+    console.log("匹配文本 = " +  a[0] + "    a.index = " + a.index  + "    r.lastIndex = " +  r.lastIndex); 
+	//显示每次匹配操作后返回的数组信息
+}
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

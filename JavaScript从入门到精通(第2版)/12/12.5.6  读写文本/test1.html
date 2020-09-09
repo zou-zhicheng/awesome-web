@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+function getInnerText(element){
+	return (typeof element.textContent == "string") ? 
+		element.textContent : element.innerText;
+}
+
+function setInnerText(element, text){
+	if (typeof element.textContent == "string"){
+		element.textContent = text;
+	} else {
+		element.innerText = text;
+	}
+}
+</script>
+</head>
+<body>
+
+<div id="box"><span>span中的文本</span></div>
+
+<script>
+
+
+var box = document.getElementById("box");
+var span = document.getElementsByTagName("span")[0];
+
+alert(box.innerText);
+
+
+</script>
+
+
+</body>
+</html> 

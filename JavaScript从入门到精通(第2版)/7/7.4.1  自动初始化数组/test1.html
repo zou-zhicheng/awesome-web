@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+//【示例1】下面为JavaScript自定义一个静态函数，用于定义并初始化普通数组。
+//第一个参数设置元素的个数，第二个参数设置元素的初始值
+Array.dim = function(dimension, initial) {
+    var a = [], i;
+    for( i = 0; i < dimension; i += 1) {
+        a[i] = initial;
+    }
+    return a;
+};
+var myArray = Array.dim(100, 0); 
+
+console.log(myArray);
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

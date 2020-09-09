@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例2】验证函数参数的合法性。在页面设计中经常需要验证表单输入值，下面示例检测文本框中输入的值是否为合法的邮箱地址。
+function isEmail(){
+    if(arguments.length>1) throw new Error("只能够传递一个参数");	//检测参数个数
+    var regexp = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/; 	//定义正则表达式
+    if (arguments[0].search(regexp)!= -1)	//匹配实参的值
+        return true;	//如果匹配则返回true
+    else
+        return false;	//如果不匹配则返回false
+}
+var email = "zhangsan@css8.cn";	//声明并初始化邮箱地址字符串
+console.log(isEmail(email));	//返回true
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

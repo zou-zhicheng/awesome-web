@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+div { margin:1em; }			/* 为div元素定义外边界 */
+#red { border:solid 1px red; }		/* 为红盒子定义边框样式 */
+#blue { border:solid 1px blue; }	/* 为蓝盒子定义边框样式 */
+</style>
+<script>
+// 封装删除节点函数
+// 参数：e表示预删除的节点
+// 返回值：返回被删除的节点，如果不存在指定的节点，则返回undefined值
+function remove(e){
+    if(e){
+        var _e = e.parentNode.removeChild(e);
+        return _e;
+    }
+    return undefined;
+}
+
+// 封装删除所有子节点的方法
+// 参数：e表示预删除所有子节点的父节点
+function empty(e){
+    while(e.firstChild){
+        e.removeChild(e.firstChild);
+    }
+}
+
+</script>
+</head>
+<body>
+
+
+<div id="red">
+    <h1>红盒子</h1>
+</div>
+<div id="blue">蓝盒子</div>
+<button id="ok">移动</button>
+
+
+<script>
+
+var ok = document.getElementById("ok");	// 获取按钮元素的引用
+ok.onclick = function(){		// 为按钮注册一个鼠标单击事件处理函数
+	var blue = document.getElementById("blue");
+	// 获取蓝色盒子的引用
+		var parent = blue.parentNode; 
+			// 获取蓝色盒子父元素的引用
+	remove(blue); 				// 移出蓝色盒子
+}
+
+
+</script>
+
+
+</body>
+</html> 

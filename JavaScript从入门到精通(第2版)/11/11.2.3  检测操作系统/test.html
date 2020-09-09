@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例】通过下面方法可以快速检测客户端信息中是否包含上述字符串。
+var isWin = (navigator.userAgent.indexOf("Win") != - 1);	//如果是Windows系统，则返回true
+var isMac = (navigator.userAgent.indexOf("Mac") != - 1);	//如果是Macintosh系统，则返回true 
+var isUnix = (navigator.userAgent.indexOf("X11") != - 1);	//如果是UNIX系统，则返回true
+var isLinux = (navigator.userAgent.indexOf("Linux") != - 1);	//如果是Linux系统，则返回true
+
+
+['Win', 'Mac', 'X11', 'Linux'].forEach(function(t) {
+	( t === 'X11') ? t = 'Unix' : t;
+	navigator['is' +  t] = function () {
+		return navigator.userAgent.indexOf(t) != - 1;
+	};
+});
+
+console.log( navigator.isWin());
+console.log( navigator.isMac());
+console.log( navigator.isLinux());
+console.log( navigator.isUnix());
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

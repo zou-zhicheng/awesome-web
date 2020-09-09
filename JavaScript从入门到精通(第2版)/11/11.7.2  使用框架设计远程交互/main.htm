@@ -1,0 +1,44 @@
+<html> 
+<head>
+<title>与客户交互页面</title>
+<meta charset="gb2312">
+<script>
+function request(){					// 向服务器发送请求的异步请求函数
+    var user = document.getElementById("user");	// 获取输入的用户名
+    var pass = document.getElementById("pass");	// 获取输入密码
+    var s = "user=" + user.value + "&pass=" + pass.value; 
+	// 构造查询字符串
+    parent.frames[1].location.href = "server.htm?" + s; 
+	// 为框架集中第二个框架加载服务器端请求文件，并附加查询字符串，传送客户端信息，
+以实现异步信息的双向交互
+}
+function callback(b, n){ 				// 异步交互的回调函数
+    if(b){ 								// 如果参数b为真，说明输入信息正确
+        var e = document.getElementsByTagName("body")[0]; 
+		// 获取第一个框架中body元素的引用指针，以实现向且其中插入信息
+        e.innerHTML = "<h1>" + n + "</h1><p>您好，欢迎登录站点</p>";
+		// 在交互页面中插入新的交互信息
+    }
+    else{							// 如果参数b为假，说明输入信息不正确
+        alert("你输入的用户名或密码有误，请重新输入");	// 提示重新输入信息
+        var user = parent.frames[0].document.getElementById("user");
+		// 获取第一个框架中的用户名文本框
+        var pass = parent.frames[0].document.getElementById("pass");
+		// 获取第一个框架中的密码文本框
+        user.value = "";				// 清空用户名文本框中的值
+        pass.value = "";				// 清空密码文本框中的值
+    }
+}
+window.onload = function(){		// 页面初始化处理函数
+    var b = document.getElementById("submit");	// 获取【提交】按钮
+    b.onclick = request; 			// 绑定鼠标单击事件处理函数
+}
+</script>
+</head>
+<body>
+<h1>用户登录</h1>
+用户名 <input name="" id="user" type="text"><br /><br />
+密　码 <input name="" id="pass"  type="password"><br /><br />
+<input name="submit" type="button" id="submit" value="提交" />
+</body>
+</html>

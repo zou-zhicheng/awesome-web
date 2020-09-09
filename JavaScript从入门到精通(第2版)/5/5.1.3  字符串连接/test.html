@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例1】下面代码使用加号运算符连接两个字符串。
+var s1 = "abc";
+var s2 = "def";
+console.log(s1+s2); 	//返回字符串"abcdef"
+
+//【示例2】下面代码使用字符串的concat()方法把多个字符串连接在一起。
+var s1 = "abc";
+var s2 = s1.concat( "d", "e", "f" ); 	// 调用concat()连接字符串
+console.log( s2 ); 	// 返回字符串"abcdef"
+
+
+
+//【示例3】下面代码演示了如何借助数组方法提升字符串连接效率。
+var s = "JavaScript", a = [];	// 定义一个字符串
+for(var i = 0; i < 1000; i ++ ) 	// 循环执行1000次
+    a.push(s); 	// 把字符串装入数组
+var str = a.join("");	// 通过join()方法把数组元素连接在一起
+a = null; 	// 清空数组
+document.write(str); 
+
+
+</script>
+
+</body>
+</html>

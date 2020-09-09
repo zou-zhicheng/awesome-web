@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+function test(){
+    var text = document.getElementById("textarea").value;
+    var result = document.getElementById("result");
+    //创建Blob对象
+    if(!window.Blob)
+        result.innerHTML="浏览器不支持Blob对象。";
+    else
+       var blob =new Blob([text]);//Blob中数据为文字时默认使用utf8格式。
+    //通过createObjectURL方法创建文字链接
+    if (window.URL) {
+        result.innerHTML = '<a  download href="' +window.URL.createObjectURL(blob) + '" target="_blank">Blob对象文件下载</a>';
+    }
+}
+</script>
+</head>
+<body>
+<textarea id="textarea"></textarea><br />
+<button onclick="test()">创建Blob对象</button>  
+<p id="result"></p> 
+</body>
+</html> 

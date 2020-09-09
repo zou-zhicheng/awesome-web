@@ -1,0 +1,12 @@
+# 缓存文件列表 
+about.html 
+html5.css 
+index.html 
+happy-trails-rc.gif 
+lake-tahoe.JPG 
+#不缓存注册页面
+NETWORK 
+signup.html 
+FALLBACK 
+signup.html offline.html 
+/app/ajax/ default.html 

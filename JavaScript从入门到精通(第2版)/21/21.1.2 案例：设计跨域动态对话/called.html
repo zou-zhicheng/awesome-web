@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>postMessage跨域对话（被叫）</title>
+<meta charset="utf-8">
+<style type="text/css">
+.highlight { background-color: #FFFF00; }
+.red { color: red; }
+#call {
+    width: 100%;
+    border: solid 1px red;
+    min-height: 312px; 
+}
+#call div { padding: 4px 12px; }
+#caller {
+    float: left;
+    clear: left;
+}
+#call_content {
+    width: 300px;
+    height: 80px;
+    margin: 6px;
+}
+#send {
+    padding: 6px;
+    display: block;
+    margin-left: 6px;
+    width: 300px;
+}
+</style>
+</head>
+<body>
+<div id="call">
+    <div>
+        <h1>被叫页（called.html）</h1>
+        <div id="info"></div>
+    </div>
+</div>
+<div id="caller">
+    <textarea id="call_content"></textarea>
+    <button id="send" >发送</button>
+</div>
+<script type="text/javascript"> 
+var EventUtil = {//定义事件处理基本模块
+    addHandler: function (element, type, handler) {//注册事件
+        if (element.addEventListener) {	//兼容DOM模型
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent) {	//兼容IE模型
+            element.attachEvent("on" + type, handler);
+        } else {	//兼容传统模型
+            element["on" + type] = handler;
+        }
+    }
+};
+// 窗口事件监听：监听message
+var origin,source;
+var info = document.getElementById("info");
+var send = document.getElementById("send");
+EventUtil.addHandler(window, "message", function (event) {
+	origin = event.origin;
+	source  = event.source;	
+	// 监测消息来源，非法来源屏蔽
+	//if( origin != "http://localhost" ){
+    //     return;
+	//}
+	info.innerHTML += '<p>来自<span class="red">'+ origin +'</span>的网友说：<span class="highlight">' + event.data + '</span></p>';
+	
+});
+EventUtil.addHandler(send, "click", function (event) {
+	var call_content = document.getElementById("call_content");
+	if(call_content.value.length <=0) return;
+	source.postMessage(call_content.value,origin);
+	info.innerHTML += '<p>来自<span class="red">本页</span>的网友说：<span class="highlight">' + call_content.value + '</span></p>';
+	call_content.value = "";
+});
+</script>
+</body>
+</html>

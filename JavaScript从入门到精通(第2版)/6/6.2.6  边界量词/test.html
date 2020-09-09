@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//	匹配最后一个单词
+var s = "how are you";
+var r = /\w+$/;
+var a = s.match(r);	//返回数组["you"]
+console.log(a); 
+
+//	匹配第一个单词
+var r = /^\w+/;
+var a = s.match(r);	//返回数组["how"]
+console.log(a); 
+
+//	如果每一个单词
+var r = /\w+/g;
+var a = s.match(r);	//返回数组["how", "are" , "you"]
+console.log(a); 
+
+
+</script>
+
+</body>
+</html>

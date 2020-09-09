@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例2】下面示例结合变量对象和执行上下文栈，总结函数执行上下文中作用域链和变量对象的创建过程。
+var g = "global scope";	//全局变量
+function f(){	//声明函数
+    var l = 'local scope';	//私有变量
+    return l;	//返回私有变量
+}
+f();	//调用函数
+
+//【执行过程】
+
+//第1步，f函数被创建，保存作用域链到内部属性[[scope]]。
+f.[[scope]] = [	//当前函数的作用域链
+    globalContext.VO	//全局上下文的变量对象
+];
+
+//第2步，执行f函数，创建f函数的执行上下文，f函数的执行上下文被压入执行上下文栈。
+ECStack = [	//执行上下文栈
+    fContext, 	//函数的执行上下文
+    globalContext	//全局上下文
+];
+
+//第3步，f函数并不立刻执行，开始做准备工作。准备工作包括三项：
+
+//第一小步：复制函数f的[[scope]]属性，创建作用域链。
+fContext = {	//函数的执行上下文
+    Scope: f.[[scope]], 	//把函数的作用域链添加到函数的执行上下文
+}
+
+//第二小步：使用arguments创建活动对象，然后初始化活动对象，加入形参、函数声明、变量声明。
+fContext = {	//函数的执行上下文
+    AO: {	//函数的活动对象
+        arguments: {	//为活动对象添加arguments
+            length: 0
+        },
+        l: undefined	//创建本地变量
+    }
+}
+
+//第三小步：将活动对象压入f 作用域链顶端。
+fContext = {	//函数的执行上下文
+    AO: {	//活动对象
+        arguments: {	//参数集合
+            length: 0
+        },
+        l: undefined	//本地变量
+    },
+    Scope: [AO, [[Scope]]]	//作用域链
+}
+
+//第4步，准备工作做完，开始执行函数，随着函数的执行，修改AO的属性值。
+fContext = {	//函数的执行上下文
+    AO: {	//活动对象
+        arguments: {	//参数集合
+            length: 0
+        },
+        l: 'local scope'	//初始化本地变量
+    },
+    Scope: [AO, [[Scope]]] 	//作用域链
+}
+
+//第5步，查找到本地变量l的值，然后返回l的值。
+
+//第6步，函数执行完毕，函数上下文从执行上下文栈中弹出。
+ECStack = [	//执行上下文栈
+    globalContext	//全局上下文
+];
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

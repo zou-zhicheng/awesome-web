@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//6. 重名错误
+//	对象不能有重名的属性
+
+"use strict";	//开启严格模式
+var o = {
+    p: 1,
+    p: 2	//语法错误
+}; 
+
+//	函数不能有重名的参数
+"use strict";	//开启严格模式
+function f(a, a, b) {	//语法错误 
+    return ; 
+}
+
+
+
+</script>
+
+
+</body>
+</html>

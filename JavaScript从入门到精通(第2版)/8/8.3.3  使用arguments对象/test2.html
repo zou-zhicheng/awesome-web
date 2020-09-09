@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例2】在下面示例中使用for循环遍历arguments对象，然后把循环变量的值传入，以便动态改变实参值。
+function f(){
+    for(var i = 0; i < arguments.length; i ++ ){ //遍历arguments对象
+        arguments[i] =i;	//修改每个实参的值
+        console.log(arguments[i]);	//提示修改的实参值
+   }
+}
+f(3, 3, 6);	//返回提示0、1、2，而不是3、3、6
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

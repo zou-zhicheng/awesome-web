@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+
+// 获取页面滚动条的位置 
+// 参数：无
+// 返回值：返回滚动条的位置，其中属性x表示x轴偏移距离，属性y表示y轴偏移距离
+function getPS(){
+    var h = document.documentElement; 		// 获取页面引用指针
+    var x = self.pageXOffset || 			// 兼容早期浏览器
+            (h && h.scrollLeft) ||			// 兼容标准浏览器
+            document.body.scrollLeft; 		// 兼容IE怪异模式
+    var y = self.pageYOffset || 			// 兼容早期浏览器
+            (h && h.scrollTop) ||			// 兼容标准浏览器
+            document.body.scrollTop; 		// 兼容IE怪异模式
+    return {
+        x : x, 
+        y : y
+    };
+}
+
+
+</script>
+</head>
+<body style="width:2000px;height:2000px;border:solid 1px red;">
+
+<textarea id="t" cols="15" rows="4"  style="position:fixed;left:50px;top:50px;"></textarea>
+
+<script  type="text/javascript">
+
+var t = document.getElementById("t");
+window.onscroll = function(){
+    t.value = getPS().x + " " + getPS().y;
+
+}
+</script>
+</body>
+</html>  

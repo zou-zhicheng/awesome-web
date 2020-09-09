@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+var F = function(){};	//构造函数
+var obj = new F();	//实例化
+var proto1 = Object.getPrototypeOf( obj ); 	//引用原型
+var proto2 =  obj.__proto__; 	//引用原型，注意，IE暂不支持
+var proto3 = obj.constructor.prototype; 	//引用原型
+var proto4 = F.prototype; 	//引用原型
+console.log( proto1 === proto2 ); 	//true
+console.log( proto1 === proto3 ); 	//true
+console.log( proto1 === proto4 ); 	//true
+console.log( proto2 === proto3 ); 	//true
+console.log( proto2 === proto4 ); 	//true
+console.log( proto3 === proto4 ); 	//true
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

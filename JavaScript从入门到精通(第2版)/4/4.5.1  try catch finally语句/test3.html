@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+try{	//外层异常处理结构
+    try{	//内层异常处理结构
+        test();	//错误调用方法
+    }
+    catch(error){
+        if (error.name == "ReferenceError") console.log("错误参考");//如果是异常引用，则提示这样信息
+        else  throw error; //否则再次抛出一个异常，并把错误信息向上传递
+    }
+}
+catch(error){	//获取内层异常处理结构中抛出的异常
+    console.log("内层try/catch不能够处理这个错误");
+}
+
+
+
+
+</script>
+
+
+</body>
+</html>

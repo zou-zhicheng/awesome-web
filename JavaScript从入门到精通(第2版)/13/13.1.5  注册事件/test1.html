@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<button id="btn1" onclick="btn1();">按 钮 1</button>
+<button id="btn2" onclick="btn2(event);">按 钮 2</button>
+<script>
+var btn = document.getElementsByTagName("button");	//捕获所有按钮
+for(var i in btn){               					//遍历按钮集合
+    btn[i].addEventListener("click", function(){
+        alert(this.innerHTML);
+    }, true);  	//为每个按钮对象注册一个事件处理函数，定义在捕获阶段进行响应
+}
+</script> 
+</body>
+</html> 

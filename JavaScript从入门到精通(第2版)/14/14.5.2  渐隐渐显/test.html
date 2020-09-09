@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+
+// 设置元素的透明度
+// 参数：e表示要预设置的元素，n表示一个数值，取值范围为0~100，如果省略，则默认为100，即不透明显示元素
+// 返回值：无
+function setOpacity(e, n){
+    var n = parseFloat(n); 		// 把第二个参数转换为浮点数
+    if(n && (n>100) || !n) n=100; 
+	// 如果第二个参数存在且值大于100，或者不存在该参数，则设置其为100
+    if(n && (n<0))  n =0; 		// 如果第二个参数存在且值小于0，则设置其为0
+    if (e.filters){ 			// 兼容IE浏览器
+        e.style.filter = "alpha(opacity=" + n + ")";
+    }
+    else{						// 兼容DOM标准
+        e.style.opacity = n / 100;
+    }
+} 
+
+// 获取元素的透明度
+// 参数：e表示要预设置的元素
+// 返回值：元素的透明度值，范围在1~100之间
+function getOpacity(e){
+    var r;
+    if ( ! e.filters){
+        if (e.style.opacity) return parseFloat(e.style.opacity) * 100;
+    }
+    try{
+        return e.filters.item('alpha').opacity
+    }
+    catch(o){
+        return 100;
+    }
+}
+
+
+// 渐隐渐显动画显示函数
+// 参数：e表示渐隐渐显元素，t表示渐隐渐显的速度，值越大渐隐渐显速度越慢，io表示渐隐或渐显方式，取值true表示渐显，取值false表示渐隐
+function fade(e, t, io){
+    var t = t || 10;					// 初始化渐隐渐显速度
+    if(io){	// 初始化渐隐渐显方式
+        var i = 0;
+    }else{
+        var i = 100;
+    }
+    var out = setInterval(function(){	// 设计定时器
+        setOpacity(e, i);				// 调用setOpacity()函数
+        if(io) {							// 根据渐隐或渐显方式决定执行效果
+            i ++ ;
+            if(i >= 100)  clearTimeout(out);
+        }
+        else{
+            i-- ;
+            if(i <= 0)  clearTimeout(out);
+        }
+    }, t);
+}
+
+
+
+</script>
+</head>
+<body>
+
+<style type="text/css">
+.block {width:200px; height:200px; background-color:red; }
+</style>
+<div class="block" id="block1"></div>
+<input type="submit" id="btn" value="渐隐渐显" />
+<script>
+e = document.getElementById('block1');
+btn = document.getElementById('btn');
+
+btn.onclick =function(){
+	fade(e,100,true);						// 应用渐隐渐显动画效果
+}
+
+</script>
+
+
+
+
+
+</body>
+</html> 

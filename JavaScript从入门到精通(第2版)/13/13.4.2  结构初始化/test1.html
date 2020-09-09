@@ -1,0 +1,20 @@
+<html>
+<head>
+<script>
+window.onload = f1; 						// 注册load事件类型
+if(document.addEventListener){ 			// 兼容DOM标准
+    document.addEventListener("DOMContentLoaded", f, false); 
+	// 注册DOMContentLoaded事件类型
+}
+function f(){
+    alert("我提前执行了");
+}
+function f1(){
+    alert("页面初始化完毕");
+}
+</script>
+</head>
+<body>  
+<img src="Winter.jpg">
+</body>
+</html> 

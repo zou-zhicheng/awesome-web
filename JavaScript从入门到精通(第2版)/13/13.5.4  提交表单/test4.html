@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body>
+
+
+
+<form id="form1" name="form1" method="post" action="">
+    <input type="text" name="t" id="t" />
+</form>
+<script>
+var t = document.getElementsByTagName("input")[0]; 
+	// 获取文本框引用指针
+t.onkeypress = function(e){ 	// 为文本框绑定键盘keypress事件处理函数
+    var e = e || window.event; 	// 标准化事件对象
+    return e.keyCode != 13; 
+	// 当按下回车键时，设置返回值为false，禁止默认键盘行为
+}
+
+
+</script> 
+
+</body>
+</html> 

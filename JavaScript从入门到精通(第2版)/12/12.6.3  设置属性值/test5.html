@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+function hasClass(element,className){//类名检测函数
+    var reg =new RegExp('(\\s|^)'+ className + '(\\s|$)');
+    return  reg.test(element.className); //使用正则检测是否有相同的样式
+}
+function addClass(element,className){//添加类名函数
+    if(!hasClass(element, className))
+        element.className +=' ' + className;
+}
+</script>
+</head>
+<body>
+
+<div id="red">红盒子</div>
+<script>
+
+
+var red = document.getElementById("red");
+addClass(red,'red');
+addClass(red,'blue');
+
+</script>
+</body>
+</html> 

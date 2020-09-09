@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+
+//【示例1】下面代码定义一个函数直接量。
+function(a, b){	//函数直接量
+    return a + b;
+}
+
+//【示例2】匿名函数就是一个表达式，即函数表达式，而不是函数结构的语句。在下面示例中把匿名函数作为一个值赋值给变量f。
+// 把函数作为一个值直接赋值给变量f
+var f = function(a, b){
+    return a + b;
+};
+
+console.log(f(1,2));	//返回数值3
+
+
+//【示例3】匿名函数作为值，可以参与更复杂的表达式运算。针对上面示例可以使用如下代码完成函数定义和调用一体化操作。
+// 把函数作为一个运算元，利用函数调用运算符（()）进行调用
+console.log(
+(function(a, b){
+    return a + b;
+})(1,2)
+);	//返回数值3
+
+
+
+</script>
+
+
+
+</body>
+</html>

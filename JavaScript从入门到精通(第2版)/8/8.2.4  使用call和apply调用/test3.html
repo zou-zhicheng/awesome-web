@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+function max(){	//求最大值函数
+    var m = Number.NEGATIVE_INFINITY; 		
+	//声明一个负无穷大的数值
+    for( var i = 0; i < arguments.length; i ++ ){		 
+	//遍历函数所有的实参
+        if( arguments[i] > m )	//如果实参值大于变量m，
+        m = arguments[i];	//则把该实参值赋值给m
+    }
+    return m;	//返回最大值
+}
+var a = [23, 45, 2, 46, 62, 45, 56, 63]; 			
+	//声明并初始化数组
+var m = max.apply( Object, a ); 	
+	//把函数max绑定为Object对象的方法，并动态调用
+console.log( m );	//返回63
+
+
+var a = [23, 45, 2, 46, 62, 45, 56, 63];	//声明并初始化数组
+var m = Math.max.apply( Object, a );	//调用系统函数max
+console.log( m );	//返回63
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

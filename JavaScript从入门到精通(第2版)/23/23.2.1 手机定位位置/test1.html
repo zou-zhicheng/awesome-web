@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+<title>定位</title>
+<script src="http://webapi.amap.com/maps?v=1.4.6&key=93f6f55b917f04781301bad658886335"></script>
+</head>
+<body>
+<p id="header" ></p>
+<div id="container"  style="width:400px; height:300px"></div>
+<script>
+if (navigator.geolocation) {
+	// 通过HTML 5 getCurrnetPosition API 获取定位信息
+	navigator.geolocation.getCurrentPosition(function(position) {
+		var header = document.getElementById("header");
+		header.innerHTML = "<p>经度："  + position.coords.longitude + "<br>维度：" + position.coords.latitude + "</p>";
+		var map = new AMap.Map('container', {
+				center: [position.coords.longitude, position.coords.latitude],
+				zoom: 10
+			});
+			map.plugin(["AMap.ToolBar"], function() {
+				map.addControl(new AMap.ToolBar());
+			});
+		<!-- 上面是定位，下面是打上标记 -->
+		var marker;
+		var icon = new AMap.Icon({
+			image: 'http://vdata.amap.com/icons/b18/1/2.png',
+			size: new AMap.Size(24, 24)
+		});
+		marker = new AMap.Marker({
+			offset: new AMap.Pixel(-12, -12),
+			zIndex: 101,
+			map: map
+		});
+	});
+} else {
+	alert("您的浏览器不支持HTML5 Geolocation API 定位");
+}
+</script>
+</body>
+</html>

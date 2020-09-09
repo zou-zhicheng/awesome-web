@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+//【示例1】下面方法能够检测当前主流浏览器类型，包括IE、Opera、Safari、Chrome和Firefox浏览器。
+var ua = navigator.userAgent.toLowerCase();// 获取用户端信息
+var info ={
+    ie : /msie/.test(ua) && !/opera/.test(ua),	//匹配IE浏览器
+    op : /opera/.test(ua),	//匹配Opera浏览器
+    sa : /version.*safari/.test(ua),	//匹配Safari浏览器
+    ch : /chrome/.test(ua),	//匹配Chrome浏览器
+    ff : /gecko/.test(ua) && !/webkit/.test(ua)	//匹配Firefox浏览器
+};
+
+(info.ie) && console.log("IE浏览器");
+(info.op) && console.log("Opera浏览器");
+(info.sa) && console.log("Safari浏览器");
+(info.ff) && console.log("Firefox浏览器");
+(info.ch) && console.log("Chrome浏览器");
+
+
+
+//【示例2】通过解析navigator对象的userAgent属性，可以获得浏览器的完整版本号。针对IE浏览器来说，它是在＂MSIE＂字符串后面带一个空格，然后跟随版本号及分号。因此，可以设计一个如下的函数获取IE的版本号。
+// 获取IE浏览器的版本号
+// 返回数值，显示IE的主版本号
+function getIEVer(){
+    var ua = navigator.userAgent;	//获取用户端信息
+    var b = ua.indexOf("MSIE ");	//检测特殊字符串"MSIE "的位置
+    if(b < 0){
+        return 0;
+    }
+    return parseFloat(ua.substring(b + 5, ua.indexOf(";", b)));	//截取版本号，并转换为数值
+}
+
+console.log(getIEVer());	//返回类似数值：10
+
+
+//【示例3】利用同样的方法可以检测其他类型浏览器的版本号，下面函数是检测Firefox浏览器的版本号。
+function getFFVer(){
+    var ua = navigator.userAgent;
+    var b = ua.indexOf("Firefox/");
+    if(b < 0){
+        return 0;
+    }
+    return  parseFloat(ua.substring(b + 8,ua.lastIndexOf("\.")));
+}
+console.log(getFFVer());	//返回类似数值：64
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

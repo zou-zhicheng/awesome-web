@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<a href="https://www.baidu.com/" id="a1">禁止超链接跳转</a><script>
+
+
+document.getElementById('a1').onclick = function(e) {
+    e = e || window.event;
+    var target = e.target || e.srcElement;
+    if(target.nodeName !== 'A') {
+    	return;
+    }
+    if( typeof e.preventDefault === 'function') {
+		e.preventDefault();
+		e.stopPropagation();
+    } else {
+		e.returnValue = false;
+		e.cancelBubble = true;
+    }
+};
+
+
+
+</script>
+</body>
+</html> 

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+<title></title>
+<style type="text/css">
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+#container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=93f6f55b917f04781301bad658886335&plugin=AMap.Walking"></script>
+</head>
+<body>
+<div id="container"></div>
+<script>
+if (navigator.geolocation) {
+    // 通过HTML 5 getCurrnetPosition API 获取定位信息
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var map = new AMap.Map('container', {	//在地图中央位置显示当前位置
+                center: [position.coords.longitude, position.coords.latitude],
+                zoom: 15			//地图放大15倍显示
+            });
+            map.plugin(["AMap.ToolBar"], function() {	//定义在地图中显示工具条
+                map.addControl(new AMap.ToolBar());
+            });
+        <!-- 上面是定位，下面是打上标记 -->
+        var marker;
+        var icon = new AMap.Icon({	//定义标记符号
+            image: 'http://vdata.amap.com/icons/b18/1/2.png',
+            size: new AMap.Size(24, 24)
+        });
+        marker = new AMap.Marker({	//使用标记符号标记当前的地里位置
+            offset: new AMap.Pixel(-12, -12),
+            zIndex: 101,
+            map: map
+        });
+        //为地图注册click事件获取鼠标点击出的经纬度坐标
+        map.on('click', function(e) {
+			//清除覆盖物
+			if (walking)
+				walking.clearMap;
+            var lng = e.lnglat.getLng();
+            var lat = e.lnglat.getLat();
+			//步行导航
+			var walking = new AMap.Walking({
+				map: map
+			}); 
+			//根据起终点坐标规划步行路线
+			walking.search([position.coords.longitude, position.coords.latitude], [lng, lat]);
+        });
+    });
+} else {
+    alert("您的浏览器不支持HTML5 Geolocation API 定位");
+}
+
+
+</script>
+</body>
+</html>

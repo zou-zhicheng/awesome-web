@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+</script>
+<style type="text/css">
+.red {color:red;}
+</style>
+</head>
+<body>
+
+
+
+
+
+<script>
+
+var element = document.createElement("div");
+element.className = "red";
+
+var textNode = document.createTextNode("Hello");
+element.appendChild(textNode);
+
+var anotherTextNode = document.createTextNode(" world!");
+element.appendChild(anotherTextNode);
+
+document.body.appendChild(element);
+
+alert(element.childNodes.length);  //2
+element.normalize();
+alert(element.childNodes.length);  //1
+alert(element.firstChild.nodeValue);  //"Hello World!"
+
+</script>
+
+</body>
+</html> 

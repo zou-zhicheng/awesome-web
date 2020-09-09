@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+
+
+<canvas id="canvas" width="300" height="200" style="border:solid 1px #999;"></canvas>
+
+
+<script>
+draw();
+function draw() {
+	var ctx = document.getElementById('canvas').getContext('2d'); 
+	// 开始绘制矩形
+	ctx.fillStyle="#ff00ff";
+	ctx.strokeStyle="blue";
+	ctx.fillRect(20,20,100,100);
+	ctx.strokeRect(20,20,100,100);
+	ctx.fill();
+	ctx.stroke();
+	// 保存当前canvas状态
+	ctx.save();
+	//绘制另外一个矩形    
+	ctx.fillStyle="#ff0000";
+	ctx.strokeStyle="green";
+	ctx.fillRect(140,20,100,100);
+	ctx.strokeRect(140,20,100,100);
+	ctx.fill();
+	ctx.stroke();
+	// 恢复第一个矩形的状态
+	ctx.restore();
+	// 绘制两个矩形
+	ctx.fillRect(20,140,50,50);
+	ctx.strokeRect(80,140,50,50);
+}
+
+</script>
+
+
+
+</body>
+</html>

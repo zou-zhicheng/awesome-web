@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+
+<textarea id="text" cols="26" rows="16"></textarea>
+<script>
+var n = 1; 										// 定义编号变量
+var text = document.getElementById("text");	// 获取文本区域的引用指针
+text.onkeydown = f; 			// 注册keydown事件处理函数
+text.onkeyup = f; 				// 注册keyup事件处理函数
+text.onkeypress = f; 			// 注册keypress事件处理函数
+function f(e){ 					// 事件调用函数
+    var e = e || window.event; 	// 标准化事件对象
+    text.value += (n++) + "=" + e.type +"  (keyCode=" + e.keyCode + ")\n";
+	// 捕获事件响应信息
+}
+</script>
+ 
+
+
+</body>
+</html> 

@@ -1,0 +1,36 @@
+<html>
+<head>
+<script>
+
+</script>
+</head>
+<body>
+<div id="box"></div>
+<script>
+var box = document.getElementById("box");		// 获取盒子的引用指针
+box.style.position = "absolute";				// 绝对定位
+box.style.backgroundColor = "red";		// 背景色
+box.style.width = w() * 0.8 + "px";	// 设置盒子宽度为窗口宽度的0.8倍
+box.style.height = h() * 0.8 + "px";	// 设置盒子高度为窗口高度的0.8倍
+window.onresize = function(){	// 注册resize事件处理函数，动态调整盒子大小
+    box.style.width = w() * 0.8 + "px";
+    box.style.height = h() * 0.8 + "px";
+}
+function w(){					// 获取窗口宽度
+    if (window.innerWidth) 		// 兼容DOM
+        return window.innerWidth;
+    else if ((document.body) && (document.body.clientWidth)) 
+	// 兼容IE
+        return document.body.clientWidth;
+}
+function h(){					// 获取窗口高度
+    if (window.innerHeight) 	// 兼容DOM
+        return window.innerHeight;
+    else if ((document.body) && (document.body.clientHeight)) 
+	// 兼容IE
+        return document.body.clientHeight;
+}
+</script>
+ 
+</body>
+</html> 

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+//【示例1】在下面示例中，使用test()方法检测字符串中是否包含字符。
+var s = "JavaScript";
+var r = /\w/g;	//匹配字符
+var b = r.test(s);	//返回true
+console.log( b);
+
+var r = /JavaScript/g;
+var b = r.test(s);	//返回true
+console.log( b);
+
+var r = /\d/g;	//匹配数字
+var b = r.test(s);	//返回false
+console.log( b);
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

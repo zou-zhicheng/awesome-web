@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+var $ =jQuery = function(selector, context ){ 		//jQuery构造函数
+    return new jQuery.fn.init(selector, context );		//jQuery实例对象
+}
+jQuery.fn = jQuery.prototype = { 			//jQuery原型对象
+    init : function(selector, context){     			//初始化构造函数
+        selector = selector || document;        	//初始化选择器，默认值为document
+        context = context || document;	//初始化上下文对象，默认值为document
+        if ( selector.nodeType ) {	//如果是DOM元素
+            this[0] = selector;	//直接把该DOM元素传递给实例对象的伪数组
+            this.length = 1;	//设置实例对象的length属性，表示包含1个元素
+            this.context = selector; 	//重新设置上下文为DOM元素
+            return this;     	//返回当前实例
+        }
+        if ( typeof selector === "string" ) {	//如果选择符字符串
+            var e = context.getElementsByTagName(selector); 	//获取指定名称的元素
+            for(var i = 0;i<e.length;i++){ 	//使用for把所有元素传入到当前实例数组中
+                this[i] = e[i];
+            }
+            this.length = e.length;	//设置实例的length属性，定义包含元素的个数
+            this.context = context;	//保存上下文对象
+            return this;     	//返回当前实例
+        } else{
+            this.length = 0;     	//设置实例的length属性值为0，表示不包含元素
+            this.context = context; 	//保存上下文对象
+            return this;     	//返回当前实例
+        }
+    }
+
+}
+jQuery.fn.init.prototype = jQuery.fn;
+//扩展方法：jQuery迭代函数
+jQuery.each = function( object, callback, args ){
+    for(var i = 0; i<object.length; i++){	//使用for迭代jQuery对象中每个DOM元素
+        callback.call(object[i],args); 	//在每个DOM元素上调用回调函数
+    }
+    return object;	//返回jQuery对象
+}
+/*重新定义jQuery扩展函数*******************************************************/
+jQuery.extend = jQuery.fn.extend = function() {
+    var destination = arguments[0], source =  arguments[1];//获取第1个和第2个参数
+    //如果2个参数都存在，且都为对象
+    if(  typeof destination == "object" && typeof source == "object"){ 
+        //把第2个参数对合并到第1个参数对象中，并返回合并后的对象
+        for (var property in source) { 
+            destination[property] = source[property];
+        }
+        return destination;        
+    }else{//如果包含一个参数，则为jQuery扩展插件，把插件复制到jQuery原型对象上
+        for (var prop in destination) {
+            this[prop] =  destination[prop];
+        }
+        return this;
+    }
+}
+
+
+//jQuery对象扩展方法
+jQuery.fn.extend({
+    fontStyle: function(obj){ //设置字体样式
+        var  defaults = {    //设置默认值，可以扩展
+                color :    "#000",
+                bgcolor :  "#fff",
+                size :     "14px",
+                style :    "normal"
+        };
+        defaults = jQuery.extend(defaults, obj || {});    //如果传递参数，则覆盖原默认参数
+        jQuery.each(this, function(){     //为每一个DOM元素执行回调函数
+            this.style.color = defaults.color;
+            this.style.backgroundColor = defaults.bgcolor;
+            this.style.fontSize = defaults.size;
+            this.style.fontStyle = defaults.style;
+        });
+    }    
+})
+
+
+window.onload = function(){
+    $("p").fontStyle({
+        color: "#fff",
+        bgcolor: "#000",
+        size:"24px"
+    });
+}
+ 
+
+
+
+
+
+</script>
+</head>
+<body>
+<p>少年不识愁滋味，爱上层楼。爱上层楼，为赋新词强说愁。</p>
+<p>而今识尽愁滋味，欲说还休。欲说还休，却道天凉好个秋。</p>
+
+</body>
+</html>

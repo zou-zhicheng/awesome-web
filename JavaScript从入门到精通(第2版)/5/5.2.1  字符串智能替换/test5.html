@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+var score = {
+	"张三":56,
+	"李四":76,
+	"王五":87,
+	"赵六":98
+}, _score="";
+
+for(var id in score){
+	_score += id + score[id] ;
+}
+console.log(_score);
+var a = _score.match( /\d+/g ), sum = 0; 	// 匹配出所有分值，输出为数组
+for( var i= 0 ; i<a.length ; i++){	// 遍历数组，求总分
+    sum += parseFloat(a[i]); 	// 把元素值转换为数值后递加
+};
+var avg = sum / a.length; 	//求平均分
+function f(){
+    var n = parseFloat(arguments[1]); 
+	// 把匹配的分数转换为数值，第一个子表达式
+    return " : " + n + "分" + " ( " + (( n > avg ) ? ( "超出平均分" + ( n - avg ) ) : ( "低于平均分" + ( avg - n ) )) + "分 ) <br> ";	// 设计替换文本的内容
+}
+var s1 = _score.replace( /(\d+)/g, f ); 	// 执行匹配、替换操作
+document.write( s1 ); 					
+
+
+</script>
+
+
+</body>
+</html>

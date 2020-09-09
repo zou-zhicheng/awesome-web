@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+//【示例2】如果函数返回值为一个函数，则在调用时可以使用多个小括号反复调用。
+function f(x, y){	//定义函数
+    return function(){	//返回函数类型的数据
+        return x * y;
+    }
+}
+console.log(f(7, 8)());	//返回值56，反复调用函数
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

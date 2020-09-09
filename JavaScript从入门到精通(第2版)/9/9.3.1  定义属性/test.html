@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+var obj = {	//定义对象
+    x:1,
+    y:function(){
+		return this.x + this.x;
+	}
+}
+
+console.log(obj.y());	//2
+
+
+var obj =  {}	//定义空对象
+obj.x = 1;	//定义属性
+obj.y = function(){	//定义方法
+	return this.x + this.x;
+}
+console.log(obj.y());	//2
+
+
+var obj = {};
+Object.defineProperty(obj, "x", {
+    value: 1,
+    writable: true,
+    enumerable: true,
+    configurable: true
+});
+console.log(obj.x );	//1
+
+
+
+var obj = {};
+Object.defineProperties(obj, {
+    x: {
+        value: 1,
+        writable: true,
+    },
+    y: {
+        set: function (x) {
+            this.x = x;
+        },
+        get: function () {
+            return this.x;
+        },
+}});
+obj.y = 10;
+console.log ( obj.x );	//10
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

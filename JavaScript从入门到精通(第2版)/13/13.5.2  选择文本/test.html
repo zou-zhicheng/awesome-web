@@ -1,0 +1,34 @@
+<html>
+<head>
+<script>
+
+
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+<body>
+
+<input type="text" id="a" value="请随意选择字符串" />
+<input type="text" id="b" />
+<script>
+var a = document.getElementsByTagName("input")[0]; 
+	// 获取第一个文本框的引用指针
+var b = document.getElementsByTagName("input")[1]; 
+	// 获取第二个文本框的引用指针
+a.onselect = function(){		// 为第一个文本框绑定select事件处理函数
+    if (document.selection){ 	// 兼容IE
+        o = document.selection.createRange();	// 创建一个选择区域
+        if(o.text.length > 0) 	// 如果选择区域内存在文本
+        b.value = o.text; 		// 则把该区域内的文本赋值给第二个文本框
+    }else{						// 兼容DOM
+        p1 = a.selectionStart; 	// 获取文本框中选择的初始位置
+        p2 = a.selectionEnd; 	// 获取文本框中选择的结束位置
+        b.value = a.value.substring(p1, p2); 
+		// 截取文本框中被选取的文本字符串，然后赋值给第二个文本框
+    }
+}
+</script>
+
+ 
+</body>
+</html> 

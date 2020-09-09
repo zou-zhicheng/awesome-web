@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+//【示例1】下面示例使用Object.create定义一个对象，继承null，包含两个可枚举的属性size和shape，属性值分别为"large"和"round"。
+var newObj = Object.create(null, {
+            size: {	//属性名
+                value: "large",	//属性值
+                enumerable: true	//可以枚举
+            },
+            shape: {	//属性名
+                value: "round",	//属性值
+                enumerable: true	//可以枚举
+            }
+        });
+console.log(newObj.size );			//large
+console.log(newObj.shape );			//round
+console.log(Object.getPrototypeOf(newObj));	//null
+
+
+//【示例2】下面示例使用Object.create定义一个与对象直接量具有相同原型的对象。
+var obj = Object.create(Object.prototype, {	//继承Object.prototype原型对象
+    x: {
+        value: undefined, 	//属性值
+        writable: true, 	//可写
+        configurable: true, 	//可以配置
+        enumerable: true	//可以枚举
+    }
+});
+console.log("obj.prototype = " + Object.getPrototypeOf(obj));
+	// Obj prototype = [object Object]
+
+//【示例3】下面示例定义一个对象，使用访问器属性b来读写数据属性a。
+var obj = Object.create(Object.prototype, {
+    a: {	// 数据属性a
+        writable:true,
+        value: "a" 
+    },
+    b: {	//访问器属性b
+        get: function() {
+            return this.a;
+        },
+        set: function(value) {
+            this.a = value;
+        }
+    }
+});
+console.log(obj.a);	//"a"
+console.log(obj.b);	//"a"
+obj.b = 20;
+console.log(obj.b);	//20
+
+
+
+</script>
+
+
+
+</body>
+</html>

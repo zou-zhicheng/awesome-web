@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+
+
+<canvas id="canvas" width="300" height="200" style="border:solid 1px #999;"></canvas>
+
+<script>
+draw();
+function draw() {
+    var canvas = document.getElementById('canvas'); 
+    var ctx = canvas.getContext('2d'); 
+    var image = new Image(); 
+    image.src = "images/1.png"; 
+    image.onload = function(){  
+        //创建填充样式，全方向平铺
+        var ptrn = ctx.createPattern(image,'repeat'); 
+        //指定填充样式
+        ctx.fillStyle = ptrn;  
+        //填充画布
+        ctx.fillRect(0,0,300,200);  
+    }; 
+}
+
+
+</script>
+
+
+
+</body>
+</html>

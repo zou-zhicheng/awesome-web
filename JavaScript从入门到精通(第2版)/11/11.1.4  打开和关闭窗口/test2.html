@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+
+
+<script>
+
+//【示例2】下面示例演示如何自动弹出一个窗口，然后设置半秒钟之后自动关闭该窗口，同时允许用户单击页面超链接，更换弹出窗口内显示的网页URL。
+var url = "http://news.baidu.com/";	//要打开的网页地址
+var features = "height=500, width=800, top=100, left=100,toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no";	//设置新窗口的特性
+//动态生成一个超链接
+document.write('<a href="http://www.baidu.com/" target="newW" >切换到百度首页</a>');
+var me = window.open (url, "newW", features);	//打开新窗口
+setTimeout(function(){	//定时器
+    if(me.closed){
+        console.log("创建的窗口已经关闭。")
+    }else{
+        me.close();
+    }
+},5000);	//半秒钟之后关闭该窗口
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+
+//【示例1】在下面示例中，通过多层嵌套函数设计一个作用域链，在最内层函数中可以逐级访问外层函数的私有变量。
+var a = 1;	//全局变量
+(function(){
+    var b = 2;	//第1层局部变量
+    (function(){
+        var c = 3;	//第2层局部变量
+        (function(){
+            var d = 4;	//第3层局部变量
+            alert(a+b+c+d);	//返回10
+        })()	//直接调用函数
+    })()	//直接调用函数
+})()	//直接调用函数
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+var a = [1, "hi", 2, "good", "4", , "" , 3, 4],	//定义并初始化数组a
+    b = [], j = 0;	//定义数组b和变量j
+for(var i in a){	//遍历数组a
+    if(typeof a[i] == "string") // 如果为字符串，则返回继续下一次循环
+        continue;
+    b[j ++ ] = a[i];	//把数字寄存到数组b
+}
+document.write(b);	//返回1,2,3,4
+
+
+
+
+
+</script>
+
+</body>
+</html>

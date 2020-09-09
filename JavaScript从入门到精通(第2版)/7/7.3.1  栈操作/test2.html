@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+
+
+function d2b (num) {
+    var a = [],  r,  b = '';	//a为栈，r为余数，b为二进制字符串
+    while (num>0) {	//逐步求余
+        r = Math.floor(num % 2); 	//获取余数
+        a.push(r);  	//把余数推入栈中
+        num = Math.floor(num / 2);	//获取相除后整数部分值，准备下一步求余
+    }
+    while (a.length) {	//依次出栈，然后拼接为字符串
+        b += a.pop().toString();
+    }
+    return b; 	//返回二进制字符串
+}
+
+
+console.log( d2b(59));	//返回111011
+console.log( (59).toString(2)); 	//返回111011
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

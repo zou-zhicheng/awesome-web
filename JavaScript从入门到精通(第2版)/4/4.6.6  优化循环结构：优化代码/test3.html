@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+var items = [],
+	process = function(val){
+		document.write( val + " ");
+	}
+	
+for(var num= 10000; num--;) items[num]=num;
+
+
+for (var i=items.length; i--; ){
+    process(items[i]);
+}
+var j = items.length;
+while (j--){
+    process(items[j]);
+}
+var k = items.length-1;
+do {
+    process(items[k]);
+} while (k--);
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

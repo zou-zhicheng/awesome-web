@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html> 
+<html>   
+<head>      
+<meta charset="utf-8">
+<title></title>   
+<script>
+function sendText() {
+    var txt=document.getElementById("text1").value;
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'test.php', true);
+    xhr.responseType = 'text';
+    xhr.onload = function(e) {
+        if (this.status == 200) {
+            document.getElementById("result").innerHTML=this.response;
+        }
+    }; 
+    xhr.send(txt);
+}
+</script>
+</head>  
+<body>     
+<form>      
+<input type="text" id="text1"><br/>      
+<input type="button" value="发送数据" onclick="sendText()">     
+</form>     
+<output id="result" ></output>     
+</body> 
+</html>
+

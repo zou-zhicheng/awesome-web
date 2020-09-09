@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+//【示例1】使用unshift()分批插入元素与一次性插入元素结果是不同的。
+var a = [0];	//定义数组
+a.unshift(1,2);	//一次性增加两个元素
+console.log(a);	//返回[1,2,0]
+var a = [0];
+a.unshift(1);	//增加元素1
+a.unshift(2);	//增加元素2
+console.log(a);	//返回[2,1,0]
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<p id="p1">注册兼容性事件</p>
+<script>
+var p1 = document.getElementById("p1");		// 捕获段落元素
+var f1 = function(){							//定义事件处理函数1
+    p1.style.background = 'blue';
+};
+var f2 = function(){							//定义事件处理函数2
+    p1.style.background = 'red';
+	    if(p1.detachEvent){ 					//兼容IE事件模型
+	        	p1.detachEvent("onmouseover", f1); 	//注销事件mouseover
+		    p1.detachEvent("onmouseout", f2); 	//注销事件mouseout
+	    }
+	    else{									//兼容DOM事件模型
+		    p1.removeEventListener("mouseover", f1); //注销事件mouseover
+		    p1.removeEventListener("mouseout", f2); //注销事件mouseout
+	    }
+};
+if(p1.attachEvent){ 							//兼容IE事件模型
+	    p1.attachEvent("onmouseover", f1); 		//注册事件mouseover
+	    p1.attachEvent("onmouseout", f2);			//注册事件mouseout
+}
+else{										//兼容DOM事件模型
+	    p1.addEventListener("mouseover", f1); 		//注册事件mouseover
+	    p1.addEventListener("mouseout", f2); 		//注册事件mouseout
+}
+</script>
+</body>
+</html> 

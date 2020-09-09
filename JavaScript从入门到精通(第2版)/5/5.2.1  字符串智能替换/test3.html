@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+var s = 'javascript is script , is not java.';   // 定义字符串
+var f = function(){
+    return arguments[1].toUpperCase()+arguments[2] ;
+}
+var a = s.replace( /\b(\w)(\w*)\b/g, f ); 
+console.log( a ); 
+
+
+
+
+</script>
+
+
+</body>
+</html>

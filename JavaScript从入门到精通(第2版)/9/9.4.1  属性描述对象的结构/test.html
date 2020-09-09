@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+//例1
+var obj = {};
+Object.defineProperty(obj, 'x', { value: 100 });
+console.log( Object.getOwnPropertyDescriptor(obj, 'x').value );	//100
+
+
+//例2
+var obj = {};
+Object.defineProperty(obj, 'x', {
+    value: 1,
+    writable: false
+});
+obj.X = 2;
+console.log( obj.x )	//1
+
+//例3
+var obj = {};
+Object.defineProperty(obj, 'x', {
+    value: 1,
+    enumerable: false
+});
+console.log( obj.x ); //1
+for (var key in obj) {
+    console.log(key);
+}	// undefined
+console.log( Object.keys(obj) );	//[]
+console.log( JSON.stringify(obj) );	//"{}"
+
+//例4
+var obj = Object.defineProperty({}, 'x', {
+    configurable: false
+});
+obj.x =5;
+console.log( obj.x ); //undefined
+Object.defineProperty(obj, 'x', {value: 2})
+Object.defineProperty(obj, 'x', {writable: true})
+Object.defineProperty(obj, 'x', {enumerable: true})
+Object.defineProperty(obj, 'x', {configurable: true})
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

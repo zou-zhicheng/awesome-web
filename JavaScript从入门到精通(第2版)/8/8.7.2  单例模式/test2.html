@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<button>仅能点击一次</button>
+<script>
+
+function getSingle(fn) {
+    var ret;
+    return function() {
+        return ret || (ret = fn.apply(this, arguments));
+    };
+};
+
+var f = function(){
+    console.log(this.nodeName)
+    return this.nodeName;
+}
+document.getElementsByTagName("button")[0].onclick = getSingle(f);
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

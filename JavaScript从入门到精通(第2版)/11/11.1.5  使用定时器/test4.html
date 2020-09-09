@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+
+<input type="text" />
+<script>
+
+//【示例4】下面示例会在页面内的文本框中按秒针速度显示递加的数字，当循环执行10次后，会调用clearTimeout()方法清除对代码的执行，并弹出提示信息。
+
+
+var t = document.getElementsByTagName("input")[0];
+var i = 1;
+function f(){
+    var out = setTimeout(	//定义延迟执行的方法
+    function(){	//延迟执行函数
+        t.value = i ++ ;	//递加数字
+        f();	//调用包含setTimeout()方法的函数
+    }, 1000);	//设置每秒执行一次调用
+    if(i > 10){	//如果超过10次，则清除执行，并弹出提示信息
+        clearTimeout(out);
+        console.log("10秒钟已到");
+    }
+}
+f();	//调用函数
+</script>
+
+
+
+
+
+
+</body>
+</html>

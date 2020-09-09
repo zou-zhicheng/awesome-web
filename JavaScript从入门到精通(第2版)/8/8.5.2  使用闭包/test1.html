@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+var f = function(){	//外部函数
+    var a = []	//私有数组初始化
+    return function(x){	//返回内部函数
+        a.push(x);	//添加元素
+        return a; 	//返回私有数组
+    };
+}();	//直接调用函数，生成执行环境
+var a = f(1);	//添加值
+console.log(a);	//返回1
+var b = f(2);	//添加值
+console.log(b);	//返回1,2
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

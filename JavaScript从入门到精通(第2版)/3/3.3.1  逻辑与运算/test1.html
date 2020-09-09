@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+var user;	//定义变量
+( ! user && console.log("没有赋值"));	//返回提示信息“没有赋值”
+//等效于：
+var user;	//定义变量
+if( ! user){	//条件判断
+   console.log("变量没有赋值");
+}
+//【注意】
+var user = 0;	//定义并初始化变量
+( ! user && console.log("变量没有赋值"));	//返回提示信息"变量没有赋值呀"
+
+
+
+
+</script>
+
+</body>
+</html>

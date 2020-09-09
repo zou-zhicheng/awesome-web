@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+
+
+<canvas id="canvas" width="300" height="200" style="border:solid 1px #999;"></canvas>
+
+
+<script>
+draw();
+function draw() {
+	var ctx = document.getElementById('canvas').getContext('2d');
+	var lineJoin = ['round','bevel','miter'];
+	ctx.strokeStyle = 'blue';
+	for (var i=0;i<lineJoin.length;i++){
+		ctx.lineWidth = 25;  
+		ctx.lineJoin = lineJoin[i];
+		ctx.beginPath();
+		ctx.moveTo(10+i*150,30);
+		ctx.lineTo(100+i*150,30); 
+		ctx.lineTo(100+i*150,100); 
+		ctx.stroke();
+	}
+}
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//3. 增强的安全措施
+//	禁止this指代全局对象
+
+function f(){
+    return !this;  //返回false，因为"this"指向全局对象，"!this"就是false
+}
+function f(){ 
+    "use strict"; //开启严格模式
+    return !this; //返回true，在严格模式下，this的值为undefined，所以"!this"为true。
+}
+
+(function f(){ 
+    "use strict";	//开启严格模式
+    this.a = 1;	//报错，this未定义
+}) ();
+
+//	禁止在函数内部遍历调用栈
+(function f(){
+　　"use strict";	//开启严格模式
+　　f.caller;	//报错
+　　f.arguments;	//报错
+}) ();
+
+
+</script>
+
+
+</body>
+</html>

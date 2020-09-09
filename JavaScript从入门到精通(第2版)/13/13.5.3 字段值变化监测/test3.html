@@ -1,0 +1,24 @@
+<html>
+<head>
+<script>
+
+
+</script>
+</head>
+<body>
+
+<input type="radio" name="r" value="1"  checked="checked" /> 1
+<input type="radio" name="r" value="2" /> 2
+<input type="radio" name="r" value="3" /> 3
+<script>
+var r = document.getElementsByTagName("input");
+for(var i = 0; i < r.length; i ++ ){
+    r[i].onchange = function(){
+        alert(this.value);
+    }
+}
+</script>
+ 
+
+</body>
+</html> 

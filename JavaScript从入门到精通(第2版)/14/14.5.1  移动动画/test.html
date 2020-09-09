@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+
+// 获取指定元素的样式属性值
+// 参数：e表示具体的元素，n表示要获取元素的脚本样式的属性名，如"width"、"borderColor"
+// 返回值：返回该元素e的样式属性n的值
+function getStyle(e,n){
+    if(e.style[n]){ 
+	// 如果在Style对象中存在，说明已显式定义，则返回这个值
+        return e.style[n];
+    }
+    else if(e.currentStyle){ 
+	// 否则，如果是IE浏览器，则利用它的私有方法读取当前值
+        return e.currentStyle[n];
+    }
+    // 如果是支持DOM标准的浏览器，则利用DOM定义的方法读取样式属性值
+    else if(document.defaultView && document.defaultView.getComputedStyle){
+        n = n.replace(/([A-Z])/g,"-$1");	// 转换参数的属性名
+        n = n.toLowerCase();
+        var s = document.defaultView.getComputedStyle(e,null); 
+		// 获取当前元素的样式属性对象
+        if(s) 							// 如果当前元素的样式属性对象存在
+            return s.getPropertyValue(n); 	// 则获取属性值
+    }
+    else									// 如果都不支持，则返回null
+        return null;
+}
+
+
+
+// 获取指定元素距离定位包含框元素左上角的偏移坐标
+// 参数：e表示获取位置的元素
+// 返回值：返回对象直接量，其中属性x表示x轴偏移距离，属性y表示y轴偏移距离
+function getB(e){
+    return {
+        "x" : (parseInt(getStyle(e, "left")) || 0) ,
+        "y" : (parseInt(getStyle(e, "top")) || 0) 
+    };
+}
+
+
+// 简单的滑动函数
+// 参数：e表示元素，x和y表示要移动的最后坐标位置（相对包含块，t表示元素移动的步数
+function slide(e, x, y, t){
+    var t = t || 100;	// 初始化步数，步数越大，速度越慢，移动的过程越逼真，但是中间移动的误差就越明显
+    var o = getB(e); 	// 当前元素的绝对定位坐标值
+    var x0 = o.x;
+    var y0 = o.y;
+    var stepx = Math.round((x - x0) / t); 
+	// 计算x轴每次移动的步长，由于像素点不可用小数，所以会存在一定的误差
+    var stepy = Math.round((y - y0) / t); 	// 计算y轴每次移动的步长
+    var out =  setInterval(function(){	// 设计定时器
+        var o = getB(e); 				// 获取每次移动后的绝对定位坐标值
+        var x0 = o.x;
+        var y0 = o.y;
+        e.style["left"] = (x0 + stepx) + 'px'; 	// 定位每次移动的位置
+        e.style["top"] = (y0 + stepy) + 'px'; 	// 定位每次移动的位置
+        if (Math.abs(x - x0) <= Math.abs(stepx) || Math.abs(y - y0) <= 
+Math.abs(stepy)) {	// 如果距离终点坐标的距离小于步长，则停止循环执行，并校正元素的最终坐标位置
+            e.style["left"] = x + 'px';
+            e.style["top"] = y + 'px';
+            clearTimeout(out);
+        };
+    }, 2)
+};
+ 
+
+</script>
+</head>
+<body>
+
+<style type="text/css">
+.block {width:20px; height:20px; position:absolute; left:200px; 
+top:200px; background-color:red; }
+</style>
+<div class="block" id="block1"></div>
+<script>
+temp1 = document.getElementById('block1');
+slide(temp1, 400, 400, 20);
+</script>
+
+
+
+
+
+</body>
+</html> 

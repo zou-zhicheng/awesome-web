@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//【示例1】下面代码使用中括号为数组写入数据，然后再读取数组元素的值。
+var a = [];	//声明一个空数组
+a[0] = 0;	//为第1个元素赋值为0
+a[2] = 2;	//为第3个元素赋值为2
+console.log( a[0] );	//读取第1个元素，返回值为0
+console.log( a[1] );	//读取第2个元素，返回值为undefined
+console.log( a[2] );	//读取第3个元素，返回值为2
+
+//【示例2】下面代码使用for语句批量为数组赋值。其中数组下标是一个递增表达式。
+var a = new Array();	//创建一个空数组
+for( var i = 0; i < 10; i ++ ){	//循环为数组赋值
+    a[i ++ ] = ++ i;	//不按顺序为数组元素赋值
+}
+console.log( a );	//返回2,,,5 ,,,8,,, 11
+
+
+
+</script>
+
+</body>
+</html>

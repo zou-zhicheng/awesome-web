@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<h1 id="showtime"></h1>
+<script>
+
+
+var showtime = function( ) {
+     var nowdate=new Date();//创建Date对象nowdate,以获取当前时间
+     var year=nowdate.getFullYear(),//获取年份
+         month=nowdate.getMonth()+1,//获取月份，getMonth()得到的是0-11，需要加1
+         date=nowdate.getDate(),//获取日份
+         day=nowdate.getDay(),//获取一周中的某一天，getDay()得到的是0-6
+         week=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+         h=nowdate.getHours(),
+         m=nowdate.getMinutes(),
+         s=nowdate.getSeconds(),
+         h=checkTime(h),//函数checkTime用于格式化时，分，秒
+         m=checkTime(m),
+         s=checkTime(s);
+	return year+"年" + month + "月" + date + "日 " + week[day] + " " + h + ":" + m + ":" + s;
+}
+var checkTime = function (i) {
+   if (i<10) {
+      i="0"+i;
+   }
+   return i;
+}
+
+var div = document.getElementById("showtime");
+setInterval(function(){
+    div.innerHTML = showtime();
+}, 1000);//反复执行函数本身
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+//【示例】下面示例能够将当前浏览器窗口的大小重新设置为200像素宽、200像素高，然后生成一个任意数字来随机定位窗口在屏幕中的显示位置。
+window.onload = function(){
+    timer = window.setInterval("jump()", 1000);
+}
+function jump(){
+    window.resizeTo(200, 200)
+    x = Math.ceil(Math.random() * 1024)
+    y = Math.ceil(Math.random() * 760)
+    window.moveTo(x, y)
+}
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

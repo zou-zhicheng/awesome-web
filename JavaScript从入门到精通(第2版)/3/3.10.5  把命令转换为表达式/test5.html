@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例3】下面示例是一个连续运算的表达式，该表达式是一个分支结构，并在分支结构中包含函数体，以判断两种表达式的大小，并输出提示信息。整个代码以表达式的形式运算，与命令式语言风格迥然不同。
+( ( function f( x, y ){
+    return ( x + y ) * ( x + y );
+})( 25, 36 )>
+( function f( x, y ){
+    return x * x + y * y;
+})( 25, 36 ) ) ?
+console.log( "( x + y )^2" ) : console.log( "x ^2+ y^2" ) //返回提示信息"( x + y )^2"
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例2】利用原型间接实现本地数据备份。把本地对象的数据完全赋值给原型对象，相当于为该对象定义一个副本，通俗地说就是备份对象。这样当对象属性被修改时，可以通过原型对象来恢复本地对象的初始值。
+function p(x){	//构造函数
+    this.x = x;
+}
+p.prototype.backup = function(){	//原型方法，备份本地对象的数据到原型对象中
+    for(var i in this){
+        p.prototype[i] = this[i];
+    }
+}
+var p1 = new p(1);	//实例化对象
+p1.backup();	//备份实例对象中的数据
+p1.x =10;	//改写本地对象的属性值
+console.log(p1.x)	//返回10，说明属性值已经被改写
+p1 = p.prototype;	//恢复备份
+console.log(p1.x)	//返回1，说明对象的属性值已经被恢复
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css"></style>
+<script>
+window.onload = function(){ 
+	    var box = document.getElementById("box");
+	    var str = box.getAttribute("style");
+	    var a = str.split(";");
+	    var temp="";
+	    for(var b in a){
+		    var prop = a[b].split(":");
+		    if(prop[0])
+		        	temp += b + " ：" + prop[0] + " = " + prop[1] + "<br>";
+	    }
+	    box.innerHTML = "box.style.cssText = " + str;
+	    box.innerHTML = box.innerHTML + "<br><br>" + temp;
+}
+</script>
+</head>
+<body>
+<div id="box" style="width:600px; height:200px; background-color:#81F9A5; border:solid 2px blue;padding:10px"></div>
+</body>
+</html>  

@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//【示例1】下面代码使用new运算符实例化Array，并演示3种不同的使用方法。
+var a = new Array;	//创建数组，省略小括号
+var b = new Array();	//创建数组
+var c = new Array(1,2,3);	//创建数组，并初始化元素值
+console.log(c[2]);	//读取创建数组对象的元素值，返回3
+
+//【示例2】下面代码自定义类，然后使用它创建新的对象。
+var a = function(){	//自定义类型函数a 
+    this.x = 1;	//属性x
+    this.y = 2;	//属性y
+};
+var b = new a;	//创建对象
+console.log(b.x);	//调用对象属性x，返回1
+
+
+
+</script>
+
+
+
+</body>
+</html>

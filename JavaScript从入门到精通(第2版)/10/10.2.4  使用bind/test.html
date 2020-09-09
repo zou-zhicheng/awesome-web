@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+//【示例1】下面示例定义原始函数check，用来检测传入的参数值是否在一个指定范围内，范围下限和上限根据当前实例对象的min和max属性决定。然后使用bind方法把check函数绑定到对象obj身上。如果再次调用这个新绑定后的函数check1后，就可以根据该对象的属性min和max来确定调用函数时传入值是否在指定的范围内。
+var check = function (value) {
+    if (typeof value !== 'number')   return false;
+    else  return value >= this.min && value <= this.max;
+}
+var range = { min : 10, max : 20 };
+var check1 = check.bind(range);
+var result = check1(12);
+console.log(result);	//true
+
+
+//【示例2】下面示例在上面示例基础上，为obj对象定义了两个上下限属性，以及一个方法check。然后，直接调用obj对象的check方法，检测10是否在指定范围，则返回值为false，因为当前min和max值分别为50和100。接着，把obj.check方法绑定到range对象，则再次传入值10，则返回值为true，说明在指定范围，因为此时min和max值分别为10和20。
+var obj = {
+    min: 50,
+    max: 100,
+    check: function (value) {
+        if (typeof value !== 'number')
+            return false;
+        else
+            return value >= this.min && value <= this.max;
+    }
+}
+var result = obj.check(10);
+console.log(result);	//false
+var range = { min: 10, max: 20 };
+var check1 = obj.check.bind(range);
+var result = check1(10);
+console.log(result);	//true
+
+
+//【示例3】下面示例演示了如何利用bind方法为函数两次传递参数值，以便实现连续参数求值计算。
+var func = function (val1, val2, val3, val4) {
+    console.log(val1 + " " + val2 + " " + val3 + " " + val4);
+}
+var obj = {};
+var func1 = func.bind(obj, 12, "a");
+func1("b", "c");	//12 a b c
+
+
+</script>
+
+
+
+
+</body>
+</html>

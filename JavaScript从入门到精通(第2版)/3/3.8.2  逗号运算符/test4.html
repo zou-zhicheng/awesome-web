@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例4】逗号运算符的优先级是最低的。在下面代码中，赋值运算符优先于逗号运算符，也就是说数值1被赋值给变量b之后，继续赋值给变量a，最后才执行逗号运算符。
+a = b=1,c=2;	//连续执行和赋值
+console.log(a);	//返回1
+console.log(b);	//返回1
+console.log(c);	//返回2
+
+
+
+</script>
+
+
+</body>
+</html>

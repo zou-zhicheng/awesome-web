@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+function extend(Sub,Sup){	//类继承封装函数
+    var F = function(){};	//定义一个空函数
+    F.prototype = Sup.prototype;	//设置空函数的原型为父类的原型
+    Sub.prototype = new F();	//实例化空函数，并把父类原型引用传递给子类
+    Sub.prototype.constructor = Sub;	//恢复子类原型的构造器为子类自身
+    Sub.sup = Sup.prototype;	//在子类定义一个私有属性存储父类原型
+    //检测父类原型构造器是否为自身
+    if(Sup.prototype.constructor == Object.prototype.constructor){ 
+        Sup.prototype.constructor =Sup	//类继承封装函数
+    }
+}
+
+
+function A(x){	//构造函数A
+    this.x = x;	//私有属性x
+    this.get = function(){	//私有方法get()
+        return this.x;
+    }
+}
+A.prototype.add = function(){	//原型方法add()
+    return this.x + this.x;
+} 
+A.prototype.mul = function(){	//原型方法mul()
+    return this.x * this.x;
+}
+function B(x){	//构造函数B
+    A.call(this,x);	//在函数体内调用构造函数A，实现内部数据绑定
+}
+extend(B,A);	//调用封装函数，把A和B的原型捆绑在一起
+var f = new B(5);	//实例化类B
+console.log(f.get())	//继承类A的方法get()，返回5
+console.log(f.add())	//继承类A的方法add()，返回10
+console.log(f.mul())	//继承类A的方法mul()，返回25
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

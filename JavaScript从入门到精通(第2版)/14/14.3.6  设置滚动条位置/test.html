@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+
+ 
+
+// 获取指定元素距离窗口左上角偏移坐标
+// 参数：e表示获取位置的元素
+// 返回值：返回对象直接量，其中属性x表示x轴偏移距离，属性y表示y轴偏移距离
+function getPoint(e){
+    var x = y = 0; 			// 初始化临时变量
+    while(e.offsetParent){
+ 	// 如果存在offsetParent指代的元素，则获取它的偏移坐标
+        x += e.offsetLeft; 	// 累计总的x轴偏移距离
+        y += e.offsetTop; 	// 累计总的y轴偏移距离
+        e = e.offsetParent;
+ 	// 把当前元素的offsetParent属性值传递给循环条件表达式
+    }
+    return {
+	// 遍历到body元素后，将停止循环，把叠加的值赋值给对象直接量，并返回该对象
+        "x" : x, 
+        "y" : y
+    };
+}
+
+// 滚动到页面中指定的元素位置
+// 参数：指定的对象
+// 返回值：无
+function setPS(e){
+    window.scrollTo(getPoint(e).x, getPoint(e).y);
+}
+
+</script>
+</head>
+<body>
+
+
+<div style="height:1000px;border:solid 20px red"></div>
+<div style="height:1000px;border:solid 20px blue"></div>
+
+
+<script  type="text/javascript">
+
+var d1 = document.getElementsByTagName("div")[0];
+var d2 = document.getElementsByTagName("div")[1];
+
+
+setPS(d2)
+
+
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+</script>
+</head>
+<body>
+<script>
+
+var p = document.createElement("p");		// 创建节点
+var p1 = p.cloneNode(false);				// 复制节点
+var info = "nodeName：" + p1.nodeName;		// 获取复制节点的名称
+info += "，nodeType：" + p1.nodeType;		// 获取复制节点的类型
+alert(info);					// 弹出复制节点的名称和类型信息
+
+
+</script>
+</body>
+</html> 

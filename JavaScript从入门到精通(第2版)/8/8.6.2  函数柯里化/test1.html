@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+
+var add = function (x) {	//柯里化
+    return function (y) {
+        return x + y
+    }
+}
+console.log(add(2)(6)); 	//8，连续调用
+var add1 = add(200);
+console.log(add1(2));	//202，分步调用
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

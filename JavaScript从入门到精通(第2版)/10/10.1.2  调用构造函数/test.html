@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+
+function Point(x,y){ 	// 构造函数
+	'use strict';
+    this.x = x;	//私有属性
+    this.y = y; 	//私有属性
+    this.sum = function(){	//方法
+        return this.x + this.y;
+    }
+}
+
+var p1 = new Point(100,200);	// 实例化对象1
+var p2 = new Point(300,400);	// 实例化对象2
+console.log(p1.x);	// 100
+console.log(p2.x);	// 300
+console.log(p1.sum());	// 300
+console.log(p2.sum());	// 700
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

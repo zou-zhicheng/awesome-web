@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<input id="a" type="button" value="点我" />
+<input id="b" type="button" value="删除事件" />
+<script>
+var a = document.getElementById("a");		//获取按钮a
+var b = document.getElementById("b");		//获取按钮b
+function ok(){							//按钮a的事件处理函数
+	    alert("您好，欢迎光临!");
+}
+function delete_event(){					//按钮b的事件处理函数
+	    a.removeEventListener("click",ok,false);	//移出按钮a的click事件
+}
+a.addEventListener("click",ok,false); 		//默认为按钮a注册事件
+b.addEventListener("click",delete_event,false); //默认为按钮b注册事件
+</script>
+</body>
+</html> 
+ 

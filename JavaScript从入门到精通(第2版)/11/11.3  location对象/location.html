@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+
+/*http://www.mysite.cn:80/news/index.asp?id=123&name=location#top
+*/
+ 
+var queryString = function(){		// 获取URL查询字符串参数值的通用函数
+    var q = location.search.substring(1); 
+	// 获取查询字符串，即“id=123&name= location”部分
+    var a = q.split("&");			// 以&符号为界把查询字符串劈开为数组
+    var o = {};						// 定义一个临时对象
+    for( var i = 0; i <a.length; i++){		// 遍历数组
+        var n = a[i].indexOf("=");			// 获取每个参数中的等号小标位置
+        if(n == -1) continue; 	// 如果没有发现则跳到下一次循环继续操作
+        var v1 = a[i].substring(0, n); 		// 截取等号前的参数名称
+        var v2 = a[i].substring(n+1); 		// 截取等号后的参数值
+        o[v1] = unescape(v2); 				// 以名/值对的形式存储在对象中
+    }
+    return o; 								// 返回对象
+}
+
+var f1 = queryString();				// 调用查询字符串函数
+for(var i in f1){ 						// 遍历返回对象，获取每个参数及其值
+    alert(i + "=" + f1[i]);
+}
+
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

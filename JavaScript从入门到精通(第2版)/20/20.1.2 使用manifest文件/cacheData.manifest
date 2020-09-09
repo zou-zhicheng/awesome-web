@@ -1,0 +1,21 @@
+CACHE MANIFEST
+#version 1.0
+login.html
+static/css/i.css
+static/img/png/alipay-i-logo-big.png
+static/img/png/alipay-i-icons.png
+static/js/mui-min.js 
+NETWORK:
+static/img/png/button-ok.png
+CACHE:
+static/img/png/login-slider-bg.png
+FALLBACK:
+static/img/png/alipay-bank-icbc.png static/img/png/alipay-bank-cmb.png
+
+CACHE MANIFEST 
+application.js 
+style.css
+
+
+FALLBACK:
+static/img/png/alipay-bank-icbc.png static/img/png/alipay-bank-cmb.png

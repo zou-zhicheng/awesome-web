@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+//【示例】下面使用原型继承的方法设计类型继承。
+function A(x){	//A类
+    this.x1= x;	//A的私有属性x1
+    this.get1 = function(){	//A的私有方法get1()
+        return this.x1;
+    }
+}
+function B(x){	//B类
+    this.x2 = x;	//B的私有属性x2
+    this.get2 = function(){	//B的私有方法get2()
+        return this.x2 + this.x2;
+    };
+}
+B.prototype = new A(1);	//原型对象继承A的实例
+function C(x){	//C类
+    this.x3 = x;	//C的私有属性x3
+    this.get3 = function(){	//C的私有方法get3()
+        return this.x3 * this.x3;
+    };
+}
+C.prototype = new B(2);	//原型对象继承B的实例
+
+var b = new B(2);	//实例化B
+var c = new C(3);	//实例化C
+console.log(b.x1);	//在实例对象b中调用A的属性x1，返回1
+console.log(c.x1);	//在实例对象c中调用A的属性x1，返回1
+console.log(c.get3());	//在实例对象c中调用C的方法get3()，返回9
+console.log(c.get2());	//在实例对象c中调用B的方法get2()，返回4
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

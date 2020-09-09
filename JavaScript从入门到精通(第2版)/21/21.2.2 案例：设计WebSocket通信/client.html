@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<div id="action">
+    <textarea id="data"></textarea>
+    <button id="send">发送信息</button>
+</div>
+<div id="message"> </div>
+<script>
+var message = document.getElementById('message');
+var socket = new WebSocket('ws://127.0.0.1:8008');
+socket.onopen = function(event) {
+	message.innerHTML = '<p>连接成功！</p>'; 
+}
+socket.onmessage = function(event) {
+	message.innerHTML =  "<p>响应信息："+ event.data  +"</p>";
+}
+socket.onerror = function() {
+	message.innerHTML = '<p>连接失败！</p>';
+}
+var send = document.getElementById('send');
+send.addEventListener('click', function() {
+	var content = document.getElementById('data').value;
+	if(content.length <= 0){
+		alert('消息不能为空！');
+		return false;
+	}
+	socket.send(content);
+});
+
+</script>
+</body>
+</html>

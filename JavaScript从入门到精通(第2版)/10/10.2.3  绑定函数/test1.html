@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<button id="btn">测试按钮</button>
+<script>
+
+
+function bind(fn, context) {	//绑定函数
+    return function() {
+        return fn.apply(context, arguments);	//在指定上下文对象上动态调用函数
+    };
+}
+
+
+var handler = {	//事件处理对象
+    message : 'handler',	//名称
+    click : function(event) {	//事件处理函数
+        console.log(this.message);	//提示当前对象的message值
+    }
+};
+
+var btn = document.getElementById('btn');
+btn.addEventListener('click', handler.click);		//undefined
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

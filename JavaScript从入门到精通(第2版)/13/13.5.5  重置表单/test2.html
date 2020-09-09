@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+    <input type="text" name="t" id="t" />   
+    <input type="reset" value="重置按钮">
+</form>
+<script>
+var t = document.getElementsByTagName("input")[0]; 	// 获取文本框的引用指针
+var f = document.getElementsByTagName("form")[0]; 	// 获取表单的引用指针
+f.onreset = function(e){
+	if(t.value.length > 10){
+		var  event = e || window.event;
+        if (event.preventDefault){
+            event.preventDefault();
+        } else {
+            event.returnValue = false;
+        }
+	}
+}
+</script>
+
+</body>
+</html> 

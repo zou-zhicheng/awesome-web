@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//【示例1】下面是一行最简单的句子。只有一个直接量，也是最简单的表达式。
+true;								//最简单的句子
+
+//【示例2】下面是赋值语句，代码虽然很长，不过也只是一个表达式语句。
+o =new ((o == "String")?String:(o == "Array")?Array:(o == 
+"Number")?Number:(o == "Math")?Math:(o == "Date")?Date:(o == 
+"Boolean")?Boolean:(o == "RegExp")?RegExp:Object);
+
+//赋值运算符右侧是一个多重条件运算，格式化显示如下：
+new ((o == "String")?String	:
+(o == "Array")?Array	:
+(o == "Number")?Number	:
+(o == "Math")?Math	:
+(o == "Date")?Date	:
+(o == "Boolean")?Boolean	:
+(o == "RegExp")?RegExp	:
+Object);
+
+
+</script>
+
+</body>
+</html>

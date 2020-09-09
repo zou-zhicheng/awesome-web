@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+window.onload = function(){
+    var result=document.getElementById("result");
+    var file=document.getElementById("file");
+    if (typeof FileReader == 'undefined' ){
+       result.innerHTML = "<h1>当前浏览器不支持FileReader对象</h1>";
+       file.setAttribute('disabled', 'disabled' );
+    }
+}
+function file_onchange(){
+    var file=document.getElementById("file").files[0];  
+    if(!/image\/\w+/.test(file.type)){
+        alert("请选择一个图像文件！");
+        return;         
+    }   
+    var slice=file.slice(0,4);
+    var reader = new FileReader();
+    reader.readAsArrayBuffer(slice);
+    var type;
+    reader.onload = function(e){
+        var buffer=this.result;
+        var view=new DataView(buffer);
+        var magic=view.getInt32(0,false);  
+        if(magic<0)
+            magic = magic + 0x100000000;
+        magic=magic.toString(16).toUpperCase(); 
+        if(magic.indexOf('FFD8FF') >=0)
+            type="jpg文件";
+        if(magic.indexOf('89504E47') >=0)
+            type="png文件";
+        if(magic.indexOf('47494638') >=0)
+            type="gif文件";
+        if(magic.indexOf('49492A00') >=0)
+            type="tif文件";
+        if(magic.indexOf('424D') >=0)
+            type="bmp文件";
+        document.getElementById("result").innerHTML ='文件类型为：'+type;       
+    }  
+}
+</script>
+</head>
+<body>
+<input type="file" id="file" onchange="file_onchange()" /><br/>
+<output id="result"></output>
+</body>
+</html> 

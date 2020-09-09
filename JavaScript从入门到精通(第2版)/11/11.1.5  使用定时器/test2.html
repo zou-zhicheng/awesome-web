@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<p>段落1</p>
+<p>段落2</p>
+<p>段落3</p>
+<p>段落4</p>
+
+
+<script>
+
+
+//【示例2】下面示例演示了如何为集合中每个元素都绑定一个事件延迟处理函数。
+var o = document.getElementsByTagName("body")[0].childNodes;	//获取body下所有子元素
+for(var i = 0; i < o.length; i ++ ){	//遍历元素集合
+    o[i].onmouseover = function(i){	//注册鼠标经过事件处理函数
+        return function(){	//返回闭包函数
+            f(o[i]);	//调用函数f，并传递当前对象引用
+        }
+    }(i);//调用函数并传递循环序号，实现在闭包中存储对象序号值
+}
+function f(o){	//延迟处理函数
+    var out = setTimeout( function(){
+        console.log(o.tagName);	//显示当前元素的名称
+    }, 500); 	//定义延迟半秒钟后执行代码
+}
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>

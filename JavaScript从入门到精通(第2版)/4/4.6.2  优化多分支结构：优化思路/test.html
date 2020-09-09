@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//简单思维
+if(a){
+    if(b){
+        if(c){
+            if(d){ console.log("所有条件都成立！"); }
+            else{ console.log("条件d不成立！"); }
+        } else{ console.log("条件c不成立！"); }
+    } else{ console.log("条件b不成立！"); }
+}else{ console.log("条件a不成立！");}
+
+//表达式法
+if(a && b && c && d){ console.log("所有条件都成立！"); }
+
+//标志变量跟踪排除法
+var t = true;	//初始化标志变量为true
+if(!a){
+    console.log("条件a不成立！");
+    t = false;	//如果条件a不成立则标志变量为false
+}
+if(!b){
+    console.log("条件b不成立！");
+    t = false;	//如果条件b不成立则标志变量为false
+}
+if(!c){
+    console.log("条件c不成立！");
+    t = false;	//如果条件c不成立则标志变量为false
+}
+if(!d){
+    console.log("条件d不成立！");
+    t = false;	//如果条件d不成立则标志变量为false
+}
+if(t){	//如果标志变量为true，则执行特定任务
+    console.log("所有条件都成立！");
+}
+
+</script>
+
+</body>
+</html>

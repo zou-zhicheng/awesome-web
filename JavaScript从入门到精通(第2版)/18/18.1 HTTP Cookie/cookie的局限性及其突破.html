@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+</head>
+
+<body>
+<script language="javascript" type="text/javascript">
+
+var d = new Date();	
+d.setMonth(d.getMonth() + 1); 
+d = d.toGMTString();
+
+var a = "name:a,age:20,addr:beijing"
+var c = "user=" + escape(a) 
+c += ";" + "expires=" + d;
+
+document.cookie = c;
+
+
+
+
+ 
+</script>
+</body>
+</html>  

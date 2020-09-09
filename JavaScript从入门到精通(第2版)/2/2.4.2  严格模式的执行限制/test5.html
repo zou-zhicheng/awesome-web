@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//5. 显式报错
+
+"use strict";	//开启严格模式
+var o = {};
+Object.defineProperty(o, "v", { value: 1, writable: false });
+o.v = 2;	//报错
+
+"use strict";	//开启严格模式
+var o = {
+    get v() { return 1; } 
+};
+o.v = 2;	//报错
+
+"use strict";	//开启严格模式
+var o = {};
+Object.preventExtensions(o);
+o.v = 1;	//报错
+
+"use strict";	//开启严格模式
+delete Object.prototype;	//报错
+
+
+
+</script>
+
+
+</body>
+</html>

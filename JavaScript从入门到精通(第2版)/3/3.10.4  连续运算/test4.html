@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例5】通过小括号连续调用，使用表达式可以设计多层嵌套的函数结构。
+console.log(
+     ( function(){
+        return function(x, y){
+            return function(){
+                return ( x + y ) / 2;
+            }
+        }
+    })()( 10, 20 )()	//连续三次调用运算
+);	//返回值15
+
+//如果转换为命令式语句，则代码如下所示：
+var f = function(){
+    return function(x, y){
+        return function(){
+            return ( x + y ) / 2;
+        }
+    }
+}
+var f1 = f();	//第一次调用外层函数
+var f2 = f1(10,20);	//第二次调用中层函数
+var f3 = f2();	//第三次调用内层函数
+console.log(f3);	//返回值15
+
+
+
+</script>
+
+
+</body>
+</html>

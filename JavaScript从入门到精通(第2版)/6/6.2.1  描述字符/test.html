@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例1】下面使用ASCII编码定义正则表达式直接量。
+var r = /\x61/;	//以ASCII编码匹配字母a
+var s = "JavaScript";
+var a = s.match(r);	//匹配第一个字符a
+console.log(a);
+
+//【示例2】除了十六进制外，还可以直接使用八进制数值表示字符。
+var r = /\141/;	//141是字母a的ASCII编码的八进制值
+var s = "JavaScript";
+var a = s.match(r);	//即匹配第1个字符a
+console.log(a);
+
+//【示例3】ASCII编码只能够匹配有限的单字节字符，使用Unicode编码可以表示双字节字符。Unicode编码方式：“\u”前缀加上4位十六进制值。
+var r = /\u0061/;	//以Unicode编码匹配字母a
+var s = "JavaScript";	//字符串直接量
+var a = s.match(r);	//匹配第一个字符a
+console.log(a);
+
+//在RegExp()构造函数中使用元字符时，应使用双斜杠。
+var r = new RegExp("\\u0061");
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+
+
+var  add;	//全局变量，定义访问闭包的通道
+function f(){	//外部函数
+    var a = [1,2,3];	//私有变量，引用型数组
+    add = function(x){ 	//测试函数，对外开放
+        a[0] = x*x; 	//修改私有数组的元素值
+    }
+    return a; 	//返回私有数组的引用
+}
+var c = f();
+console.log(c[0]);	//读取闭包内数组，返回1
+add(5);	//测试修改数组
+console.log(c[0]);	//读取闭包内数组，返回25
+add(10); 	//测试修改数组
+console.log(c[0]);	//读取闭包内数组，返回100
+
+
+
+
+/*
+function f(){	//外部函数
+    var a = { x:1, y:2, z:3};
+	return a;
+}
+var c = f();
+console.log(c["x"]);	//读取闭包内数组，返回1
+*/
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

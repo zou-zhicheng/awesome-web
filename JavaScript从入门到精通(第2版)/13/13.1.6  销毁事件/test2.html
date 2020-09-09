@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<p id="p1">IE事件注册</p>
+<script>
+var p1 = document.getElementById("p1");		//捕获段落元素
+var f1 = function(){							//定义事件处理函数1
+    p1.style.background = 'blue';
+};
+var f2 = function(){							//定义事件处理函数2
+    p1.style.background = 'red';
+	    p1.detachEvent("onmouseover", f1); 		//当触发mouseout事件后，注销mouseover事件
+	    p1.detachEvent("onmouseout", f2);			//当触发mouseout事件后，注销mouseout事件
+};
+p1.attachEvent("onmouseover", f1);			//注册mouseover事件
+p1.attachEvent("onmouseout", f2);				//注册mouseout事件
+</script>
+</body>
+</html> 

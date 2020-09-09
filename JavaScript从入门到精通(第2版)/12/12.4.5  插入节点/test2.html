@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+div { margin:1em; }			/* 为div元素定义外边界 */
+#red { border:solid 1px red; }		/* 为红盒子定义边框样式 */
+#blue { border:solid 1px blue; }	/* 为蓝盒子定义边框样式 */
+</style>
+</head>
+<body>
+<div id="red">
+    <h1>红盒子</h1>
+</div>
+<div id="blue">蓝盒子</div>
+<button id="ok">移动</button>
+<script>
+var ok = document.getElementById("ok");	// 获取按钮元素的引用
+ok.onclick = function(){	// 为按钮注册一个鼠标单击事件处理函数
+	var red = document.getElementById("red");
+	// 获取红色盒子的引用
+	var blue = document.getElementById("blue");
+	// 获取蓝色盒子的引用
+	blue.appendChild(red); 	// 最后移动红色盒子到蓝色盒子中
+}
+</script>
+</body>
+</html> 

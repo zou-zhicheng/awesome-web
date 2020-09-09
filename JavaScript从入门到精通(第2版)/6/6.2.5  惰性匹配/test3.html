@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+var s ="<html><head><title></title></head><body></body></html>";
+var r = /<.*>?/
+var a = s.match(r); 
+	//返回单元素数组["<html><head><title></title></head> <body></body></html>"]
+console.log(a);	//左侧匹配"<html><head><title></title></head><body></body>"
+
+
+
+</script>
+
+
+</body>
+</html>

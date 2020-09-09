@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+Array.prototype.each = function( f ){	//数组迭代器，扩展Array原型方法
+    try{	//异常处理，避免不可预测的错误
+        this.i || ( this.i = 0 );	//初始化迭代计数器
+        if( this.length > 0 && f.constructor == Function ){ 
+	//如果数组长度大于0，参数为函数
+            while( this.i < this.length ){	//遍历数组
+                var e = this[this.i];	//获取当前元素
+                if( e && e.constructor == Array ){ //如果元素存在，且为数组
+                    e.each( f );	//递归调用迭代器
+                }else{	//否则，在元素上调用参数函数，并传递值
+                    f.apply( e, [e] );
+                }
+                this.i ++ ;	//递加计数器
+            }
+            this.i = null;	//如果遍历完毕，则清空计数器
+        }
+    }
+    catch( w ){ }	//捕获异常，暂不处理
+    return this	//返回当前数组
+}
+
+
+Array.prototype._edit = Array.prototype.edit || 
+( Array.prototype.edit = function(){	//数组元素批处理方法
+    var b = arguments, a = [];	//获取参数，并定义一个临时数组
+    this.each( function(){	//调用迭代器，遍历所有元素
+        a.push( b[0].call( b[1], this ) ); 	//调用参数函数，把当前元素作为参数传入
+    });
+    return a;	//返回临时数组
+});
+Object.prototype.edit = Array.prototype._edit;
+
+
+var a = [1, 2, 3, 4] ;	//定义数组直接量
+var f = function( x ){ 	//求平方值
+    return x * x;
+}
+var b = a.edit( f );	//为数组元素执行求平方操作
+console.log( b );	//返回[1, 4, 9, 16]
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

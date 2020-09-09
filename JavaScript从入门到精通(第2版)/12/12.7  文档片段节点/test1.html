@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<input type="button" value="添加项目" onclick="addItems()">
+<ul id="myList"></ul>
+<script type="text/javascript">
+function addItems(){
+	var fragment = document.createDocumentFragment();
+	var ul = document.getElementById("myList");
+	var li = null;
+	for (var i=0; i < 12; i++){
+		li = document.createElement("li");
+		li.appendChild(document.createTextNode("项目" + (i+1)));
+		fragment.appendChild(li);
+	}
+	ul.appendChild(fragment); 
+}
+</script>
+</body>
+</html> 

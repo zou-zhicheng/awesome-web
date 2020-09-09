@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+//3．匹配字符串
+
+//【示例6】下面代码使用search()方法匹配斜杠字符在URL字符串的下标位置。
+var s = "http://www.mysite.cn/index.html";
+var n = s.search( "//" ); 	// 返回值为5
+console.log( n );
+
+
+//【示例7】match()方法能够找出所有匹配的子字符串，并存储在一个数组中返回。
+var s = "http://www.mysite.cn/index.html";
+var a = s.match( /h/g ); 	// 全局匹配所有字符h
+console.log( a ); 	// 返回数组[h,h]
+
+//【示例8】下面代码使用match()方法匹配URL字符串中所有点号字符。
+var s = "http://www.mysite.cn/index.html";	// 匹配字符串
+var a = s.match( /(\.).*(\.).*(\.)/ ); 	// 执行一次匹配检索
+console.log( a.length ); 	// 返回4，说明返回的是一个包含4个元素的数组
+console.log( a[0] ); 	// 返回字符串".mysite.cn/index."
+console.log( a[1] ); 	// 返回第一个字符.（点号），由第一个子表达式匹配
+console.log( a[2] ); 	// 返回第二个字符.（点号），由第二个子表达式匹配
+console.log( a[3] ); 	// 返回第三个字符.（点号），由第三个子表达式匹配
+
+
+
+</script>
+
+
+</body>
+</html>

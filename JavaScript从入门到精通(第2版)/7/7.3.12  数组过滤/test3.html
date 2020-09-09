@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+
+
+function f(value, index, ar) {
+    if (index == 0)
+        return true;
+    else
+        return ar[index - 1] === " ";
+}
+var a = "The quick brown fox jumps over the lazy dog."; 
+var subset = [].filter.call(a, f); 
+console.log(subset);	//T,q,b,f,j,o,t,l,d
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

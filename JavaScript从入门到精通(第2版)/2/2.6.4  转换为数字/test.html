@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//1．使用parseInt()
+
+console.log(parseInt("123abc"));	//返回数字123
+console.log(parseInt("1.73"));	//返回数字1
+console.log(parseInt(".123"));	//返回值NaN
+
+var d = 010;	//八进制数字字符串
+var e = "0x10";	//十六进制数字字符串
+console.log(parseInt(d));	//返回十进制数字8
+console.log(parseInt(e));	//返回十进制数字16
+
+
+var a = "123abc";
+console.log(parseInt(a,16));	//返回值十进制整数1194684
+
+
+console.log(parseInt("10",2));	//把二进制数字10转换为十进制整数为2
+console.log(parseInt("10",8));	//把八进制数字10转换为十进制整数为8
+console.log(parseInt("10" ,10));	//把十进制数字10转换为十进制整数为10
+
+
+console.log(parseInt("010"));	//把默认基模式数字010转换为十进制整数为10
+console.log(parseInt("010",8));	//把八进制数字010转换为十进制整数为8
+console.log(parseInt("010",10));	//把十进制数字010转换为十进制整数为10
+
+//2．使用parseFloat()函数
+
+console.log(parseFloat("1.234.5"));	//返回数值1.234
+
+console.log(parseFloat("123"));	//返回数值123
+console.log(parseFloat("123abc"));	//返回数值123
+console.log(parseFloat("010"));	//返回数值10
+console.log(parseFloat("0x10"));	//返回数值0
+console.log(parseFloat("x10"));	//返回数值NaN
+
+
+//3．使用乘号运算符
+
+var a = 1;	//数值
+var b = "1";	//数字字符串
+console.log(a + (b * 1));	//返回数值2
+
+
+
+</script>
+
+
+
+</body>
+</html>

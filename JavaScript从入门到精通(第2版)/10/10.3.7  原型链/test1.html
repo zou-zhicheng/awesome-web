@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+//【示例1】下面示例演示了对象属性查找原型的基本方法和规律。
+function a(x){	//构造函数a
+    this.x = x;
+}
+a.prototype.x = 0;	//原型属性x的值为0
+function b(x){	//构造函数b
+    this.x = x;
+}
+b.prototype = new a(1);	//原型对象为构造函数a的实例
+function c(x){	//构造函数c
+    this.x = x;
+}
+c.prototype = new b(2);	//原型对象为构造函数b的实例
+var d = new c(3);	//实例化构造函数c
+console.log(d.x);	//调用实例对象d的属性x，返回值为3
+delete d.x;	//删除实例对象的私有属性x 
+console.log(d.x);	//调用实例对象d的属性x，返回值为2
+delete c.prototype.x;	//删除c类的原型属性x
+console.log(d.x);	//调用实例对象d的属性x，返回值为1
+delete b.prototype.x;	//删除b类的原型属性x
+console.log(d.x);	//调用实例对象d的属性x，返回值为0
+delete a.prototype.x;	//删除a类的原型属性x
+console.log(d.x);	//调用实例对象d的属性x，返回值为undefined
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+function tableInnerHTML() {
+    var i, h = ['<table border="1" width="100%">'];
+    h.push('<thead>');
+    h.push('<tr><th>id<\/th><th>yes?<\/th><th>name<\/th><th>url<\/th><th>action<\/th><\/tr>');
+    h.push('<\/thead>');
+    h.push('<tbody>');
+    for( i = 1; i <= 1000; i++) {
+        h.push('<tr><td>');
+        h.push(i);
+        h.push('<\/td><td>');
+        h.push('And the answer is... ' + (i % 2 ? 'yes' : 'no'));
+        h.push('<\/td><td>');
+        h.push('my name is #' + i);
+        h.push('<\/td><td>');
+        h.push('<a href="http://example.org/' + i + '.html">http://example.org/' + i + '.html<\/a>');
+        h.push('<\/td><td>');
+        h.push('<ul>');
+        h.push(' <li><a href="edit.php?id=' + i + '">edit<\/a><\/li>');
+        h.push(' <li><a href="delete.php?id="' + i + '-id001">delete<\/a><\/li>');
+        h.push('<\/ul>');
+        h.push('<\/td>');
+        h.push('<\/tr>');
+    }
+    h.push('<\/tbody>');
+    h.push('<\/table>');
+    document.getElementById('here').innerHTML = h.join('');
+};
+
+
+</script>
+</head>
+<body>
+
+
+<div id="here"></div>
+
+<script>
+
+tableInnerHTML();
+
+
+</script>
+
+
+
+
+</body>
+</html> 

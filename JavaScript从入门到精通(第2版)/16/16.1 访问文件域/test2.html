@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+function ShowFileName(){
+    //document.getElementById("file").files返回FileList对象
+    for(var i=0;i<document.getElementById("file").files.length;i++)
+    {
+       //获取每个选择的file对象
+        var file = document.getElementById("file").files[i];
+        //在控制台显示每个文件的名称
+        console.log(file.name);
+    }
+}
+</script>
+</head>
+<body>
+<input type="file" id="file" multiple>
+<input type="button" onclick="ShowFileName();" value="文件上传"/>
+</body>
+</html> 

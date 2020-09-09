@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//【示例3】对于下面两种方法都可以读取数组a中第二个元素的值。虽然说a["1"]中参数是一个字符串，但是中括号运算符能够把它转换为数字。
+var a = ["x",true,{}];	//定义数组
+console.log(a[1]);	//返回true
+console.log(a["1"]);	//返回true
+
+
+var a = {	//定义对象
+    "true":1, 	//定义属性"true" 
+    "false":0 	//定义属性"false" 
+}
+console.log(a[true]); 	//返回1。把布尔值true转换为字符串"true"
+console.log(a[false]); 	//返回0。把布尔值false转换为字符串"false"
+
+
+
+
+</script>
+
+
+</body>
+</html>

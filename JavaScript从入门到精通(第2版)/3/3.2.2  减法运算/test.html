@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//【示例1】注意特殊操作数的减法运算。
+var n = 5;	//定义并初始化任意一个数值
+console.log(NaN - n);	// NaN与任意操作数相减，结果都是NaN
+console.log(Infinity - n); 	// Infinity与任意操作数相减，结果都是Infinity
+console.log(Infinity - Infinity);	// Infinity与Infinity相减，结果是NaN
+console.log(( - Infinity) - ( - Infinity)); 	//负Infinity相减，结果是NaN
+console.log(( - Infinity) - Infinity); 	//正负Infinity相减，结果是-Infinity
+
+//【示例2】在减法运算中，如果数字为字符串，先尝试把它转换为数值之后，再进行运算。如果有一个操作数不是数字，则返回NaN。
+console.log(2 - "1");	//返回1
+console.log(2 - "a");	//返回NaN
+
+//【技巧】
+//例如，对于字符串"100aaa"而言，parseFloat()方法能够解析出前面几个数字，而对于减法运算符来说，则必须是完整的数字，才可以进行转换。
+console.log(parseFloat("100aaa"));	//返回100
+console.log("100aaa" - 0);	//返回NaN
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

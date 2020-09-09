@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+
+
+<canvas id="canvas" width="300" height="200" style="border:solid 1px #999;"></canvas>
+
+
+<script>
+draw();
+function draw() {
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	roundedRect(ctx,12,12,250,150,15);
+
+}
+// 封装的一个用于绘制圆角矩形的函数.
+function roundedRect(ctx,x,y,width,height,radius){
+	ctx.beginPath();
+	ctx.moveTo(x,y+radius);
+	ctx.lineTo(x,y+height-radius);
+	ctx.quadraticCurveTo(x,y+height,x+radius,y+height);
+	ctx.lineTo(x+width-radius,y+height);
+	ctx.quadraticCurveTo(x+width,y+height,x+width,y+height-radius);
+	ctx.lineTo(x+width,y+radius);
+	ctx.quadraticCurveTo(x+width,y,x+width-radius,y);
+	ctx.lineTo(x+radius,y);
+	ctx.quadraticCurveTo(x,y,x,y+radius);
+	ctx.stroke();
+}
+</script>
+
+
+
+</body>
+</html>

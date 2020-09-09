@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+window.onload = function(){
+	    var box = document.getElementById("box");			//获取盒子的引用
+	    var str = box.style.cssText; 						//读取盒子全部行内样式
+	    var a = str.split(";");								//把行内样式字符串转换为数组
+	    var temp="";
+	    for(var b in a){									//遍历行内样式
+		    var prop = a[b].split(":");						//把每个样式字符串劈开为数组
+		    if(prop[0]) 								//如果存在属性，则输出显示
+		        	temp += b + " ：" + prop[0] + " = " + prop[1] + "<br>";
+	    }
+	    box.innerHTML = "box.style.cssText = " + str;
+	    box.innerHTML = box.innerHTML + "<br><br>" + temp;//把格式化后的行内样式输出显示
+}
+</script>
+</head>
+<body>
+<div id="box" style="width:600px; height:200px; background-color:#81F9A5; border:solid 2px blue;padding:10px"></div>
+</body>
+</html> 
+ 

@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<input id="search" type="text" name="search">
+<script>
+function queryData(text){
+	console.log("搜索：" + text);
+}
+var input = document.getElementById("search");
+input.addEventListener("keyup", function(event){
+	throttle(queryData, 500)(this.value);
+	//throttle(queryData, 500, 1000)(this.value);
+	//queryData(this.value);
+});
+var n=0;
+function f(){
+	console.log("响应次数：" + ++n);
+}
+window.onresize=throttle(f, 500);
+//window.onresize=throttle(f, 500, 1000);
+
+//函数节流封装代码，参数method表示要执行的函数，delay表示要延迟时间，单位毫秒
+function throttle(method,delay){
+    var timer=null;	//定时器句柄
+    return function(){	//返回节流函数
+        var context=this, args=arguments;	//上下文环境和参数对象
+        clearTimeout(timer);	//先清理未执行的函数
+        timer=setTimeout(function(){	//重新定义定时器，记录新的定时器句柄
+            method.apply(context,args);	//执行预设的函数
+        },delay);
+    }
+}
+
+/*
+//添加一个参数作为到固定间隔必须执行
+function throttle(method,delay,duration){
+	var timer=null, begin=new Date();
+	return function(){
+		var context=this, args=arguments, current=new Date();;
+		clearTimeout(timer);
+		if(current-begin>=duration){
+			console.log("---");
+			 method.apply(context,args);
+			 begin=current;
+		}else{
+			timer=setTimeout(function(){
+				method.apply(context,args);
+			},delay);
+		}
+	}
+}
+*/
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

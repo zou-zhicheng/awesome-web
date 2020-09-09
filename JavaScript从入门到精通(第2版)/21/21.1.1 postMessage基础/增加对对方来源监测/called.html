@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>postMessage跨域对话（被叫）</title>
+<meta charset="utf-8">
+<style type="text/css">
+.highlight {
+    background-color:#FFFF00;
+}
+</style>
+</head> 
+<body>
+<div id="call">
+	<h1>被叫页（called.html）</h1>
+    <p>对方域名：<span id="domain" class="highlight"></span></p>
+    <p>对方消息：<span id="info"  class="highlight"></span></p>
+</div> 
+<script type="text/javascript"> 
+var EventUtil = {//定义事件处理基本模块
+    addHandler: function (element, type, handler) {//注册事件
+        if (element.addEventListener) {	//兼容DOM模型
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent) {	//兼容IE模型
+            element.attachEvent("on" + type, handler);
+        } else {	//兼容传统模型
+            element["on" + type] = handler;
+        }
+    }
+};
+// 窗口事件监听：监听message
+EventUtil.addHandler(window, "message", function (event) {
+	// event.origin:发送消息的地址，谁发的消息就是谁的
+	// 接收时候，可以加个判断;避免接收来源不明的URL发过来的数据
+	if( event.origin != "http://localhost" ){
+         return;
+	}
+	document.getElementById("domain").innerHTML = event.origin;
+	document.getElementById("info").innerHTML = event.data;	// event.data:发消息的内容	
+    // 收到消息后，回话，
+    // 通过访问message事件对象的source的属性，获取消息发送源的窗口对象，
+    // 也就是能知道是谁发的消息，然后调用postMessage()方法，给发消息者回个话
+	event.source.postMessage("主页你好，我是called.html，呼叫我有事儿吗？",event.origin);	
+});
+</script>
+</body>
+</html>

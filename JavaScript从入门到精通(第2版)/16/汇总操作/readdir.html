@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+function readDirectory(){		//读取目录
+    window.webkitRequestFileSystem( PERSISTENT, 1024,  
+        function(fs){		//请求文件系统成功时所执行的回调函数
+            var dirReader = fs.root.createReader();
+            var entries = [];
+            var readEntries = function() {		//多次调用reader.readEntries直到不再读出目录或文件
+                dirReader.readEntries (
+                    function(results) {		//读取目录成功时执行的回调函数
+                        if (!results.length) {
+                            listResults(entries.sort());
+                        } 
+                        else {
+                            entries = entries.concat(toArray(results));
+                            readEntries();
+                        }
+                    }, 
+                   errorHandler		//读取目录失败时执行的回调函数
+                );
+            };
+            readEntries(); 		//开始读取目录. 
+        },    
+        errorHandler		//请求文件系统失败时所执行的回调函数
+    );
+}
+function listResults(entries) {
+    var type;
+    entries.forEach(function(entry, i) {
+        if(entry.isFile)
+            type="文件："+entry.name;
+        else
+            type="目录："+entry.name;
+        document.getElementById("result").innerHTML+=type+"<br/>";
+    });  
+}
+function toArray(list) {
+  return Array.prototype.slice.call(list || [], 0);
+}
+function errorHandler(FileError) {
+    switch (FileError.code) {
+        case FileError.QUOTA_EXCEEDED_ERR:
+            console.log('文件系统所使用的存储空间的尺寸超过磁盘限额控制中指定的空间尺寸');
+            break;
+        case FileError.NOT_FOUND_ERR:
+            console.log('未找到文件或目录');
+            break;
+        case FileError.SECURITY_ERR:
+            console.log( '操作不当引起安全性错误');
+            break;
+        case FileError.INVALID_MODIFICATION_ERR:
+            console.log('对文件或目录所指定的操作不能被执行');
+            break;
+        case FileError.INVALID_STATE_ERR:
+            console.log('指定的状态无效');
+    };
+}
+</script>
+</head>
+<body>
+<h1>读取目录</h1>   
+<input type="button" value="读取目录" onclick="readDirectory()"><br/>    
+<output id="result" ></output>
+</body>
+</html> 

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//【示例1】下面示例使用for语句迭代数组，过滤出所有数字元素。
+var a = [1, 2, ,,,,,,true,,,,,,, "a",,,,,,,,,,,,,,,4,,,,,56,,,,,,"b"];	//定义数组
+var b = [], num=0;
+for( var i = 0; i < a.length ; i ++ ){	//遍历数组
+    if( typeof a[i] == "number" ) 	//如果为数字，则返回该元素的值
+       b.push( a[i]);
+    num++;	//计数器
+}
+console.log( num ); 	//返回42，说明循环了42次
+console.log( b ); 	//返回[1,2,4,56]
+
+
+//【示例2】下面代码使用for/in语句迭代示例1中的数组a
+var b = [], num=0;
+for( var i in a ){	//遍历数组
+    if( typeof a[i] == "number" )	//如果为数字，则返回该元素的值
+       b.push( a[i]);
+    num++;	//计数器
+}
+console.log( num ); 	//返回7，说明循环了7次
+console.log( b ); 	//返回[1,2,4,56]
+
+
+
+
+</script>
+
+</body>
+</html>

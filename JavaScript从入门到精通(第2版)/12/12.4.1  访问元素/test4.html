@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+.red {color:red;}
+</style>
+</head>
+<body>
+
+<p id="p1">段落文本1</p>
+<p id="p2">段落文本2</p>
+<p id="p3">段落文本3</p>
+<p id="p4">段落文本4</p>
+<p id="p5">段落文本5</p>
+
+
+<script>
+
+
+var p = document.getElementsByTagName("p");
+	// 获取p元素的所有引用指针
+for(var i=0;i<p.length;i++){					// 遍历p数据集合
+    p[i].setAttribute("class","red");
+    // 为每个获取的p元素定义一个class属性，并设置属性值为red。
+}
+
+</script>
+</body>
+</html> 

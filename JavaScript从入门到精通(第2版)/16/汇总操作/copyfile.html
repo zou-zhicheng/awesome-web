@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+function myfile_onchange(){	//复制文件
+    var files=document.getElementById("myfile").files; 
+    window.requestFileSystem( PERSISTENT, 1024,  
+        function(fs){	//请求文件系统成功时所执行的回调函数
+            for(var i = 0, file; file = files[i]; ++i){
+                (function(f) {
+                    fs.root.getFile(file.name, {create: true}, function(fileEntry) {
+                        fileEntry.createWriter(function(fileWriter) {
+                            fileWriter.onwriteend = function(e) {
+                                document.getElementById("result").innerHTML+='复制文件名为：'+f.name+'<br/>';
+                            };
+                            fileWriter.onerror = errorHandler
+                            fileWriter.write(f); 
+                        }, errorHandler);
+                    }, errorHandler);
+                })(file); 
+            } 
+        }, 
+        errorHandler  	//请求文件系统失败时所执行的回调函数
+    );
+}
+
+function errorHandler(FileError) {
+    switch (FileError.code) {
+        case FileError.QUOTA_EXCEEDED_ERR:
+            console.log('文件系统所使用的存储空间的尺寸超过磁盘限额控制中指定的空间尺寸');
+            break;
+        case FileError.NOT_FOUND_ERR:
+            console.log('未找到文件或目录');
+            break;
+        case FileError.SECURITY_ERR:
+            console.log( '操作不当引起安全性错误');
+            break;
+        case FileError.INVALID_MODIFICATION_ERR:
+            console.log('对文件或目录所指定的操作不能被执行');
+            break;
+        case FileError.INVALID_STATE_ERR:
+            console.log('指定的状态无效');
+    };
+}
+</script>
+</head>
+<body>
+<h1>复制文件</h1>
+<input type="file" id="myfile" onchange="myfile_onchange()" multiple /><br>   
+<output id="result" ></output>
+</body>
+</html> 

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+var fibonacci = function(n) {
+    var a=[0,1];	//记录数列的数组，第1、2个元素值确定
+    for(var i=2; i<=n; i++){	//从第3个数字开始循环
+        a.push( a[i-2] + a[i-1] );	//计算新数字，并推入数组
+    }
+    return a[n];	//返回指定位数的数列结果
+};
+console.log(fibonacci(100))	//4181
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

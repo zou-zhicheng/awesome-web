@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//【示例3】下面代码设计一个复杂的嵌套结构，根据变量a决定是否执行一个循环。
+var a = b = 2;	//定义并连续初始化
+if(a){	//条件结构
+   while(b ++ < 10){	//循环结构
+      console.log(b ++);	//循环执行语句
+   }
+}
+
+//使用逻辑与和逻辑或运算符进行简化：
+var a = b = 2;	//定义并连续初始化
+while(a && b ++ < 10) console.log(b ++ );	//逻辑与运算符合并的多条件表达式
+
+//如果转换为如下嵌套结构就不能够继续使用上述表达式进行简化。因为下面循环体是先执行，后执行条件检测。
+while(b ++ < 10){	//先执行循环
+   if(a){	//再判断条件
+      console.log(b++);
+   }
+}
+
+
+
+</script>
+
+
+</body>
+</html>

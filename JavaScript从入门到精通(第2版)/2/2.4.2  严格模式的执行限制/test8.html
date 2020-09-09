@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//8. arguments对象的限制
+//	不允许对arguments赋值
+
+"use strict";	//开启严格模式
+arguments++;	//语法错误：作为变量使用
+var obj = { set p(arguments) { }};	//语法错误：作为参数使用
+try { } catch (arguments) { }	//语法错误：作为异常对象使用
+function arguments() { }	//语法错误：作为函数名使用
+var f = new Function("arguments", "'use strict'; return 17;");	//语法错误：作为参数使用
+
+//	arguments不再追踪参数的变化
+function f(a) {
+　　a = 2;
+　　return [a, arguments[0]];
+}
+f(1);	//正常模式为[2,2]
+function f(a) {
+　　"use strict"; 	//开启严格模式
+　　a = 2;
+　　return [a, arguments[0]];
+}
+f(1);	//严格模式为[2,1]
+
+///	禁止使用arguments.callee
+
+"use strict";	//开启严格模式
+var f = function() { return arguments.callee; };
+f();	//报错
+
+
+</script>
+
+
+</body>
+</html>

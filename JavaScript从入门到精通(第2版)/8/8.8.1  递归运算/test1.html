@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+var f = function( x ){
+    if ( x < 2 )  return 1;	//递归终止的条件
+    else  return x * f( x - 1 );	//递归调用的过程
+}
+console.log( f( 5 ) );	//返回5的阶乘值为120
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+
+
+<canvas id="canvas" width="300" height="200" style="border:solid 1px #999;"></canvas>
+
+
+<script>
+draw();
+function draw() {
+	var ctx = document.getElementById('canvas').getContext('2d');
+	// 设置阴影
+	ctx.shadowOffsetX = 4;
+	ctx.shadowOffsetY = 4;
+	ctx.shadowBlur = 4;
+	ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+	// 绘制文本
+	ctx.font = "60px Times New Roman";
+	ctx.fillStyle = "Black";
+	ctx.fillText("Canvas API", 5, 80);
+}
+</script>
+
+
+
+</body>
+</html>

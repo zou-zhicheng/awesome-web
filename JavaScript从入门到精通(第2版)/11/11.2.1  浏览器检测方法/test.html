@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+//1．特征检测法
+
+//【示例1】下面代码检测当前浏览器是否支持document.getElementsByName特性，如果支持就使用该方法获取文档中的a元素；否则再检测是否支持document.getElementsByTagName特性，如果支持就使用该方法获取文档中的a元素。
+if(document.getElementsByName){	//如果存在，则使用该方法获取a元素
+    var a = document.getElementsByName("a");
+}
+else if(document.getElementsByTagName){	//如果存在，则使用该方法获取a元素
+    var a = document.getElementsByTagName("a");
+}
+
+
+
+//2．字符串检测法
+
+//【示例2】BOM在navigator对象中定义了userAgent属性，利用该属性可以捕获客户端user-agent字符串信息。
+var s = window.navigator.userAgent;
+//简写方法
+var s = navigator.userAgent;
+console.log(s);
+//返回类似信息：Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0; .NET4.0E; .NET4.0C; InfoPath.3; .NET CLR 3.5.30729; .NET CLR 2.0.50727; .NET CLR 3.0.30729)
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+
+
+<div id="box" data-myid="12345" data-myname="zhangsan"  data-mypass="zhang123">自定义数据属性</div>
+
+<script>
+
+var div = document.getElementById("box");
+var id = div.dataset.myid;
+var name = div.dataset.myname;
+var pass = div.dataset.mypass;
+
+div.dataset.myid = "54321";
+div.dataset.myname = "lisi";
+div.dataset.mypass = "lisi543";
+
+if (div.dataset.myname){
+	alert(div.dataset.myname);
+}
+</script>
+
+
+
+
+</body>
+</html> 

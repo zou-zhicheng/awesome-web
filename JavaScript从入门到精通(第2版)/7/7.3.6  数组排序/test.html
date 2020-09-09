@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//1. 使用reverse()方法
+var a = [1,2,3,4,5];	//定义数组
+a.reverse();	//颠倒数组顺序
+console.log(a);	//返回数组[5,4,3,2,1]
+
+//2. 使用sort()方法
+var a = ["a","e","d","b","c"];	//定义数组
+a.sort();	//按字母顺序对元素进行排序
+console.log(a);	//返回数组[a,b,c ,d,e]
+
+//第三， sort()方法将根据元素值进行逐位比较，而不是根据字符串的个数进行排序。
+var a = ["aba","baa","aab"];	//定义数组
+a.sort();	//按字母顺序对元素进行排序
+console.log(a);	//返回数组[aab,aba ,baa]
+
+//【示例1】在下面示例中，将根据排序函数比较数组中每个元素的大小，并按从小到大的顺序执行排序。
+function f( a, b ){	//排序函数
+    return ( a - b )	//返回比较参数
+}
+var a = [3, 1, 2, 4, 5, 7, 6, 8, 0, 9];	//定义数组
+a.sort(f);	//根据数字大小由小到大进行排序
+console.log( a );	//返回数组[0,1,2 ,3,4, 5,6,7 ,8,9]
+
+function f( a, b ){	//排序函数
+    return  -( a - b )	//取反并返回比较参数， 
+}
+var a = [3, 1, 2, 4, 5, 7, 6, 8, 0, 9];	//定义数组
+a.sort(f);	//根据数字大小由大到小进行排序
+console.log( a );	//返回数组[9,8,7 ,6,5, 4,3,2 ,1,0]
+
+
+//【示例2】根据奇偶性质排列数组。
+function f( a, b ){	//排序函数
+    var a = a % 2;	//获取参数a的奇偶性
+    var b = b % 2;	//获取参数b的奇偶性
+    if( a == 0 ) return 1;	//如果参数a为偶数，则排在左边
+    if( b == 0 ) return -1;	//如果参数b为偶数，则排在右边
+}
+var a = [3, 1, 2, 4, 5, 7, 6, 8, 0, 9];	//定义数组
+a.sort( f );	//根据数字大小由大到小进行排序
+console.log( a );	//返回数组[3,1,5,7,9,0,8,6,4,2]
+
+function f( a, b ){
+    var a = a % 2;
+    var b = b % 2;
+    if( a  == 0 ) return -1;
+    if( b  == 0 ) return 1;
+}
+
+var a = ["aB", "Ab", "Ba", "bA"];	//定义数组
+a.sort();	//默认方法排序
+console.log( a );	//返回数组["Ab","Ba","aB","bA"]
+function f( a, b ){	//如果a小于b，则a、b位置不动，反之换位
+    return ( a < b );
+}
+var a = ["aB", "Ab", "Ba", "bA"];
+a.sort( f );	//根据排序函数进行排序
+console.log( a );	//返回数组["Ab","Ba","aB","bA"]
+
+//如果不希望区分字母大小，大写字母和小写字母按相同顺序排列，可以设计：
+function f( a, b ){	//排序函数
+    var a = a.toLowerCase;	//转换为小写形式
+    var b = b.toLowerCase;	//转换为小写形式
+    if( a < b ){	//如果a的编码小于b，则换位操作
+        return  1;
+    }
+    else{	//否则，保持原位不动
+        return -1;
+    }
+}
+var a = ["aB", "Ab", "Ba", "bA"];	//定义数组
+a.sort( f );	//执行排序
+console.log( a );	//返回数组["aB", "Ab", "Ba", "bA"]
+
+//【示例4】把浮点数和整数分开显示。
+function f( a, b ){	//排序函数
+    if( a > Math.floor( a ) ) return  1;	//如果a是浮点数，则调换位置
+    if( b > Math.floor( b ) ) return  - 1;	//如果b是浮点数，则调换位置
+}
+var a = [3.55555, 1.23456, 3, 2.11111, 5, 7, 3];	//定义数组
+a.sort( f );	//进行筛选
+console.log( a );	//返回数组[3,5,7,3,2.11111,1.23456,3.55555]
+
+
+</script>
+
+</body>
+</html>

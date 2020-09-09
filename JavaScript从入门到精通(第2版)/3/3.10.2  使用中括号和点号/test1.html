@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//	存取数组元素的值
+var a =[1,"x",true,{}];	//定义数组a
+console.log(a[1]);	//读取第2个元素的值，返回"x"。
+a[3] = false;	//为第4个元素写入false值
+console.log(a[3]);	//元素原来的对象值被覆盖，返回false。
+
+//	存取对象属性的值
+var a ={	//定义对象a
+    x : 1,	//定义对象属性x
+    y : function(){	//定义对象方法y
+        return 2;	//返回值
+    }
+};
+console.log(a["y"]());	//调用方法y，返回2。
+a["x"] = 3;	//重置属性x的值
+console.log(a["x"]);	//读取属性x的值，返回3。
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+
+var toUnicode = String.prototype.toUnicode = function(){// 对字符串进行编码
+   var _this = arguments[0] || this; // 判断是否存在参数，如果存在则使用静态方法调用参数值，否则作为字符串对象的方法来处理当前字符串
+   function f(){// 定义替换文本函数
+      return "&#" + arguments[0].charCodeAt(0) + ";";// 以网页编码格式显示被编码的字符串
+   }
+   return _this.replace(/[^\u00-\uFF]|\w/gmi, f); // 使用replace()方法执行匹配、替换操作
+};
+
+
+var fromUnicode = String.prototype.fromUnicode = function(){// 对Unicode编码进行解码操作
+   var _this = arguments[0] || this; // 判断是否存在参数，如果存在则使用静态方法调用参数值，否则作为字符串对象的方法来处理当前字符串对象
+   function f(){	// 定义替换文本函数
+      return String.fromCharCode(arguments[1]); //把第一个子表达式值（Unicode编码）转换为字符
+   }
+   return _this.replace(/&#(\d*);/gmi, f); // 使用replace()匹配并替换Unicode编码为字符
+};
+
+
+
+var s = "JavaScript中国";	// 定义字符串
+s = s.toUnicode();	// 对字符串进行Unicode编码
+console.log(s); 	// 返回字符串“&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#20013;&#22269;”
+s = s.fromUnicode();	// 对被编码的字符串进行解码
+console.log(s); 	// 返回字符串“JavaScript中国”
+
+
+</script>
+
+
+</body>
+</html>

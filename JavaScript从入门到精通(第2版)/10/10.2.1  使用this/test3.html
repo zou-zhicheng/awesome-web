@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+//3．动态调用
+function func(){
+    //如果this的构造函数等于当前函数，则表示this为实例对象
+    if(this.constructor == arguments.callee) console.log("this = 实例对象");
+    //如果this等于Window，则表示this为Window对象
+    else if (this == window) console.log("this = window对象");
+    //如果this为其他对象，则表示this为其他对象
+    else console.log("this == 其他对象 \n this.constructor = " + this.constructor );
+}
+func();	//this指向Window对象
+new func();	//this指向实例对象
+func.call(1);	//this指向数值对象
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

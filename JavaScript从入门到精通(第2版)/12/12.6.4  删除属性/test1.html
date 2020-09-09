@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+
+<script>
+window.onload = function() {		// 绑定页面加载完毕时的事件处理函数
+    var table = document.getElementsByTagName("table")[0];
+    // 获取表格外框的引用
+    var del = document.getElementById("del");	// 获取删除按钮的引用
+    var reset = document.getElementById("reset");
+    // 获取恢复按钮的引用
+    del.onclick = function(){				// 为删除按钮绑定事件处理函数
+        table.removeAttribute("border");	// 移出边框属性
+    }
+    reset.onclick = function(){				// 为恢复按钮绑定事件处理函数
+        table.setAttribute("border", "2");	// 设置表格的边框属性
+    }
+}
+</script>
+<table width="100%" border="2">
+    <tr>
+        <td>数据表格</td>
+    </tr>
+</table>
+<button id="del">删除</button><button id="reset">恢复</button>
+
+
+
+
+
+
+</body>
+</html> 

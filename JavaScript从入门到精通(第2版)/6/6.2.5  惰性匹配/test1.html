@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+var s ="<html><head><title></title></head><body></body></html>";
+var r = /(<.*>)(<.*>)/
+var a = s.match(r);
+console.log(a[1]);	//左侧匹配"<html><head><title></title></head><body></body>"
+console.log(a[2]); 	//右侧子表达式匹配"</html>"
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

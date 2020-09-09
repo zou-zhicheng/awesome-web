@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+if(window.addEventListener){
+ 	window.addEventListener("storage",handle_storage,false);
+ }else if(window.attachEvent){
+ 	window.attachEvent("onstorage",handle_storage);
+ } 
+function handle_storage(e) { 
+    var logged = "key:" + e.key + ", newValue:" + e.newValue + ", oldValue:" + e.oldValue + ", url:" + e.url + ", storageArea:" + e.storageArea;
+    alert(logged);
+}
+ 
+sessionStorage.setItem("key", "value");
+localStorage.setItem("site", "mysite.cn");
+
+
+</script>
+</head>
+<body>
+
+
+</body>
+</html>

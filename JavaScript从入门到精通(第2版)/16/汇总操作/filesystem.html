@@ -1,0 +1,139 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+var fs;//文件系统对象
+var fileList;//页面中用于显示文件系统根目录下所有文件与目录的ul元素
+window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+window.requestFileSystem(window.PERSISTENT, 1024*1024, 
+    //请求文件系统成功时所执行的回调函数
+    function(filesystem) {
+        fileList=document.getElementById("fileList");
+        fs = filesystem;
+        document.getElementById("myfile").disabled=false;
+        document.getElementById("btnreadRoot").disabled=false;
+        document.getElementById("btndeleteFile").disabled=false;
+        //读取根目录 
+        readRoot();
+    },
+    //请求文件系统失败时所执行的回调函数
+    errorHandler
+);
+//读取根目录
+function readRoot(){
+    document.getElementById("result").innerHTML="";
+    for(var i=fileList.childNodes.length;i>0;i--){
+        var el=fileList.childNodes[i-1];
+        fileList.removeChild(el); 
+    }
+    var dirReader = fs.root.createReader();
+    var entries = [];
+    var readEntries = function() {
+        //读取目录
+        dirReader.readEntries (
+            //读取目录成功时执行的回调函数
+            function(results) {
+                if (!results.length) {
+                    var fragment = document.createDocumentFragment();
+                    for (var i = 0, entry; entry = entries[i]; ++i) {
+                        var img = entry.isDirectory ? '<img src="icon-folder.gif">' :'<img src="icon-file.gif">';
+                        var li = document.createElement('li');
+                        li.innerHTML = [img, '<span>', entry.name, '</span>'].join('');
+                        fragment.appendChild(li);
+                    }
+                    fileList.appendChild(fragment);
+                } 
+                else {
+                    entries = entries.concat(toArray(results));
+                    readEntries();
+                }
+            }, 
+            //读取目录失败时执行的回调函数
+            errorHandler
+        );
+    };
+    readEntries(); // 开始读取根目录.
+}
+function toArray(list) {
+  return Array.prototype.slice.call(list || [], 0);
+}
+function myfile_onchange(){
+    var files=document.getElementById("myfile").files; 
+    for(var i = 0, file; file = files[i]; ++i){
+        (function(f) {
+            fs.root.getFile(file.name, {create: true}, function(fileEntry) {
+                fileEntry.createWriter(function(fileWriter) {
+                    fileWriter.onwriteend = function(e) {
+                        document.getElementById("result").innerHTML+='复制文件名为：'+f.name+'<br/>';
+                    };
+                    fileWriter.onerror = errorHandler                         
+                    fileWriter.write(f); 
+                }, errorHandler);
+            }, errorHandler);
+        })(file); 
+    }     
+}
+function deleteAllContents(){
+    var dirReader = fs.root.createReader();
+    var entries = [];
+    var deleteEntries = function() {
+        //读取目录
+        dirReader.readEntries (
+            //读取目录成功时执行的回调函数
+            function(results) {
+                if (!results.length) {
+                    for (var i = entries.length-1, entry; entry = entries[i];i--) {
+                        if (entry.isDirectory) {
+                            entry.removeRecursively(function() {}, errorHandler);
+                        } 
+                        else {
+                            entry.remove(function() {}, errorHandler);
+                        }
+                    }
+                    for(var i=fileList.childNodes.length;i>0;i--){
+                        var el=fileList.childNodes[i-1];
+                        fileList.removeChild(el); 
+                    }
+                } 
+                else {
+                    entries = entries.concat(toArray(results));
+                    deleteEntries();
+                }
+            }, 
+            //读取目录失败时执行的回调函数
+            errorHandler
+        );
+    };
+    deleteEntries(); // 开始删除根目录中内容.
+}
+function errorHandler(FileError) {
+    switch (FileError.code) {
+        case FileError.QUOTA_EXCEEDED_ERR:
+            console.log('文件系统所使用的存储空间的尺寸超过磁盘限额控制中指定的空间尺寸');
+            break;
+        case FileError.NOT_FOUND_ERR:
+            console.log('未找到文件或目录');
+            break;
+        case FileError.SECURITY_ERR:
+            console.log( '操作不当引起安全性错误');
+            break;
+        case FileError.INVALID_MODIFICATION_ERR:
+            console.log('对文件或目录所指定的操作不能被执行');
+            break;
+        case FileError.INVALID_STATE_ERR:
+            console.log('指定的状态无效');
+    };
+}
+</script>
+</head>
+<body>
+<input type="file" id="myfile" multiple disabled onchange="myfile_onchange()"/>
+<button id="btnreadRoot"  disabled onclick="readRoot()">保存</button><br/><br/>
+<div>
+    <ul id="fileList"></ul>
+    <button id="btndeleteFile"  disabled onclick="deleteAllContents()">清空</button>
+</div> 
+<output id="result" ></output>
+</body>
+</html> 

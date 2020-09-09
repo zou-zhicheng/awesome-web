@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+#box { color:green; }
+.red { color:red; }
+.blue { color:blue; }
+</style>
+<link href="style1.css" rel="stylesheet" type="text/css" media="all" />
+<script>
+window.onload = function(){ 
+	    var cssRules = document.styleSheets[1].cssRules || document.styleSheets[1].rules;
+	    var box = document.getElementById("box");
+	    box.innerHTML =  "第二个样式表中第一个样式的color属性值 = " + cssRules[0].style.color;
+}
+</script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html> 
+ 

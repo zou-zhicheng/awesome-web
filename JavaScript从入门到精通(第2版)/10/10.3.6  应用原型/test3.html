@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例3】利用原型还可以为对象属性设置“只读”特性，这在一定程序上可以避免对象内部数据被任意修改的尴尬。下面示例演示了如何根据平面上两点坐标来计算它们之间的距离。构造函数p用来设置定位点坐标，当传递两个参数值时，会返回以参数为坐标值的点，如果省略参数则默认点为原点（0,0）。而在构造函数l中通过传递的两点坐标对象，技算它们的距离。
+function p(x,y){	//求坐标点构造函数
+    if(x) this.x =x;	//初始x轴值
+    if(y) this.y = y;	//初始y轴值
+    p.prototype.x =0;	//默认x轴值
+    p.prototype.y = 0;	//默认y轴值
+}
+function l(a,b){	//求两点距离构造函数
+    var a = a;	//参数私有化
+    var b = b;	//参数私有化
+    var w = function(){	//计算x轴距离，返回对函数引用
+        return Math.abs(a.x - b.x);
+    }
+    var h = function(){	//计算y轴距离，返回对函数引用
+        return Math.abs(a.y - b.y);
+    }
+    this.length = function(){	//计算两点距离，调用私有方法w()和h()
+        return Math.sqrt(w()*w() + h()*h());
+    }
+    this.b = function(){	//获取起点坐标对象
+        return a;
+    }
+    this.e = function(){	//获取终点坐标对象
+        return b;
+    }
+}
+var p1 = new p(1,2);	//实例化p构造函数，声明一个点
+var p2 = new p(10,20);	//实例化p构造函数，声明另一个点
+var l1 = new l(p1,p2);	//实例化l构造函数，传递两点对象
+console.log(l1.length())	//返回20.12461179749811，计算两点距离
+l1.b().x = 50;	//不经意改动方法b()的一个属性为50
+console.log(l1.length())	//返回43.86342439892262，说明影响两点距离值
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

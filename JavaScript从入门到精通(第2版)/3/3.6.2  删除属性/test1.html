@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例1】下面代码使用delete运算符删除对象a的属性x。
+var a ={	//定义对象a
+   x : 1,	//定义对象成员
+   y : 2	//定义对象成员
+};
+console.log(a.x);	//调用对象成员，返回1 
+console.log( delete a.x);	//删除对象成员x成功，返回true
+console.log(a.x);	//返回undefined，没有找到该对象成员
+
+c = 1;	//初始化变量c，没有使用var语句声明
+console.log(delete c);	//返回true，说明删除成功
+var b = 1;	//使用var语句声明并初始化变量
+console.log(delete b);	//返回false，说明不允许删除
+console.log(delete Object.constructor); 	//返回true，说明部分内部成员可以被删除
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+function wrap(tag) {
+    var stag = '<' + tag + '>';
+    var etag = '</' + tag.replace(/s.*/, '') + '>';
+    return function(x) {
+        return stag + x + etag;
+    }
+}
+var b = wrap('b');
+document.write(b('粗体字')); 
+var i = wrap('i');
+document.write(i('斜体字')); 
+var u = wrap('u');
+document.write(u('下划线字')); 
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

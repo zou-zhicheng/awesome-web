@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+//扩展数组的原型方法：each，迭代器，详细说明请参考数组一章迭代器小节内容。
+Array.prototype.each = function( f ){ 	// 数组迭代器，扩展Array原型方法
+    try{					// 异常处理，避免因为不可预测的错误导致系统崩溃
+        this.i || ( this.i = 0 ); 		// 定义临时变量，用来作为迭代计数器
+        if( this.length > 0 && f.constructor == Function ){ 
+			// 如果数组长度大于0，参数为函数
+            while( this.i < this.length ){ 	// 遍历数组
+                var e = this[this.i]; 		// 获取当前元素
+                if( e && e.constructor == Array ){ 
+					// 如果元素存在，且为数组
+                    e.each( f ); 				// 递归调用迭代器
+                }else{	// 否则，在元素上调用参数函数，并把元素值传递给函数
+                    f.apply( e, [e] );
+                }
+                this.i ++ ; 					// 递加计数器
+            }
+            this.i = null; 					// 如果遍历完毕，则清空计数器
+        }
+    }
+    catch( w ){ 							// 捕获以后
+    }
+    return this								// 返回当前数组
+}
+
+//【示例】
+String.prototype.check = function(){
+	// 特殊字符检测，参数为特殊字符列表，返回true表示存在，否则不存在
+    if(arguments.length < 1) throw new Error("缺少参数");
+	// 如果没有参数，则抛出异常
+    var a = [], _this = this; 
+	// 定义空数组，并把检测的字符串存储在局部变量中
+ for(var i = 0 ; i < arguments.length; i ++ ){
+ // 遍历参数，把参数列表转换为数组
+        a.push(arguments[i]); 	// 把每个参数值推入数组
+    }
+    var i = - 1; 				// 设置临时变量，初始化为-1
+    a.each(function(){
+	// 调用数组的扩展方法each()，实现迭代数组，并为每个元素调用匿名函数，
+
+        if(i != - 1) return true; 	// 如果临时变量不等于-1，则提前返回true
+        i = _this.search(this) //否则把检索到的字符串下标位置传递
+    });
+    if(i == - 1){ 	// 如果i等于-1，则返回false，说明没有检测到指定特殊字符
+        return false;
+    }else{			// 如果i不等于-1，则返回true，说明检测到指定的特殊字符
+        return true;
+    }
+}
+
+var  s = '<script language="javascript" type="text/javascript">';
+	// 定义字符串直接量
+var b = s.check("*");	// 调用String对象的扩展方法，检测字符串
+alert(b); 				// 返回true，说明存在特殊的字符"<"或">"，即存在标签
+
+var  s = '<script language="javascript" type="text/javascript">';
+var a = ["<", ">","\"","\'","\\","\/","\;","\|"];
+var b = s.check(a);
+//alert(b);
+
+
+
+
+</script>
+
+
+</body>
+</html>

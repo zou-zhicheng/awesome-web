@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+var a = {};
+a.e = function(x){ return x;};
+a.f = function(x){ return x + "";};
+a.b = new Object( a.d ? a.e(1) : a.f(1 ));
+
+
+if(a.d){
+    a.b = new Object(a.e(1));
+}else{
+    a.b = new Object(a.f(0));
+}
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+Array.prototype.x = "x";	//自定义数组对象的继承属性
+var a = [1,2,3];	//定义数组对象，并赋值
+a.y = "y";	//定义数组对象的额外属性
+for(var i = 0; i < a.length ; i ++ )	//遍历数组对象a
+	document.write( i + "：" +  a[i] + "<br />");
+
+
+
+</script>
+
+
+</body>
+</html>

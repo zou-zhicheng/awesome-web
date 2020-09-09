@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+var fibonacci = ( function() {
+    var memo = [0, 1];
+    var fib = function(n) {
+        var result = memo[n];
+        if( typeof result !== 'number') {
+            result = fib(n - 1) + fib(n - 2);
+            memo[n] = result;
+        }
+        return result;
+    };
+    return fib;
+}());
+console.log(fibonacci(100));
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

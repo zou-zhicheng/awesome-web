@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+var blob = new Blob(["4234" + "5678"]);
+var shorts = new Uint16Array(buffer, 622, 128);
+var blobA = new Blob([blob, shorts]);
+var bytes = new Uint8Array(buffer, shorts.byteOffset + shorts.byteLength);
+var blobB = new Blob([blob, blobA, bytes])
+var blobC = new Blob([buffer, blob, blobA, bytes]); 
+
+</script>
+</head>
+<body>
+</body>
+</html> 

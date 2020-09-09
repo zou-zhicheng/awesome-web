@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+switch(level){    //优化分支顺序
+    case 1: 
+        console.log("普通会员");
+        break;
+    case 2: 
+        console.log("版主");
+        break;
+    case 3: 
+        console.log("管理员");
+        break;
+    default:
+        console.log("请登录");
+}
+
+
+
+switch(day){    //遵循自然分支的顺序
+    case 1 :
+        console.log("周一任务安排");
+        break;
+    case 2 :
+        console.log("周二任务安排");
+        break;
+    case 3 :
+        console.log("周三任务安排");
+        break;
+    case 4 :
+        console.log("周四任务安排");
+        break;
+    case 5 :
+        console.log("周五任务安排");
+        break;
+    default :
+        console.log("异常处理");
+}
+
+
+if(a && b){
+    //执行任务
+}
+
+var c = b;
+if(a && b){
+    //执行任务
+}
+
+
+
+
+</script>
+
+</body>
+</html>

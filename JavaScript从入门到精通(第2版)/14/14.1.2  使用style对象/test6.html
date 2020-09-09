@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+window.onload = function(){ 
+	    var box = document.getElementById("box");			//获取盒子的引用
+	    box.onmouseover = function(){
+	        box.style.backgroundColor = "blue";			//设置背景样式
+	        box.style.border = "solid 50px red";				//设置边框样式
+	    }
+	    box.onclick = function(){							//读取并输出行内样式
+	        box .innerHTML = "width:" + box.style.width; 
+	        box .innerHTML = box .innerHTML + "<br>" +  "height:" + box.style.height;
+	    }
+	    box.onmouseout = function(){						//设计鼠标移之后，恢复默认样式
+	        box.style.backgroundColor = "red";
+	        box.style.border = "solid 50px blue";
+	    }
+}
+</script>
+</head>
+<body>
+<div id="box" style="width:100px; height:100px; background-color:red; border:solid 50px blue;"></div>
+</body> 
+</html> 

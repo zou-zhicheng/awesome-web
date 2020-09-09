@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+div {/* 定义div元素样式 */
+    margin: 20px;				/* 边界距离 */
+    border: solid 1px blue; 	/* 蓝色边框线 */
+    font-size: 18px;
+}
+</style> 
+<script>
+function bubble(){
+	    var div = document.getElementsByTagName('div');
+		var show = document.getElementById("show");
+	    for (var i = 0; i < div.length; ++i){ //遍历div元素
+	        div[i].onclick = (function(i){ //为每个div元素注册鼠标单击事件处理函数
+	            return function(e){//返回闭包函数
+	                div[i].style.border = '1px dashed red'; //定义当前元素的边框线为红色
+					show.innerHTML += div[i].className + " > ";
+					e.stopPropagation();
+	            }
+	        })(i);
+	    }
+}
+window.onload = bubble;
+</script>
+</head>
+<body>
+<div class="div-1">div-1
+    <div class="div-2">div-2
+        <div class="div-3">div-3
+            <div class="div-4">div-4
+                <div class="div-5">div-5</div>
+            </div>
+        </div>
+    </div>
+</div>
+<p id="show"></p>
+</body>
+</html> 

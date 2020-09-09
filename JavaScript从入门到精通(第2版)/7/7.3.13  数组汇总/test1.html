@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+//【示例1】下面示例演示将数组值连接成字符串，各个值用“::”分隔开。由于未向reduce 方法提供初始值，第一次调用回调函数时会将“abc”作为 previousValue 参数并将“def”作为currentValue 参数。
+function f(pre, curr) {
+    return pre + "::" + curr;
+}
+var a = ["abc", "def", 123, 456];
+var r = a.reduce(f);
+console.log(r);	//abc::def::123::456
+
+
+
+//【示例2】下面示例向数组中添加值。 currentIndex和array 参数用于回调函数。
+function f1(pre, curr, i, array) {
+    var e = (array.length - 1) - i;
+    var d = curr * Math.pow(10, e);
+    return pre + d;
+}
+var a = [4, 1, 2, 5];
+var r = a.reduce(f1, 0);
+console.log (r);	//4125
+
+
+
+//【示例3】下面示例获取一个数组，该数组仅包含另一个数组中的介于 1 和 10 之间值， 提供给reduce 方法的初始值是一个空数组。
+function f2(pre, curr) {
+    var next;
+    if (curr >= 1 && curr <= 10)
+        next = pre.concat(curr);
+    else
+        next = pre;
+    return next;
+}
+var a1 = [20, 1, -5, 6, 50, 3];
+var a = new Array();
+var r = a1.reduce(f2, a);
+console.log(r);//1,6,3
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

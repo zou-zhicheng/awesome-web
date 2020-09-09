@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+var toSerial = function() {	//包装函数
+    var prefix = '';	//私有变量，前缀字符，默认为空字符
+    var serial = 0; 	//私有变量，序列号，默认为0
+    return {	//返回一个对象直接量
+        setPrefix : function(p) {	//设置前缀字符
+            prefix = String(p);	//强制转换为字符串
+        },
+        setSerial : function(s) {	//设置序列号
+            serial = typeof s == "number"? s : 0;//如果参数不是数字，则设置为0
+        },
+        get : function() {	//读取自动生成的序列号
+            var result = prefix + serial;
+            serial += 1;	//递加序列号
+            return result;	//返回结果
+        }
+    };
+};
+var serial = toSerial();	//获取生成序列号对象
+serial.setPrefix('No.');	//设置前缀字符串
+serial.setSerial(100); 	//设置起始序号
+console.log( serial.get() );	//"No.100"
+console.log( serial.get() );	//"No.101"
+console.log( serial.get() );	//"No.102"
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

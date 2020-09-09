@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+
+
+for(var n = 1; n < 10; n ++ ) {	//循环操作的环境条件
+    console.log(n);	//循环操作的语句
+}
+
+
+for(var a = true, b = 1; a; b ++ ){
+    if(b > 9)	//在循环体内间接计算迭代的步长
+    a = false;
+    console.log(b);
+}
+
+var a = true, b = 1;	//在循环体内间接计算迭代
+while(a) {	//在循环体内间接计算迭代
+    if(b > 9)	//在循环体内间接计算迭代
+    a = false;
+    console.log(b);
+    b ++;	//在循环体内间接计算迭代
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

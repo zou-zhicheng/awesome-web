@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+//【示例4】利用对象原型与私有属性之间这种特殊关系，可以设计如下有趣的演示效果。
+function p(x,y,z){	//构造函数
+    this.x = x;	//声明私有属性x并赋参数x的值
+    this.y = y;	//声明私有属性y并赋参数y的值
+    this.z = z;	//声明私有属性z并赋参数z的值
+}
+p.prototype.del = function(){	//定义原型方法
+    for(var i in this){	//遍历本地对象，删除实例内的所有属性和方法
+        delete this[i];
+    }
+}
+p.prototype = new p(1,2,3);	//实例化，并把实例对象传递给原型对象
+var p1 = new p(10,20,30);	//实例化构造函数p为p1
+console.log(p1.x);	//返回10，私有属性x的值
+console.log(p1.y);	//返回20，私有属性y的值
+console.log(p1.z);	//返回30，私有属性z的值
+p1.del();	//调用原型方法，删除所有私有属性
+console.log(p1.x);	//返回1，原型属性x的值
+console.log(p1.y);	//返回2，原型属性y的值
+console.log(p1.z);	//返回3，原型属性z的值
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

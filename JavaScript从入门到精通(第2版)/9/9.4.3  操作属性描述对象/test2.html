@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+function extend(toObj, fromObj) {
+	for (var property in fromObj) {
+		if (!fromObj.hasOwnProperty(property)) continue;
+		Object.defineProperty(
+			toObj,
+			property,
+			Object.getOwnPropertyDescriptor(fromObj, property)
+		);
+	}
+	return toObj;
+}
+
+
+var obj = {};
+obj.x = 1;
+extend(obj, { get y(){ return 2 } })
+
+console.log(obj.y);	//2
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

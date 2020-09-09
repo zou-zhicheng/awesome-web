@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+//使用test()执行匹配时，IE支持：RegExp.index记录了匹配文本的起始下标位置，RegExp.lastIndex记录下一次匹配的起始位置。
+//其他浏览器不支持RegExp.index记录了匹配文本的起始下标位置，但支持正则表达式的lastIndex属性记录下一次匹配的起始位置。
+var s = "JavaScript";	//测试字符串
+var r = /\w/g;	//匹配模式
+while(r.test(s)){	//循环执行匹配检测，如果true，则继续验证
+    console.log("匹配文本 = " +  RegExp.lastMatch + "    RegExp.index = " + RegExp.index  + "    RegExp.lastIndex = " +  RegExp.lastIndex); 
+	//利用RegExp静态属性显示当前匹配的信息
+}
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

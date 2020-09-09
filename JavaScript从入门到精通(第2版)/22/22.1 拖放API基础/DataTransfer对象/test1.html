@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<head>
+<meta charset="UTF-8"> 
+<title></title>
+<script type="text/javascript">
+//创建图标元素
+var dragIcon=document.createElement('img');
+//设置图标来源
+dragIcon.src='images/11.png';
+function init(){
+    var source = document.getElementById("drag");
+    var dest = document.getElementById("target");
+    source.addEventListener("dragstart", function(ev) {
+        var dt = ev.dataTransfer;
+		dt.setDragImage(dragIcon, -10, -10);
+        dt.effectAllowed = 'copy';  
+		dt.setData("text/plain", this.id);  
+    }, false);
+	dest.addEventListener("dragover", function(ev) {
+		var dt = ev.dataTransfer;
+		dt.dropEffect = 'copy'; 
+	}, false);
+    dest.addEventListener("dragend", function(ev) {
+        ev.preventDefault();
+    }, false);
+    dest.addEventListener("drop", function(ev) {
+        var dt = ev.dataTransfer;
+        var text = dt.getData("text/plain");
+        dest.innerHTML += "<p>" + text + "</p>";
+        ev.preventDefault();
+        ev.stopPropagation();
+    }, false);
+}
+document.ondragover = function(e){e.preventDefault();};
+document.ondrop = function(e){e.preventDefault();};
+</script>
+<style>
+#drag { width: 100px; height: 100px; background-color: #93FB40; border-radius: 12px; text-align:center; line-height:100px; color:#F423CC; }
+#target { width: 200px; height: 200px; border: 1px dashed gray; margin: 12px;}
+</style>
+</head>
+<body onload="init()">
+<img  id="drag" src="images/1.png" width="314" height="314" alt=""/>
+<div id="target"></div>
+</body>

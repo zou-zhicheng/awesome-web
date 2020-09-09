@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body style="padding:0; margin:0;">
+<div id="message" style="position:fixed; bottom:0; width:100%; display:none; background:hsla(93,96%,62%,0.6)"></div>
+<h1>client1.html</h1>
+<script>
+var ws = new WebSocket('ws://127.0.0.1:8008');
+ws.onopen = function(){
+     var uid = '2';
+     ws.send(uid);
+ };
+ ws.onmessage = function(e){
+	 var message = document.getElementById('message');
+	 message.style.display = "block";
+	 var jsonData = JSON.parse(event.data);	// 接收推送信息，并转换为JSON对象
+	 message.innerHTML =  "<p>"+jsonData.content+"</p>";
+ };
+ 
+</script>
+</body>
+</html>

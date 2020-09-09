@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<div id="box">document.createAttribute(name)</div>
+<script>
+
+var element = document.getElementById("box");
+var attr = document.createAttribute("align");
+attr.value = "center";
+element.setAttributeNode(attr);
+
+alert(element.attributes["align"].value);       //"center"
+alert(element.getAttributeNode("align").value); //"center"
+alert(element.getAttribute("align"));           //"center"
+
+</script>
+</body>
+</html> 

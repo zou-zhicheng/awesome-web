@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+
+<script>
+
+
+
+//【示例3】使用call和apply强制固定this的值。
+
+// 把this转换为静态指针
+// 参数obj表示预设置this所指代的对象，返回一个预备调用的函数
+Function.prototype.pointTo = function(obj){
+    var _this = this;	//存储当前函数对象
+    return function(){	//返回一个闭包函数
+        return  _this.apply(obj, arguments); //返回执行当前函数，并强制设置为指定对象
+    }
+}
+
+var obj1 ={
+    name : "this = obj1"
+}
+obj1.func = (function(){
+    return this;
+}).pointTo(obj1);	//把this绑定到对象obj1身上
+var obj2 ={
+    name : "this = obj2",
+    func : obj1.func
+}
+var _this = obj2.func();
+console.log(_this.name);	//返回"this=obj1"，说明this指向obj1，而不是obj2
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

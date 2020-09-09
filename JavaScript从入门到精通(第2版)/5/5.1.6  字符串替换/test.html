@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例1】下面代码使用replace()方法替换字符串中“html”为“htm”。
+var s = "http://www.mysite.cn/index.html";
+var b = s.replace( /html/, "htm" ); 	// 把字符串html替换为htm
+console.log( b ); 	// 返回字符串"http://www.mysite.cn/index.htm"
+
+var b = s.replace("html", "htm" ); 	// 把字符串html替换为htm
+console.log( b );
+
+
+//【示例2】下面代码在使用replace()方法时，灵活使用替换函数修改匹配字符串。
+var s = "http://www.mysite.cn/index.html";
+function f( x ){ 	// 替换文本函数
+    return x.substring( x.lastIndexOf(".")+1, x.length - 1 ) // 获取扩展名部分字符串
+}
+var b = s.replace( /(html)/, f(s)); 	// 调用函数指定替换文本操作
+console.log( b ); 	// 返回字符串"http://www.mysite.cn/index.htm"
+
+
+//【示例3】在replace()方法中约定了一个特殊的字符（$），这个美元符号如果附加一个序号就表示对正则表达式中匹配的子表达式存储的字符串引用。
+var s = "JavaScript";
+var b = s.replace( /(Java)(Script)/, "$2-$1");	// 交换位置
+console.log( b ); 	// 返回字符串"Script-Java"
+
+//【示例4】重复字符串。
+var s = "JavaScript";
+var b = s.replace( /.*/, "$&$&");	// 返回字符串" JavaScriptJavaScript "
+console.log( b ); 
+
+
+//【示例5】对匹配文本左侧的文本完全引用。
+var s = "JavaScript";
+var b = s.replace( /Script/, "$& != $`");	// 返回字符串"JavaScript != Java"
+console.log( b ); 
+
+
+//【示例6】对匹配文本右侧的文本完全引用。
+var s = "JavaScript";
+var b = s.replace( /Java/, "$&$' is ");	// 返回字符串"JavaScript is Script"
+console.log( b ); 
+
+
+</script>
+
+</body>
+</html>

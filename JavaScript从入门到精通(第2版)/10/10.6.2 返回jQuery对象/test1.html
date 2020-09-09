@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+
+var $ = jQuery = function(){}
+jQuery.fn = jQuery.prototype = {
+    version: "3.2.1",    //原型属性
+    size: function() {    //原型方法
+        return this.length;
+    }
+}
+
+var test = new $();    //实例化
+console.log( test.version );    //读取属性，返回"3.2.1"
+console.log( test.size() );     //调用方法，返回undefined
+
+</script>
+</head>
+<body>
+</body>
+</html>

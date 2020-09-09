@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例3】在函数体内可以包含多个return语句，但是仅能执行一个return语句，因此在函数体内可以使用分支结构决定函数返回值，或者使用return语句提前终止函数运行。
+function f(x, y){ 
+    //如果参数为非数字类型，则终止函数执行
+    if( typeof x != "number" ||  typeof y != "number") return;
+    //根据条件返回值
+    if(x > y) return x - y;
+    if(x <= y) return y - x;
+}
+console.log( f(5, 8) );	// 3
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>用户登录</title>
+<style type="text/css">   
+body { font-size: 14px; width: 80%; margin: 6px auto; }
+input[type="text"], input[type="password"]{ width: 180px; height: 24px; line-height: 24px; }
+input[type="submit"], input[type="button"] { width: 80px; height: 24px; line-height: 24px; border: 1px solid #ff6600; border-radius: 4px; background: #ff6600; outline: none; color: #fff; cursor: pointer; margin-top: 6px; }
+p{margin:6px;}
+</style> 
+</head>
+<body>
+<form action="#" method="get" accept-charset="utf-8">
+	<h1>用户登录</h1>
+    <p>用户名：<input type="text" name="" value="" id="name" required /></p>
+    <p>密&nbsp;码：<input type="password" name="" value="" id="msg" required /></p>
+    <p><input type="submit" id="save" value="登录"/> 
+    <input type="submit" id="clear" value="注销"/></p>
+</form> 
+<script>    
+var datalist = getE('datalist');   
+if(!datalist){   
+	datalist = document.createElement('dl');   
+	datalist.className = 'datalist';   
+	datalist.id = 'datalist';   
+	document.body.appendChild(datalist);   
+}   
+var result = getE('result');   
+var db = openDatabase('myData','1.0','test database',1024*1024);   
+showAllData(); 
+db.transaction(function(tx){   
+	tx.executeSql('CREATE TABLE IF NOT EXISTS MsgData(name TEXT,msg TEXT,time INTEGER)',[]);   
+})   
+getE('clear').onclick = function(){   
+	db.transaction(function(tx){   
+		tx.executeSql('DROP TABLE MsgData',[]);   
+	})   
+	showAllData()   
+}   
+getE('save').onclick = function(){   
+	saveData();   
+	return false;   
+}   
+function getE(ele){   
+	return document.getElementById(ele);   
+}   
+function removeAllData(){   
+	for (var i = datalist.children.length-1; i >= 0; i--){   
+		datalist.removeChild(datalist.children[i]);   
+	}   
+}   
+function showData(row){   
+	var dt = document.createElement('dt');  
+	dt.innerHTML = row.name;
+	var dd = document.createElement('dd');   
+	dd.innerHTML = row.msg; 
+	var tt = document.createElement('tt'); 
+	var t = new Date();
+	t.setTime(row.time);
+	tt.innerHTML =t.toLocaleDateString()+" "+ t.toLocaleTimeString();  
+	datalist.appendChild(dt);   
+	datalist.appendChild(dd); 
+	datalist.appendChild(tt);  
+}   
+function showAllData(){   
+	db.transaction(function(tx){   
+		tx.executeSql('CREATE TABLE IF NOT EXISTS MsgData(name TEXT,msg TEXT,time INTEGER)',[]);   
+		tx.executeSql('SELECT * FROM MsgData',[],function(tx,result){   
+			removeAllData();   
+			for(var i=0; i < result.rows.length; i++){   
+				showData(result.rows.item(i));   
+			}   
+		});   
+	});   
+}   
+function addData(name,msg,time){   
+	db.transaction(function(tx){   
+		tx.executeSql('INSERT INTO MsgData VALUES(?,?,?)',[name,msg,time],function(tx,result){  
+		    alert("登录成功");   
+		},
+		function(tx,error){   
+			alert(error.source + ':' + error.message);   
+		});   
+	});   
+}   
+function saveData(){   
+	var name =getE('name').value;   
+	var msg = getE('msg').value;   
+	var time = new Date().getTime();   
+	addData(name,msg,time);   
+	showAllData();   
+}   
+</script>  
+</body>
+</html>  

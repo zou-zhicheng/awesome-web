@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+
+try{
+	for(var i=0; i<10;i++){
+		if(i>5) throw new Error("循环变量的值大于5了");	// 定义并抛出一个异常
+		console.log(i);
+	}
+}
+catch(error){ }						// 捕获错误
+
+
+</script>
+
+</body>
+</html>

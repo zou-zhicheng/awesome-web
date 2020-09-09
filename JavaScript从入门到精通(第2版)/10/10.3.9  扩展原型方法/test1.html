@@ -1,0 +1,54 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+//【实现代码】
+//为Function添加一个原型方法method，该方法可以为其他类型添加原型方法。
+/*Function.prototype.method = function(name, func) {
+    this.prototype[name] = func;
+    return this;
+};*/
+
+Function.prototype.method = function(name, func) {
+    if(!this.prototype[name]) {	//检测是否已经存在同名属性
+        this.prototype[name] = func;
+        return this;
+    }
+};
+
+
+
+//【应用代码】
+
+//【示例1】下面再利用method扩展方法为Number扩展一个int原型方法。该方法可以对浮点数进行取整。
+Number.method('int', function() { 
+    return Math[this < 0 ? 'ceil' : 'floor'](this);
+});
+console.log((-10 / 3).int());	//-3
+
+
+//【示例2】下面再利用method扩展方法为String扩展一个trim原型方法。该方法可以清除字符串左右两侧的空字符。
+String.method('trim', function() {
+    return this.replace(/^\s+|\s+$/g, '');
+});
+console.log('"' + " abc ".trim() + '"');	//'abc''
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

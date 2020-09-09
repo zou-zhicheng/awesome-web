@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<title>TweenTest</title>
+<meta charset="utf-8">
+<style type="text/css">
+</style>
+</head>
+
+<body>
+<ul id="ul"></ul>
+
+<script>
+var element  = document.getElementById('ul');
+var fragment = document.createDocumentFragment();
+var browsers = ['Firefox', 'Chrome', 'Opera', 
+    'Safari', 'Internet Explorer'];
+browsers.forEach(function(browser) {
+    var li = document.createElement('li');
+    li.textContent = browser;
+    fragment.appendChild(li);　　// 此处往文档片段插入子节点，不会引起回流 （相当于打包操作）
+});
+element.appendChild(fragment);　　// 将打包好的文档片段插入ul节点，只做了一次操作
+
+
+</script>
+
+</body>
+</html> 

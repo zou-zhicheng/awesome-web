@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<input type="file" id="file" multiple>
+<input type="button" onclick="ShowFileType();" value="文件上传"/>
+<script>
+var file = document.getElementById("file").files[0];
+if(file){
+	var file1 = file.slice();		//复制file对象
+	var file2 = file.slice(0,file.size);		//复制file对象
+	//复制file对象的后半部分
+	var file3 = file.slice(-(Math.round(file.size/2)));
+	//复制file对象的前半部分
+	var file4 = file.slice(0, Math.round(file.size/2));
+	//复制file对象，从开始处复制到结束处之前的150个字节处，并设置MIME类型
+	var file5 = file.slice(0,-150, "application/plain");
+}
+</script>
+</body>
+</html> 

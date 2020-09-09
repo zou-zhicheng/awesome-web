@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+//【示例2】使用私有变量存储this，设计静态指针。
+
+function Base(){	//基类
+    var _this = this;	//当初始化时，存储实例对象的引用指针
+    this.func = function(){
+        return _this;	//返回初始化时实例对象的引用
+    };
+    this.name = "Base";
+}
+function Sub(){	//子类
+    this.name = "Sub";
+}
+Sub.prototype = new Base();	//继承基类
+var sub = new Sub();	//实例化子类
+var _this = sub.func();
+console.log(_this.name);	//this始终指向基类实例，而不是子类实例
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

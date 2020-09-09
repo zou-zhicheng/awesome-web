@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<script>
+
+
+//【示例2】在下面条件分支中，由于a = "string"操作数可以转换为true，则逻辑或运算就不再执行右侧的定义对象表达式。最后console.log(b.a);也就抛出异常。
+if(a = "string" || (b ={ 
+       a : "string"
+    })
+) console.log(b.a);	//调用b的属性a
+
+//如果使用逻辑与运算，就可以避免上述问题。
+if(a = "string" && (b ={ 
+       a : "string"
+    })
+) console.log(b.a);	//调用b的属性a，返回字符串"string"
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

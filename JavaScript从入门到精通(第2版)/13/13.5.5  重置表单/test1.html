@@ -1,0 +1,27 @@
+<html>
+<head>
+<script>
+
+
+</script>
+</head>
+<body>
+
+<form id="form1" name="form1" method="post" action="">
+    <input type="text" name="t" id="t" />
+    <input name="" type="reset" />
+</form> 
+<script>
+var t = document.getElementsByTagName("input")[0]; 
+	// 获取文本框的引用指针
+var f = document.getElementsByTagName("form")[0];
+	// 获取表单的引用指针
+f.onreset = function(e){ 			// 在表单元素上注册reset事件处理函数
+    alert(t.value);
+}
+</script>
+
+
+
+</body>
+</html> 

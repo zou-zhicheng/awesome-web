@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+
+//【示例1】注意特殊操作数的求和运算结果。
+var n = 5;	//定义并初始化任意一个数值
+console.log(NaN + n);	// NaN与任意操作数相加，结果都是NaN
+console.log(Infinity + n); 	// Infinity与任意操作数相加，结果都是Infinity
+console.log(Infinity + Infinity); 	// Infinity与 Infinity相加，结果是Infinity
+console.log(( - Infinity) + ( - Infinity)); 	//负Infinity相加，结果是负Infinity
+console.log(( - Infinity) + Infinity); 	//正负Infinity相加，结果是NaN
+
+
+//【示例2】加运算符能够根据操作数的数据类型，决定是相加操作，还是相连操作。
+console.log( 1 + 1);	//如果操作数都是数值，则进行相加运算
+console.log( 1 + "1");	//如果操作数中有一个是字符串，则进行相连运算
+console.log(3.0 + 4.3 + "")	//先求和，再链接，返回"7.3"
+console.log(3.0 + "" + 4.3)	//先连接，再连接，返回"34.3"，
+	//3.0转换为字符串为3
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+//【示例3】对象也可以作为数组下标，JavaScript会试图把对象转换为数值，如果不行，则把它转换为字符串，然后以文本下标的形式进行操作。
+var a = [];	//数组直接量
+var b = function(){	//函数直接量
+    return 2;
+}
+a[b] = 1;	//把对象作为数组下标
+console.log( a.length );	//返回长度为0
+console.log( a[b] );	//返回1
+
+//可以这样读取元素值：
+var s =b.toString();	//获取对象的字符串
+console.log( a[s] );	//利用文本下标读取元素的值
+
+//还可以这样设计下标：
+a[b()] = 1;	//在下标处调用函数，则返回值为2
+console.log( a[2] );	//所以可以使用2来读取该元素值
+console.log( a.length );	//返回长度为3
+
+
+</script>
+
+
+</body>
+</html>

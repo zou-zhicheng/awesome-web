@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//【示例4】对于复合型数据：对象、数组、函数都可以作为操作数，参与表达式运算。例如，对于下面操作：先定义函数，再调用函数。
+var f = function(x,y){	//定义匿名函数
+    return (x+y)/2;
+}
+console.log(f(10,20));	//调用匿名函数
+
+//使用表达式表示：
+console.log(
+     (function( x, y ){
+        return ( x + y ) / 2;
+    })( 10, 20 )	//直接调用匿名函数
+);	//返回值15
+
+
+
+
+</script>
+
+
+</body>
+</html>

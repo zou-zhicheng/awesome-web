@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+
+// 获取指定元素包含的文本
+// 参数：e表示指定元素
+// 返回值：返回包含的所有文本，包括子元素中包含的文本
+function text(e){
+    var s = "";
+    var e = e.childNodes || e;				// 判断元素是否包含子节点
+    for( var i = 0; i < e.length; i++){	// 遍历所有子节点
+        s += e[i].nodeType != 1 ? e[i].nodeValue : text(e[i].childNodes);
+		// 通过递归遍历所有元素的子节点
+    }
+    return s;
+}
+
+</script>
+</head>
+<body>
+
+<div id="div1"> 
+    <span class="red">div</span>
+    元素
+</div>
+<script>
+var div = document.getElementById("div1");
+var s = text(div);				// 调用读取元素的文本通用方法
+alert(s);						// 返回字符串"div元素"
+</script>
+
+</body>
+</html> 

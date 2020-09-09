@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>输出杨辉三角</title>
+<script>
+
+function print(v){	//输出函数
+	//如果传递值为输出的数字，则包含在一个<span>标签中，以方便CSS控制
+    if(typeof v == "number"){ 
+        var w = 40;	//默认<span>标签宽度
+        if(n > 30) w = (n - 30) + 40;	//根据幂数的增大，适当调整<span>标签的宽度
+        var s = '<span style="padding:4px 2px;display:inline-block;text-align:center;width:'+ w +'px;">' + v + '</span>';
+        document.write(s);	//在页面中输出字符串
+    }
+    else{	//如果参数值为字符串，说明是输出其他字符串
+        document.write(v);	//则调用document对象的write()方法直接输出
+    }
+}
+//输入接口，用来接收用户设置幂数
+var n = prompt("请输入幂数：", 9);	//默认值为9
+n = n - 0;	//把输入值转换为数值类型
+var t1 = new Date();
+var a1 = [1, 1], a2 = [1, 1];	//声明并初始化数组
+print('<div style="text-align:center;">');	//输出一个包含框
+print(1);	//输出第一行中的数字
+print("<br />");
+for(var i = 2; i <= n; i ++ ){	//从第三行开始，遍历每一行
+    print(1);	//输出每一行中第一个数字
+    for(var j = 1; j < i - 1 ; j ++ ){	//从第2个数字开始，遍历每一行
+        a2[j] = a1[j - 1] + a1[j];
+        print(a2[j]);	//输出每一行中中间的数字
+    }
+    a2[j] = 1;	//补上最后一个数组元素的值
+    for(var k = 0; k <= j; k ++ ) {	//把上一行数组的值传递给下一行数组
+        a1[k] = a2[k];
+    }
+    print(1);	//输出每一行中最后一个数字
+    print("<br />");	//输出换行符
+}
+print("</div>");	//输出包含框的封闭标签
+var t2 = new Date();
+print("<p style='text-align:center;'>耗时为（毫秒）：" + ( t2 - t1) + "</p>" );
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

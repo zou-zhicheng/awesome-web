@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+//1．普通调用
+
+var obj = {	//父对象
+    name : "父对象obj",
+    func : function(){
+        return this;
+    }
+}
+obj.sub_obj = {	//子对象
+    name : "子对象sub_obj",
+    func : obj.func	//引用父父对象obj的方法func
+}
+var who = obj.sub_obj.func();
+console.log(who.name);	//返回"子对象sub_obj"，说明this代表sub_obj
+
+obj.sub_obj = {
+    name : "子对象sub_obj",
+    func : obj.func()	//调用父对象obj的方法func
+}
+
+var who = obj.sub_obj.func;
+console.log(who.name);	//返回"父对象obj"，说明this代表父对象obj
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

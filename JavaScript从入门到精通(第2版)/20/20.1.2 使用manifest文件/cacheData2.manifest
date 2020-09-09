@@ -1,0 +1,17 @@
+CACHE MANIFEST  
+# wanz app v1  
+   
+# 指明缓存入口  
+CACHE:  
+index.html  
+style.css  
+images/logo.png  
+scripts/main.js  
+   
+# 以下资源必须在线访问   
+NETWORK:  
+login.php  
+   
+# 如果index.php无法访问则用404.html代替  
+FALLBACK:  
+/index.php /404.html  

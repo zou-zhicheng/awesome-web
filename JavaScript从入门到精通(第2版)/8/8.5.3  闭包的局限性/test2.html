@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title></title>
+<style type="text/css">
+h1 { font-size:20px; } 
+/***  Tab面板样式
+-------------------------------------------***/
+/* Tab菜单包含框结构 */
+.tab_wrap { width:auto; }
+/* Tab菜单栏结构 */
+ul.tab {
+    height:24px;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+ul.tab li {
+    float:left;
+    height:24px;
+    padding:0 1em;
+    cursor:pointer;
+    font:14px/24px "宋体" Arial, Helvetica, sans-serif;
+}
+/* Tab菜单栏样式类 */
+.normal {
+    color:#1f3a87;
+    background:#fff;
+    border:1px solid #e6f2ff;
+    border-bottom:0;
+}
+.hover {
+    color:#1f3a87;
+    font-weight:bold;
+    background:#e6f2ff;
+    border:1px solid #e6f2ff;
+    border-bottom:0;
+}
+/* Tab内容显隐样式类 */
+.show { display:block; }
+.none { display:none; }
+/* Tab内容包含框结构 */
+.content {
+    height:auto;
+    padding:6px;
+    clear:both;
+    background:#e6f2ff;
+    text-align:left;
+}
+</style>
+<script>
+window.onload = function(){
+    var tab = document.getElementById("tab").getElementsByTagName("li"),
+	    content = document.getElementById("content").getElementsByTagName("div");
+    for(var i = 0; i < tab.length; i ++ ){
+        (function(j){
+            tab[j].addEventListener("mouseover", function(){
+                for(var n = 0; n < tab.length; n ++ ){
+                    tab[n].className = "normal";
+                    content[n].className = "none";
+                }
+                tab[j].className = "hover";
+                content[j].className = "show";
+            });
+        })(i);
+    }
+}
+</script>
+</head>
+<body>
+<div class="tab_wrap">
+    <ul class="tab" id="tab">
+        <li id="tab_1" class="hover">Tab1</li>
+        <li id="tab_2" class="normal">Tab2</li>
+        <li id="tab_3" class="normal">Tab3</li>
+    </ul>
+    <div class="content" id="content">
+        <div id="content_1" class="show"><img src="images/1.jpg" height="200" /></div>
+        <div id="content_2" class="none"><img src="images/2.jpg" height="200"  /></div>
+        <div id="content_3" class="none"><img src="images/3.jpg" height="200" /></div>
+    </div>
+</div>
+</body>
+</html>

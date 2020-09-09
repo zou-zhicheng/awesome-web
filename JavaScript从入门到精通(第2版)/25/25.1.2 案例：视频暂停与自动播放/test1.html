@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<video id="videoElement" autoplay controls width="480" height="270">
+	<source src="video/chrome.webm" type="video/webm" />
+	<source src="video/chrome.ogv" type="video/ogg" />
+	<source src="video/chrome.mp4" type="video/mp4; codecs='avc1.42E01E, mp4a.40.2'" />
+</video>
+<script>
+// 记录变量，监测视频是否暂停
+// 视频设置为自动播放，所以开始不停了
+sessionStorage.isPaused = "false"; 
+// 设置隐藏属性和可见性变化事件的名称
+var hidden, visibilityChange; 
+if (typeof document.hidden !== "undefined") {
+	hidden = "hidden";
+	visibilityChange = "visibilitychange";
+} else if (typeof document.mozHidden !== "undefined") {
+	hidden = "mozHidden";
+	visibilityChange = "mozvisibilitychange";
+} else if (typeof document.msHidden !== "undefined") {
+	hidden = "msHidden";
+	visibilityChange = "msvisibilitychange";
+} else if (typeof document.webkitHidden !== "undefined") {
+	hidden = "webkitHidden";
+	visibilityChange = "webkitvisibilitychange";
+}
+var videoElement = document.getElementById("videoElement");
+// 如果该页面是隐藏的，则暂停视频
+// 如果显示页面，则播放视频
+function handleVisibilityChange() {
+	if (document[hidden]) {
+		videoElement.pause();
+	} else if (sessionStorage.isPaused !== "true") {
+		videoElement.play();
+	}
+}
+//如果浏览器不支持addEventListener或者页面可见性API，则进行警告
+if (typeof document.addEventListener === "undefined" || 
+	typeof hidden === "undefined") {
+	alert("本例需要一个浏览器，如谷歌浏览器，支持页面可见性API。");
+} else {
+    // 处理页面可见性变化
+    document.addEventListener(visibilityChange, handleVisibilityChange, false);
+    // 当视频停顿
+    videoElement.addEventListener("pause", function(){
+        if (!document[hidden]) {
+			// 如果现在不是因为页面隐藏而暂停，则设置ispaused为真
+            sessionStorage.isPaused = "true";
+        }
+	}, false);
+    // 当视频播放，设置ispaused状态
+    videoElement.addEventListener("play", function(){
+        sessionStorage.isPaused = "false";
+    }, false);
+    // 以当前视频时间设置文档的标题
+    videoElement.addEventListener("timeupdate", function(){
+		document.title = Math.floor(videoElement.currentTime) + " second(s)";
+	}, false);
+}
+</script>
+
+</body>
+</html>

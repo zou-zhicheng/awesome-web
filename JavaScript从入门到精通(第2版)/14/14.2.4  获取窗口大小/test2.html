@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script> 
+
+
+</script>
+</head>
+<body style="border:solid 2px blue;margin:0;padding:0">
+    <div id="div" style="width:2000px;height:1000px;border:solid 1px red;">
+</div> 
+</body>
+<script>
+var wb = document.body.scrollWidth;
+var hb = document.body.scrollHeight;
+var wh = document.documentElement.scrollWidth;
+var hh = document.documentElement.scrollHeight;
+
+var  div = document.getElementById("div");
+
+div.innerHTML += "document.body.scrollWidth = " +document.body.scrollWidth + "<br>";
+div.innerHTML += "document.body.scrollHeight = " +document.body.scrollHeight + "<br>";
+div.innerHTML += "document.documentElement.scrollWidth = " +document.documentElement.scrollWidth + "<br>";
+div.innerHTML += "document.documentElement.scrollHeight = " +document.documentElement.scrollHeight + "<br>";
+
+
+</script>
+</html> 

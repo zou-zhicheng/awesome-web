@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+var s = "JavaScript";	//测试字符串
+var r = /\w/g;	//匹配模式
+while(r.test(s)){	//循环执行匹配验证，如果返回true，则连续执行验证
+	if(r.lastIndex == 3){
+		r.compile("[A-Z]","g");
+		r.lastIndex = 3;//设置下一次匹配的起始位置
+	}
+    console.log("匹配文本 = " +  RegExp.lastMatch + "   r.lastIndex = " +  r.lastIndex); 
+}
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

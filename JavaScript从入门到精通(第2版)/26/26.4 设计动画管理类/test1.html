@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+dl {
+    width:400px;
+    border:solid 1px #ccc;
+    font-size:12px;
+}
+dt {
+    background:#7FECAD url(images/green.gif) repeat-x;
+    color:#71790C;
+    height:28px;
+    line-height:28px;
+    padding-left:1em;
+    border-bottom:solid 1px #efefef;
+    cursor:pointer;
+}
+dd {
+    padding:2px 4px;
+    margin:0;
+}
+.expand { overflow:visible; }
+.collapse {
+    height:28px;
+    overflow:hidden;
+}
+</style>
+<script>
+function Switch(dt){
+    var dl = dt.parentNode;
+    if(dl.className == "collapse")dl.className = "expand";
+    else dl.className = "collapse";
+}
+</script>
+</head>
+<body>
+<dl>
+    <dt onClick="Switch(this)">标题</dt>
+    <dd>折叠区域<img src="images/1.jpg" width="300"></dd>
+</dl>
+</body>
+</html> 

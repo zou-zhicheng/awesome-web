@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例3】比较形参与arguments属性的优先级。
+function f(arguments){	//函数形参名与参数属性arguments同名
+    console.log(typeof arguments)	//提示参数的类型
+}
+f(true);	//返回boolean，而不是属性arguments的类型object
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

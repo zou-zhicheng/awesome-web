@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+var n = 3;
+(n == 1) && console.log(1);
+(n == 2) && console.log(2);
+(n == 3) && console.log(3);
+( ! n) && console.log("null");
+
+//可以使用逻辑或对其进行合并：
+var n = 3;
+(n == 1) && console.log(1) ||
+(n == 2) && console.log(2) ||
+(n == 3) && console.log(3) ||
+( ! n) && console.log("null");
+
+//由于&&运算符的优先级高于||运算符的优先级，所以不必使用小括号进行分组。如果使用小括号分组后，代码更容易阅读。
+var n = 3;
+((n == 1) && console.log(1) )	||	//为true时，结束并返回该行值
+((n == 2) && console.log(2)) 	||	//为true时，结束并返回该行值
+((n == 3) && console.log(3) ) 	||	//为true时，结束并返回该行值
+(( ! n) && console.log("null"));		//为true时，结束并返回该行值
+
+
+</script>
+
+
+
+</body>
+</html>

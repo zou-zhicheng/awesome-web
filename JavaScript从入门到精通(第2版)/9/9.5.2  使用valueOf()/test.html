@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例1】Date对象的valueOf()方法返回值是当前日期对象的毫秒数。
+var o = new Date();	//对象实例
+console.log(o.toString());	//返回当前时间的UTC字符串
+console.log(o.valueOf());	//返回距离1970年1月1日午夜之间的毫秒数
+console.log(Object.prototype.valueOf.apply(o));	//默认返回当前时间的UTC字符串
+
+//【示例2】在自定义类型时，除了重写toString()方法外，也可以重写valueOf()方法。这样当读取自定义对象的值时，避免返回的值总是"[object Object]"。
+function Point(x,y){	//自定义数据类型
+    this.x = x;
+    this.y = y;
+}
+Point.prototype.valueOf = function(){	//自定义Point数据类型的valueOf ()方法
+    return "(" + this.x + "," + this.y + ")";
+}
+var p = new Point(26,68);
+console.log(p.valueOf());	//返回当前对象的值"(26,68)"
+console.log(Object.prototype.valueOf.apply(p));	//默认返回值为"[object Object]"
+
+//【示例3】在下面示例中，当获取自定义类型的对象p时，console.log()方法会首先调用valueOf()方法，而不是toString()方法，如果需要获取该对象的字符串表示，则必须明确调用对象的toString()方法。
+function Point(x,y){	//自定义数据类型
+    this.x = x;
+    this.y = y;
+}
+Point.prototype.valueOf = function(){	//自定义Point数据类型的valueOf()方法
+    return "(" + this.x + "," + this.y + ")";
+}
+Point.prototype.toString = function(){	//自定义Point数据类型的toString()方法
+    return "[object Point]";
+}
+var p = new Point(26,68);	//实例化对象
+console.log("typeof p = " + p);	//默认调用valueOf()方法进行类型转换
+console.log("typeof p = " + p.toString());	//直接调用toString()方法进行类型转换
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

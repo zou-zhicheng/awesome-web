@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+
+
+//【示例】在下面代码中为函数P定义原型。
+function P(x){	//构造函数
+    this.x = x;	//声明私有属性，并初始化为参数x
+}
+P.prototype.x = 1	//添加原型属性x，赋值为1
+var p1 = new P(10);	//实例化对象，并设置参数为10
+P.prototype.x = p1.x	//设置原型属性值为私有属性值
+console.log(P.prototype.x);	//返回10
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

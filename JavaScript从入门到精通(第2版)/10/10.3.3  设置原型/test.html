@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+var proto = { name:"prototype"};
+
+var obj1 = {};
+obj1.__proto__ = proto;
+console.log( obj1.name);
+
+
+var obj2 = {};
+Object.setPrototypeOf(obj2, proto);
+console.log( obj2.name);
+
+var obj3 = Object.create(proto);
+console.log( obj3.name);
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

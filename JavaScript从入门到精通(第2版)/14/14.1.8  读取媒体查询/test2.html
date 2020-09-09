@@ -1,0 +1,51 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+
+
+</style>
+<script>
+    
+//【示例2】下面示例根据mediaQuery是否匹配当前环境，执行不同的JavaScript代码。
+var result = window.matchMedia('(max-width: 700px)');
+if (result.matches) {
+    console.log('页面宽度小于等于700px');
+} else {
+    console.log('页面宽度大于700px');
+} 
+
+//【示例3】下面示例根据mediaQuery是否匹配当前环境，加载相应的CSS样式表。
+var result = window.matchMedia("(max-width: 700px)");
+if (result.matches){
+    var linkElm = document.createElement('link');
+    linkElm.setAttribute('rel', 'stylesheet');
+    linkElm.setAttribute('type', 'text/css');
+    linkElm.setAttribute('href', 'small.css');
+    document.head.appendChild(linkElm);
+}
+
+
+var mql = window.matchMedia("(max-width: 700px)");
+// 指定回调函数
+mql.addListener(mqCallback);
+// 撤销回调函数
+mql.removeListener(mqCallback);
+function mqCallback(mql) {
+    if (mql.matches) {
+        // 宽度小于等于700像素
+    } else {
+        // 宽度大于700像素
+    }
+}
+
+
+
+</script>
+</head>
+<body>
+
+
+</body>
+</html> 

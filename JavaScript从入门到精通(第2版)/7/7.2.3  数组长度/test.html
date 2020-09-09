@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//【示例1	】下面代码定义了一个空数组，然后为下标等于100的元素赋值，则length属性返回101。因此，length属性不能体现数组元素的实际个数。
+var a = [];	//声明空数组
+a[100] =2;
+console.log(a.length);	//返回101
+
+//【示例2】下面代码演示了length属性值动态变化，对数组的影响。
+var a = [1,2,3];	//声明数组直接量
+a.length = 5;	//增长数组长度
+console.log(a[4]);	//返回undefined，说明该元素还没有被赋值
+a.length = 2;	//缩短数组长度
+console.log(a[2]);	//返回undefined，说明该元素的值已经丢失
+
+
+
+
+</script>
+
+</body>
+</html>

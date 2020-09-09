@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+<style type="text/css">
+body { font-size: 0.8em; font-family: Sans-Serif; }
+form { background-color: #cccccc; border-radius: 0.3em; display: inline-block; margin-bottom: 0.5em; padding: 1em; }
+table { border-collapse: collapse; }
+input { padding: 0.3em; border-color: #cccccc; border-radius: 0.3em; }
+.required:after { content: "*"; color: red; }
+.button-pane { margin-top: 1em; }
+#pub-viewer { float: right; width: 48%; height: 20em; border: solid #d092ff 0.1em; }
+#pub-viewer iframe { width: 100%; height: 100%; }
+#pub-list { width: 46%; background-color: #eeeeee; border-radius: 0.3em; }
+#pub-list li { padding-top: 0.5em; padding-bottom: 0.5em; padding-right: 0.5em; }
+#msg { margin-bottom: 1em; }
+.action-success { padding: 0.5em; color: #00d21e; background-color: #eeeeee; border-radius: 0.2em; }
+.action-failure { padding: 0.5em; color: #ff1408; background-color: #eeeeee; border-radius: 0.2em; }
+.note { font-size: smaller; }
+.destructive { background-color: orange; }
+.destructive:hover { background-color: #ff8000; }
+.destructive:active { background-color: red; }
+</style>
+</head>
+<body>
+<h1>电子出版物仓储</h1>
+<div class="note">
+    <p>浏览器支持: </p>
+    <div id="compat"> </div>
+</div>
+<div id="msg"> </div>
+<form id="register-form">
+    <table>
+        <tbody>
+            <tr>
+                <td><label for="pub-title" class="required">书名: </label></td>
+                <td><input type="text" id="pub-title" name="pub-title" /></td>
+            </tr>
+            <tr>
+                <td><label for="pub-biblioid" class="required"> 出版编号ID:<br/>
+                        <span class="note">(ISBN, ISSN, etc.)</span> </label></td>
+                <td><input type="text" id="pub-biblioid" name="pub-biblioid"/></td>
+            </tr>
+            <tr>
+                <td><label for="pub-year">出版日期（年份）: </label></td>
+                <td><input type="number" id="pub-year" name="pub-year" /></td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td><label for="pub-file">封面图片: </label></td>
+                <td><input type="file" id="pub-file"/></td>
+            </tr>
+            <tr>
+                <td><label for="pub-file-url">封面图片在线URL:<br/>
+                        <span class="note">(同源URL)</span> </label></td>
+                <td><input type="text" id="pub-file-url" name="pub-file-url"/></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="button-pane">
+        <input type="button" id="add-button" value="添加发布" />
+        <input type="reset" id="register-form-reset"/>
+    </div>
+</form>
+<form id="delete-form">
+    <table>
+        <tbody>
+            <tr>
+                <td><label for="pub-biblioid-to-delete">出版编号ID:<br/>
+                        <span class="note">(ISBN, ISSN, etc.)</span> </label></td>
+                <td><input type="text" id="pub-biblioid-to-delete"
+                                         name="pub-biblioid-to-delete" /></td>
+            </tr>
+            <tr>
+                <td><label for="key-to-delete">索引:<br/>
+                        <span class="note">(如1、2、3等)</span> </label></td>
+                <td><input type="text" id="key-to-delete"
+                                         name="key-to-delete" /></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="button-pane">
+        <input type="button" id="delete-button" value="删除发布" />
+        <input type="button" id="clear-store-button"
+                             value="清空所有发布信息" class="destructive" />
+    </div>
+</form>
+<form id="search-form">
+    <div class="button-pane">
+        <input type="button" id="search-list-button"
+                             value="显示数据库中所有发布信息" />
+    </div>
+</form>
+<div>
+    <div id="pub-msg"> </div>
+    <div id="pub-viewer"> </div>
+    <ul id="pub-list">
+    </ul>
+</div>
+<script>	
+(function () {
+    var COMPAT_ENVS = [
+        ['Firefox', ">= 16.0"],
+        ['Google Chrome',
+         ">= 24.0 (可能需谷歌浏览器），没有BLOB存储支持"]
+    ];
+    var compat = $('#compat');
+    compat.empty();
+    compat.append('<ul id="compat-list"></ul>');
+    COMPAT_ENVS.forEach(function(val, idx, array) {
+        $('#compat-list').append('<li>' + val[0] + ': ' + val[1] + '</li>');
+    });
+
+    const DB_NAME = 'mdn-demo-indexeddb-epublications';
+    const DB_VERSION = 1; // 使用long long型值（不要使用float值）
+    const DB_STORE_NAME = 'publications';
+
+    var db;
+
+    // 用来跟踪哪些视图显示，避免无用的加载它
+    var current_view_pub_key;
+
+    function openDb() {
+        console.log("openDb ...");
+        var req = indexedDB.open(DB_NAME, DB_VERSION);
+        req.onsuccess = function (evt) {
+            // 更好地使用this比req得到的结果好，以避免垃圾回收问题
+            // db = req.result;
+            db = this.result;
+            console.log("openDb DONE");
+        };
+        req.onerror = function (evt) {
+            console.error("openDb:", evt.target.errorCode);
+        };
+
+        req.onupgradeneeded = function (evt) {
+            console.log("openDb.onupgradeneeded");
+            var store = evt.currentTarget.result.createObjectStore(
+                DB_STORE_NAME, { keyPath: 'id', autoIncrement: true });
+
+            store.createIndex('biblioid', 'biblioid', { unique: true });
+            store.createIndex('title', 'title', { unique: false });
+            store.createIndex('year', 'year', { unique: false });
+        };
+    }
+
+    /**
+     * @参数 {string} store_name
+     * @参数 {string} mode 可以是"readonly"或"readwrite"
+     */
+    function getObjectStore(store_name, mode) {
+        var tx = db.transaction(store_name, mode);
+        return tx.objectStore(store_name);
+    }
+
+    function clearObjectStore(store_name) {
+        var store = getObjectStore(DB_STORE_NAME, 'readwrite');
+        var req = store.clear();
+        req.onsuccess = function(evt) {
+            displayActionSuccess("Store cleared");
+            displayPubList(store);
+        };
+        req.onerror = function (evt) {
+            console.error("clearObjectStore:", evt.target.errorCode);
+            displayActionFailure(this.error);
+        };
+    }
+
+    function getBlob(key, store, success_callback) {
+        var req = store.get(key);
+        req.onsuccess = function(evt) {
+            var value = evt.target.result;
+            if (value)
+                success_callback(value.blob);
+        };
+    }
+
+    /**
+     * @参数 {IDBObjectStore=} store
+     */
+    function displayPubList(store) {
+        console.log("displayPubList");
+
+        if (typeof store == 'undefined')
+            store = getObjectStore(DB_STORE_NAME, 'readonly');
+
+        var pub_msg = $('#pub-msg');
+        pub_msg.empty();
+        var pub_list = $('#pub-list');
+        pub_list.empty();
+        // 重置iframe，不显示以前的内容
+        newViewerFrame();
+
+        var req;
+        req = store.count();
+        req.onsuccess = function(evt) {
+            pub_msg.append('<p>在对象仓库中共计有 <strong>' + evt.target.result +
+                                         '</strong> 记录。</p>');
+        };
+        req.onerror = function(evt) {
+            console.error("add error", this.error);
+            displayActionFailure(this.error);
+        };
+
+        var i = 0;
+        req = store.openCursor();
+        req.onsuccess = function(evt) {
+            var cursor = evt.target.result;
+
+            // 如果游标指向某个位置，则访问该数据.
+            if (cursor) {
+                console.log("displayPubList cursor:", cursor);
+                req = store.get(cursor.key);
+                req.onsuccess = function (evt) {
+                    var value = evt.target.result;
+                    var list_item = $('<li>' +
+                            '[' + cursor.key + '] ' +
+                            '(ID:' + value.biblioid + ') ' +
+                            value.title +
+                            '</li>');
+            if (value.year != null)
+                list_item.append(' - ' + value.year);
+
+                if (value.hasOwnProperty('blob') &&
+                    typeof value.blob != 'undefined') {
+                    var link = $('<a href="' + cursor.key + '">附件</a>');
+                    link.on('click', function() { return false; });
+                    link.on('mouseenter', function(evt) {
+                        setInViewer(evt.target.getAttribute('href')); });
+                    list_item.append(' / ');
+                    list_item.append(link);
+                } else {
+                    list_item.append(" / 没有附件");
+                }
+                pub_list.append(list_item);
+                };
+
+                // 移动到存储中的下一个对象
+                cursor.continue();
+
+                // 此计数器仅用于创建不同的id。
+                i++;
+            } else {
+                console.log("没有更多的条目");
+            }
+        };
+    }
+
+    function newViewerFrame() {
+        var viewer = $('#pub-viewer');
+        viewer.empty();
+        var iframe = $('<iframe />');
+        viewer.append(iframe);
+        return iframe;
+    }
+
+    function setInViewer(key) {
+        console.log("setInViewer:", arguments);
+        key = Number(key);
+        if (key == current_view_pub_key)
+            return;
+
+        current_view_pub_key = key;
+
+        var store = getObjectStore(DB_STORE_NAME, 'readonly');
+        getBlob(key, store, function(blob) {
+            console.log("setInViewer blob:", blob);
+            var iframe = newViewerFrame();
+
+            if (blob.type == 'text/html') {
+                var reader = new FileReader();
+                reader.onload = (function(evt) {
+                    var html = evt.target.result;
+                    iframe.load(function() {
+                        $(this).contents().find('html').html(html);
+                    });
+                });
+                reader.readAsText(blob);
+            } else if (blob.type.indexOf('image/') == 0) {
+                iframe.load(function() {
+                    var img_id = 'image-' + key;
+                    var img = $('<img id="' + img_id + '"/>');
+                    $(this).contents().find('body').html(img);
+                    var obj_url = window.URL.createObjectURL(blob);
+                    $(this).contents().find('#' + img_id).attr('src', obj_url);
+                    window.URL.revokeObjectURL(obj_url);
+                });
+            } else if (blob.type == 'application/pdf') {
+                $('*').css('cursor', 'wait');
+                var obj_url = window.URL.createObjectURL(blob);
+                iframe.load(function() {
+                    $('*').css('cursor', 'auto');
+                });
+                iframe.attr('src', obj_url);
+                window.URL.revokeObjectURL(obj_url);
+            } else {
+                iframe.load(function() {
+                    $(this).contents().find('body').html("没有查看可用");
+                });
+            }
+
+        });
+    }
+
+    /**
+     * @参数 {string} biblioid
+     * @参数 {string} title
+     * @参数 {number} year
+     * @参数 {string} url 图像下载的URL，存储在本地IndexedDB数据库
+     */
+        function addPublicationFromUrl(biblioid, title, year, url) {
+                console.log("addPublicationFromUrl:", arguments);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.responseType = 'blob';
+                xhr.onload = function (evt) {
+                        if (xhr.status == 200) {
+                                console.log("Blob恢复");
+                                var blob = xhr.response;
+                                console.log("Blob:", blob);
+                                addPublication(biblioid, title, year, blob);
+                } else {
+                console.error("addPublicationFromUrl error:",
+                xhr.responseText, xhr.status);
+            }
+        };
+        xhr.send();
+
+        // 这里使用jQuery实现本地与服务器端进行数据更新同步
+        // $.ajax({
+        //     url: url,
+        //     type: 'GET',
+        //     xhrFields: { responseType: 'blob' },
+        //     success: function(data, textStatus, jqXHR) {
+        //         console.log("Blob retrieved");
+        //         console.log("Blob:", data);
+        //         // addPublication(biblioid, title, year, data);
+        //     },
+        //     error: function(jqXHR, textStatus, errorThrown) {
+        //         console.error(errorThrown);
+        //         displayActionFailure("Error during blob retrieval");
+        //     }
+        // });
+    }
+
+    /**
+     * @参数 {string} biblioid
+     * @参数 {string} title
+     * @参数 {number} year
+     * @参数 {Blob=} blob
+     */
+    function addPublication(biblioid, title, year, blob) {
+        console.log("添加发布的参数:", arguments);
+        var obj = { biblioid: biblioid, title: title, year: year };
+        if (typeof blob != 'undefined')
+            obj.blob = blob;
+
+        var store = getObjectStore(DB_STORE_NAME, 'readwrite');
+        var req;
+        try {
+            req = store.add(obj);
+        } catch (e) {
+            if (e.name == 'DataCloneError')
+                displayActionFailure("这个引擎不知道如何克隆一个Blob, " +
+                                                         "使用Firefox");
+            throw e;
+        }
+        req.onsuccess = function (evt) {
+            console.log("添加成功");
+            displayActionSuccess();
+            displayPubList(store);
+        };
+        req.onerror = function() {
+            console.error("addPublication error", this.error);
+            displayActionFailure(this.error);
+        };
+    }
+
+    /**
+     * @参数 {string} biblioid
+     */
+    function deletePublicationFromBib(biblioid) {
+        console.log("deletePublication:", arguments);
+        var store = getObjectStore(DB_STORE_NAME, 'readwrite');
+        var req = store.index('biblioid');
+        req.get(biblioid).onsuccess = function(evt) {
+            if (typeof evt.target.result == 'undefined') {
+                displayActionFailure("没有匹配的记录");
+                return;
+            }
+            deletePublication(evt.target.result.id, store);
+        };
+        req.onerror = function (evt) {
+            console.error("deletePublicationFromBib:", evt.target.errorCode);
+        };
+    }
+
+    /**
+     * @参数 {number} key
+     * @参数 {IDBObjectStore=} store
+     */
+    function deletePublication(key, store) {
+        console.log("deletePublication:", arguments);
+
+        if (typeof store == 'undefined')
+            store = getObjectStore(DB_STORE_NAME, 'readwrite');
+
+        var req = store.get(key);
+        req.onsuccess = function(evt) {
+            var record = evt.target.result;
+            console.log("记录:", record);
+            if (typeof record == 'undefined') {
+                displayActionFailure("没有匹配的记录");
+                return;
+            }
+            req = store.delete(key);
+            req.onsuccess = function(evt) {
+                console.log("evt:", evt);
+                console.log("evt.target:", evt.target);
+                console.log("evt.target.result:", evt.target.result);
+                console.log("删除成功");
+                displayActionSuccess("删除成功");
+                displayPubList(store);
+            };
+            req.onerror = function (evt) {
+                console.error("删除发布:", evt.target.errorCode);
+            };
+        };
+        req.onerror = function (evt) {
+            console.error("删除发布:", evt.target.errorCode);
+        };
+    }
+
+    function displayActionSuccess(msg) {
+        msg = typeof msg != 'undefined' ? "Success: " + msg : "成功";
+        $('#msg').html('<span class="action-success">' + msg + '</span>');
+    }
+    function displayActionFailure(msg) {
+        msg = typeof msg != 'undefined' ? "Failure: " + msg : "失败";
+        $('#msg').html('<span class="action-failure">' + msg + '</span>');
+    }
+    function resetActionStatus() {
+        console.log("更新状态中 ...");
+        $('#msg').empty();
+        console.log("已完成更新");
+    }
+
+    function addEventListeners() {
+        console.log("addEventListeners");
+
+        $('#register-form-reset').click(function(evt) {
+            resetActionStatus();
+        });
+
+        $('#add-button').click(function(evt) {
+            console.log("添加中 ...");
+            var title = $('#pub-title').val();
+            var biblioid = $('#pub-biblioid').val();
+            if (!title || !biblioid) {
+                displayActionFailure("所需字段丢失");
+                return;
+            }
+            var year = $('#pub-year').val();
+            if (year != '') {
+                //如果引擎支持EcmaScript 6，最好使用Number.isInteger
+                if (isNaN(year))    {
+                    displayActionFailure("Invalid year");
+                    return;
+                }
+                year = Number(year);
+            } else {
+                year = null;
+            }
+
+            var file_input = $('#pub-file');
+            var selected_file = file_input.get(0).files[0];
+            console.log("选定的文件:", selected_file);
+            var file_url = $('#pub-file-url').val();
+            if (selected_file) {
+                addPublication(biblioid, title, year, selected_file);
+            } else if (file_url) {
+                addPublicationFromUrl(biblioid, title, year, file_url);
+            } else {
+                addPublication(biblioid, title, year);
+            }
+
+        });
+
+        $('#delete-button').click(function(evt) {
+            console.log("删除中 ...");
+            var biblioid = $('#pub-biblioid-to-delete').val();
+            var key = $('#key-to-delete').val();
+
+            if (biblioid != '') {
+                deletePublicationFromBib(biblioid);
+            } else if (key != '') {
+                // 如果引擎支持EcmaScript 6，最好使用Number.isInteger
+                if (key == '' || isNaN(key))    {
+                    displayActionFailure("非法的key");
+                    return;
+                }
+                key = Number(key);
+                deletePublication(key);
+            }
+        });
+
+        $('#clear-store-button').click(function(evt) {
+            clearObjectStore();
+        });
+
+        var search_button = $('#search-list-button');
+        search_button.click(function(evt) {
+            displayPubList();
+        });
+
+    }
+
+    openDb();
+    addEventListeners();
+
+})(); // 执行函数表达式 (IIFE)
+	
+</script>
+</body>
+</html>

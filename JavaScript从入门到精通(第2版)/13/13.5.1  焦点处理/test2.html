@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+<form id="myform"  method="post" action="#">
+    姓名<input type="text" name="name" /><br>
+    密码<input type="password" name="pass" />
+</form>
+
+<script>
+
+var form = document.getElementById("myform");
+var field = form.elements["name"];
+window.onload = function(){
+	field.focus();
+}
+
+</script>
+
+</body>
+</html> 

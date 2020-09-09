@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//【示例1】下面是特殊操作数的比较。
+console.log("1" == 1)	//返回true。字符串被转换为数字
+console.log(true == 1)	//返回true。true被转换为1
+console.log(false == 0)	//返回true。false被转换为0
+console.log(null == 0)	//返回false
+console.log(undefined == 0)	//返回false
+console.log(undefined == null)	//返回true
+console.log(NaN == "NaN")	//返回false
+console.log(NaN == 1)	//返回false
+console.log(NaN == NaN)	//返回false
+console.log(NaN != NaN)	//返回true
+
+//【示例2】下面两个变量的值是相等。
+var a = "abc" + "d";
+var b = "a" + "bcd";
+console.log(a == b);	//返回true
+
+
+
+
+</script>
+
+</body>
+</html>

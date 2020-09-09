@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+function typeOf(obj){ 	//类型检测函数，返回字符串表示
+    var str = Object.prototype.toString.call(obj);
+    return str.match(/\[object (.*?)\]/)[1].toLowerCase();
+};
+['Null', 'Undefined', 'Object', 'Array', 'String', 'Number', 'Boolean', 'Function', 'RegExp'].forEach(function (t) {	//类型判断，返回布尔值
+    typeOf['is' + t] = function (o) {
+        return typeOf(o) === t.toLowerCase();
+    };
+});
+//类型检测
+console.log( typeOf({}) );	// "object"
+console.log( typeOf([]) );	// "array"
+console.log( typeOf(0) );	// "number"
+console.log( typeOf(null) );	// "null"
+console.log( typeOf(undefined) );	// "undefined"
+console.log( typeOf(/ /) );	// "regex"
+console.log( typeOf(new Date()) );	// "date"
+//类型判断
+console.log( typeOf.isObject({}) );	// true
+console.log( typeOf.isNumber(NaN) );	// true
+console.log( typeOf.isRegExp(true) );	// false
+
+
+
+</script>
+
+
+
+</body>
+</html>

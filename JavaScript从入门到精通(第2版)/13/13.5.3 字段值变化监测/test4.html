@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+<form id="myform"  method="post" action="javascript:alert('表单提交啦!')">
+    <p>
+        <label for="comments">请输入数字:</label>
+        <br />
+        <input type="text" id="txtNumbers" name="numbers" />
+    </p>
+    <p>
+        <input type="submit" value="提交表单" id="submit-btn" />
+    </p>
+</form>
+<script>
+var form = document.getElementById("myform");
+var numbers = form.elements["numbers"];
+numbers.onfocus = function(event){
+	event = event || window.event;
+	var target = event.target || event.srcElement;
+	
+	target.style.backgroundColor = "yellow";
+}
+numbers.onblur = function(event){			
+	event = event || window.event;
+	var target = event.target || event.srcElement;
+	
+	if (/[^\d]/.test(target.value)){
+		target.style.backgroundColor = "red";
+	} else {
+		target.style.backgroundColor = "";
+	}
+}
+numbers.onchange = function(event){			
+	event = event || window.event;
+	var target = event.target || event.srcElement;
+	if (/[^\d]/.test(target.value)){
+		target.style.backgroundColor = "red";
+	} else {
+		target.style.backgroundColor = "";
+	}
+}
+numbers.focus();
+</script>
+</body>
+</html> 

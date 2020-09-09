@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+function f(value, index, ar) {
+    high = Math.floor(Math.sqrt(value)) + 1;
+    for (var div = 2; div <= high; div++) {
+        if (value % div == 0) {
+            return false;
+        }
+    } 
+    return true;
+}
+var a = [31, 33, 35, 37, 39, 41, 43, 45, 47, 49, 51, 53];
+var a1 = a.filter(f);
+console.log(a1);	//31,37,41,43,47,53
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+var obj = Object();
+// 等同于
+var obj = Object(undefined);
+var obj = Object(null);
+
+//【示例】如果参数为数组、对象、函数，则返回原对象，不进行转换。根据这个特性，可以设计一个类型检测函数，专门检测一个值是否为引用型对象。
+function isObject(value) {
+    return value === Object(value);
+}
+console.log( isObject([]));	// true
+console.log( isObject(true) );	// false
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

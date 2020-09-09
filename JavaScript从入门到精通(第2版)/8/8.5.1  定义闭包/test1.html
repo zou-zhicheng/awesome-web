@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+function f(x){	//外部函数
+    return function(y){	//内部函数，通过返回内部函数，实现外部引用
+        return x + y;	//访问外部函数的参数
+    };
+}
+var c = f(5);	//调用外部函数，获取引用内部函数
+console.log(c(6));	//调用内部函数，原外部函数的参数继续存在
+console.log(c(6));	//调用内部函数，原外部函数的参数继续存在
+console.log(c(6));	//调用内部函数，原外部函数的参数继续存在
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

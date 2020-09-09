@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+function addData(){	//向文件中添加数据
+    window.webkitRequestFileSystem( PERSISTENT, 1024,  
+        function(fs){	//请求文件系统成功时所执行的回调函数
+            var filename = document.getElementById("fileName").value; 
+            fs.root.getFile(filename, 	//创建文件
+                {create:false},
+                function(fileEntry) {
+                    fileEntry.createWriter(function(fileWriter) {
+                        fileWriter.onwriteend = function(e) {
+                            document.getElementById("result").innerHTML ='添加数据成功';
+                        };
+                        fileWriter.onerror = function(e) {
+                            document.getElementById("result").innerHTML='添加数据失败: ';
+                        };
+                        fileWriter.seek(fileWriter.length);
+						var filedata = document.getElementById("filedata").value;
+                        var blob = new Blob([filedata]); 
+                        fileWriter.write(blob);
+                    }, errorHandler);
+                }, errorHandler); 
+        }, 
+        errorHandler   	//请求文件系统失败时所执行的回调函数
+    );
+}
+function errorHandler(FileError) {
+    switch (FileError.code) {
+        case FileError.QUOTA_EXCEEDED_ERR:
+            console.log('文件系统所使用的存储空间的尺寸超过磁盘限额控制中指定的空间尺寸');
+            break;
+        case FileError.NOT_FOUND_ERR:
+            console.log('未找到文件或目录');
+            break;
+        case FileError.SECURITY_ERR:
+            console.log( '操作不当引起安全性错误');
+            break;
+        case FileError.INVALID_MODIFICATION_ERR:
+            console.log('对文件或目录所指定的操作不能被执行');
+            break;
+        case FileError.INVALID_STATE_ERR:
+            console.log('指定的状态无效');
+    };
+}
+</script>
+</head>
+<body>
+<h1>添加数据</h1>   
+文件名：<input type="text" id="fileName" value="test.txt"><br/>
+添加数据：<textarea  id="filedata">新数据</textarea><br/><br/> 
+<input type="button" value="添加数据" onclick="addData()"><br/> 
+<output id="result" ></output> 
+</body>
+</html> 

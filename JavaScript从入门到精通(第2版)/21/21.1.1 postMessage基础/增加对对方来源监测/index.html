@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>postMessage跨域对话（主叫）</title>
+<meta charset="utf-8">
+<style type="text/css">
+#calling {
+    width:46%;
+    border:solid 1px red;
+    float:left;
+    padding:4px 12px;
+    min-height:304px;
+} 
+#called {
+    width:46%;
+    border:solid 1px red;
+    float:right;
+    padding:4px 12px;    
+}
+.highlight {
+    background-color:#FFFF00;
+}
+#iframe {
+    width:100%;
+    overflow:visible;
+    min-height:300px;
+    border:none;
+    
+}
+</style>
+</head>
+<body>
+<div id="calling">
+	<h1>主叫页（index.html）</h1>
+    <p>对方域名：<span id="domain" class="highlight"></span></p>
+    <p>对方消息：<span id="info"  class="highlight"></span></p>
+</div>
+<div id="called">
+    <iframe id="iframe" src="http://localhost/called.html"></iframe>
+</div>
+<script type="text/javascript">
+var EventUtil = {//定义事件处理基本模块
+    addHandler: function (element, type, handler) {//注册事件
+        if (element.addEventListener) {	//兼容DOM模型
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent) {	//兼容IE模型
+            element.attachEvent("on" + type, handler);
+        } else {	//兼容传统模型
+            element["on" + type] = handler;
+        }
+    }
+};
+// 窗口事件监听：监听message
+EventUtil.addHandler(window, "message", function (event) {
+	// event.origin:发送消息的地址，谁发的消息就是谁的
+	// 接收时候，可以加个判断;避免接收来源不明的URL发过来的数据
+	if( event.origin != "http://localhost" ){
+         return;
+	}
+	document.getElementById("domain").innerHTML = event.origin;
+	document.getElementById("info").innerHTML = event.data;	// event.data:发消息的内容	
+});
+// 获取嵌入的iframe
+var iframe = document.getElementById("iframe");
+//当内嵌窗口加载完毕时，发送消息
+EventUtil.addHandler(iframe, "load", function (event) {
+	var iframeWindow = window.frames[0];
+	var origin = iframe.getAttribute("src");
+	iframeWindow.postMessage("called.html页有人吗，我是主页index.html",origin);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+String.prototype.byteLength = function(){
+    var s = this.replace( /[^\x00-\xff]/g, "**" );
+    return s.length;
+}
+
+
+var s = "String类型长度";	// 定义字符串直接量
+console.log(s.byteLength())	// 返回14
+
+
+</script>
+
+
+</body>
+</html>

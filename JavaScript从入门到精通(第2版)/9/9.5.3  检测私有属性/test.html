@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+//【示例1】在下面自定义类型中，this.name就表示对象的私有属性，而原型对象中的name属性就是继承属性：
+function F(){	//自定义数据类型
+    this.name = "私有属性";
+}
+F.prototype.name = "继承属性";
+
+//【示例2】针对上面自定义类型，可以实例化对象，然后判定当前对象调用的属性name是什么类型。
+var f = new F();	//实例化对象
+console.log(f.hasOwnProperty("name"));	//返回true，说明当前调用的name是私有属性
+console.log(f.name);	//返回字符串"私有属性"
+
+//【示例3】在下面示例中，演示了toString()方法对于Date对象来说，是继承属性，但是对于Date构造函数的原型对象来说，则又是它的私有属性。
+var d = Date;
+console.log(d.hasOwnProperty("toString"));	//返回false，说明toString()是Date的私有属性
+var d = Date.prototype;
+console.log(d.hasOwnProperty("toString"));	//返回true，说明toString()是Date.prototype属性
+
+//【示例4】下面示例演示了hasOwnProperty()方法所能检测的属性范围。
+var o = {	//对象直接量
+    o1 : {	//子对象直接量
+        o2 :{	//孙子对象直接量
+            name : 1	//孙子对象直接量的属性
+        }
+    }
+};
+console.log(o.hasOwnProperty("o1"));	//返回true，说明o1是o的私有属性
+console.log(o.hasOwnProperty("o2"));	//返回false，说明o2不是o的私有属性
+console.log(o.o1.hasOwnProperty("o2"));	//返回true，说明o2是o1的私有属性
+console.log(o.o1.hasOwnProperty("name"));	//返回false，说明name不是o1的私有属性
+console.log(o.o1.o2.hasOwnProperty("name"));	//返回true，说明name不是o2的私有属性
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

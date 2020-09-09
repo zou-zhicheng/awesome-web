@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+var s = '<meta charset="utf-8">';	//待过滤的表单提交信息
+var r = /\'|\"|\<|\>/gi;	//过滤敏感字符的正则表达式
+function f(){	//替换函数，把敏感字符替换为对应的网页显示的编码格式
+    return "&#" + arguments[0].charCodeAt(0) + ";";
+}
+var a = s.replace(r,f);	//执行过滤替换
+document.write(a);	//在网页中显示正常的字符信息
+console.log(a);	//返回"&#60;meta charset=&#34;utf-8&#34;&#62;"
+
+
+
+
+</script>
+
+</body>
+</html>

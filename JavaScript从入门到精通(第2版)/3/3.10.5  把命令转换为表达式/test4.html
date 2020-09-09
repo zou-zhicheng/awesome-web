@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//使用嵌套函数进一步封装。
+(function(){
+    var i = 1;
+    return function(){
+        console.log( i ); 	//可执行命令
+        (++i < 100 ) && arguments.callee();	//有条件递归运算
+    }
+})()()	//调用函数的返回函数
+
+
+
+</script>
+
+
+</body>
+</html>

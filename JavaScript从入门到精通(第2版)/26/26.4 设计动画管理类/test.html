@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+dl {
+    width:400px;
+    border:solid 1px #ccc;
+    font-size:12px;
+}
+dt {
+    background:#7FECAD url(images/green.gif) repeat-x;
+    color:#71790C;
+    height:28px;
+    line-height:28px;
+    padding-left:1em;
+    border-bottom:solid 1px #efefef;
+    cursor:pointer;
+}
+dd {
+    padding:2px 4px;
+    margin:0;
+    overflow:hidden;
+}
+.expand { overflow:visible; }
+.collapse {
+    height:28px;
+    overflow:hidden;
+}
+</style>
+<script src="animateManage.js"></script>
+<script>
+window.onload= function(){
+	var dt =  document.getElementById("header");
+	var dd = document.getElementById("box");
+	dt.onclick = function(){
+		new animateManage({		//滑动展开广告
+			"context" : dd, 		//被操作的元素
+			"effect":"linear",		//定义线性动画
+			"time": 1000,		//持续时间
+			"starCss":{"height":300},		//元素的起始值偏移量
+			"css" :{"height":0}		//元素的结束值偏移量
+		}).init();
+	}
+}
+
+</script>
+</head>
+<body>
+<dl>
+    <dt id="header">标题</dt>
+    <dd id="box">折叠区域<img src="images/1.jpg" width="300"></dd>
+</dl>
+</body>
+</html> 

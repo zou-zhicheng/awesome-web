@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+//【示例】由于window是全局对象，因此所有的全局变量都被解析为该对象的属性。
+var a = "window.a";	//全局变量
+function f(){	//全局函数
+    console.log(a);
+}
+console.log(window.a);	//返回字符串"window.a"
+window.f();	//返回字符串"window.a"
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

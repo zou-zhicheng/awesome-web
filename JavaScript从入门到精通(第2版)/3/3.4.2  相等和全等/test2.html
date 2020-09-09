@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<script>
+
+
+//【示例3】下面是特殊操作数的全等比较。
+console.log(null === undefined)	//返回false
+console.log(0 === "0")	//返回false
+console.log(0 === false)	//返回false
+
+//【示例4】下面是两个对象的比较，由于它们都引用相同的地址，所以返回true。
+var a = {};
+var b = a;
+console.log(a === b) ;	//返回true
+
+var a = {};
+var b = {};
+console.log(a === b) ;	//返回false
+
+//【示例5】对于复合型对象，主要比较引用的地址，不比较对象的值。
+var a = new String("abcd")	//定义字符串"abcd"对象
+var b = new String("abcd")	//定义字符串"abcd"对象
+console.log(a === b);	//返回false
+console.log(a == b);	//返回false
+
+//【示例6】对于简单的值，只要类型相同，值相等，它们就是全等，不考虑表达式运算的过程变化，也不用考虑变量的引用地址。
+var a = "1" + 1; 
+var b = "11" ; 
+console.log(a === b);	//返回true
+
+//【示例7】表达式(a > b || a == b)与表达式(a >= b)并不完全相等。
+var a = 1;
+var b = 2;
+console.log((a > b || a == b) == (a >= b))	//返回true，此时似乎相等
+
+var a = null;
+var b = undefined;
+console.log((a > b || a == b) == (a >= b))	//返回false，表达式的值并非相等
+
+
+
+</script>
+
+
+</body>
+</html>

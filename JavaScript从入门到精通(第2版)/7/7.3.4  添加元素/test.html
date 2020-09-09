@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//通过中括号和下标值，可以为数组添加新元素，例如：
+var a = [1,2,3];	//定义数组
+a[3] =4 ;	//为数组添加一个元素
+console.log(a);	//返回[1,2,3,4]
+
+
+//concat()是一个比较特殊的数组元素添加方法。它采用粘连的方式把参数添加到数组中。
+var a = [1,2,3,4,5];	//定义数组
+var b = a.concat(6,7,8);	//为数组a连接3个元素
+console.log(b);	//返回[1,2,3,4,5,6,7,8]
+
+var b = a.concat([1,2,3],[4,5]);	//连接数组
+console.log(b.length);	//返回10，说明参数数组被打散了
+
+
+var b = a.concat([[1,2],3],[4,5]);	//连接数组
+console.log(b.length);	//返回9，说明数组[1,2]没有被打散
+
+
+var a = [1,2,3,4,5];	//定义数组
+a.splice(1,0,3,4,5)	//执行插入操作
+console.log(a);	//返回[1,3,4,5,2,3,4,5]
+
+
+
+</script>
+
+</body>
+</html>

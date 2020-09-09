@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<script>
+
+(function(window){
+    var MyAPP = {}; 	//定义APP访问接口
+    MyAPP.name = {	//定义APP配置变量
+        "id" : "应用程序的ID编号"
+    };
+    MyAPP.work = {
+        num : 123, 	//APP计数器等内部属性
+        sub : { name : "sub_id " },	//APP应用分支
+        doing : function(){	//具体方法
+            //执行代码
+        }
+    };
+	window.MyAPP;	
+})(window)
+
+
+
+
+</script>
+
+</body>
+</html>

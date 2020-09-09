@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+
+Array.prototype._sum = Array.prototype.sum	 ||	//检测是否存在同名方法
+( Array.prototype.sum = function(){	//定义该方法
+    var _n = 0,_this=[];	//临时汇总变量
+    for(var i in this){	//遍历当前数组对象
+        if( _this[i] = parseFloat( this[i] ) ) _n += _this[i];
+	//如果数组元素是数字，则进行累加
+    };
+    return _n;	//返回累加的和
+});
+Object.prototype.sum = Array.prototype._sum;//把临时方法赋值给对象的原型方法sum()
+
+var a = [1, 2, 3, 4, true, 6, 7, 8, "9"];	//定义数组直接量
+console.log( a.sum() );	//返回45
+console.log( a );	
+
+</script>
+
+</body>
+</html>

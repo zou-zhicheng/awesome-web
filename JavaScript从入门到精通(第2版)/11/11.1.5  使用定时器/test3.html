@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<p>段落1</p>
+<p>段落2</p>
+<p>段落3</p>
+<p>段落4</p>
+
+<script>
+
+//【示例3】可以利用clearTimeout()方法在特定条件下清除延迟处理代码。例如，当鼠标移过某个元素，并停留半秒钟之后，才会弹出提示信息，一旦鼠标移出当前元素，就立即清除前面定义的延迟处理函数，避免相互干扰。
+var o = document.getElementsByTagName("body")[0].childNodes;
+for(var i = 0; i < o.length; i ++ ){
+    o[i].onmouseover = function(i){	//为每个元素注册鼠标移过时事件延迟处理函数
+        return function(){
+            f(o[i])
+        }
+    } (i);
+    o[i].onmouseout = function(i) {// 为每个元素注册鼠标移出时清除延迟处理函数
+        return function(){
+            clearTimeout(o[i].out);	//清除已注册的延迟处理函数
+        }
+    } (i);
+}
+function f(o){
+    //把延迟处理定时器存储在每个元素的out属性中
+    o.out = setTimeout(function(){
+        console.log(o.tagName);
+    } , 500);
+}
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

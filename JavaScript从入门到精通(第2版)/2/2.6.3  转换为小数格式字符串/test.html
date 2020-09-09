@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//1）toFixed()
+
+var a = 10;
+console.log(a.toFixed(2));	//返回字符串"10.00"
+console.log(a.toFixed(4));	//返回字符串"10.0000"
+
+//2）toExponential()
+
+var a = 123456789;
+console.log(a.toExponential(2));	//返回字符串"1.23e +8 "
+console.log(a.toExponential(4));	//返回字符串"1.2346 e+8 "
+
+//3）toPrecision()
+
+var a = 123456789;
+console.log(a.toPrecision(2));	//返回字符串"1.2e+ 8"
+console.log(a.toPrecision(4));	//返回字符串"1.235 e+8"
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

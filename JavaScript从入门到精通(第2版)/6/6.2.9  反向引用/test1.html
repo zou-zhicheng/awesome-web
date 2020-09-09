@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+var s ="<h1>title<h1><p>text<p>";
+var r = /(<\/?\w+>).*\1/g;
+var a = s.match(r);	//返回数组["<h1>title<h1>" , "<p>text<p>"]
+console.log(a);
+
+var s ="<h1>title<h1><p>text<p>";
+var r = /((<\/?\w+>).*\2)/g;
+var a = s.match(r);	//返回数组["<h1>title<h1>" , "<p>text<p>"]
+console.log(a);
+
+
+var s ="<h1>title</h1><p>text</p>";
+var r = /((<\/?\w+>).*(<\/?\w+>))/g;
+var a = s.match(r);	//返回数组["<h1>title</h1>","<p>text</p>"]
+console.log(a);
+
+
+var s = "abc";
+var r = /(a(b(c)))/;
+var a = s.match(r);	//返回数组["abc", "abc" , "bc" , "c"]
+console.log(a);
+
+</script>
+
+
+
+
+
+</body>
+</html>

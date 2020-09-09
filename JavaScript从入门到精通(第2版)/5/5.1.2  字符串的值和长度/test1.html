@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+var s = "JavaScript";
+var a = s.toString();	// 返回字符串"JavaScript"
+var b = s.valueOf();	// 返回字符串"JavaScript"
+
+
+// 重写toString()原型方法，参数color表示显示颜色
+String.prototype.toString = function(color){
+    var color = color || "red";	// 如果省略参数，则显示为红色
+    return '<span style="color:' + color + '";>' + this.valueOf() + '</span>'; 
+	// 返回格式化显示带有颜色的字符串
+}
+document.write(s.toString());	// 显示红色字符串"JavaScript"
+document.write(s.toString("blue"));	// 显示蓝色字符串"JavaScript""
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

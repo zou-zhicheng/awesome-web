@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+var s = "JavaScript,not JavaScript";
+var r = /Scrip(t)/gi;	//第一次定义的匹配模式
+var a = r.exec(s);	//执行第一次匹配
+console.log(RegExp.$_);	//返回字符串"JavaScript,not JavaScript"
+console.log(RegExp["$`"]);	//返回字符串"Java"
+console.log(RegExp["$'"]);	//返回字符串",not JavaScript"
+console.log(RegExp["$&"]);	//返回字符串"Script"
+console.log(RegExp["$+"]);	//返回字符串"t"
+var r = /Jav(a)/gi;	//第二次定义的匹配模式
+var a = r.exec(s);	//执行第二次匹配
+console.log(RegExp.$_);	//返回字符串"JavaScript,not JavaScript"
+console.log(RegExp["$`"]);	//返回空字符串
+console.log(RegExp["$'"]);	//返回字符串"Script,not JavaScript"
+console.log(RegExp["$&"]);	//返回字符串"Java"
+console.log(RegExp["$+"]);	//返回字符串"a"
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

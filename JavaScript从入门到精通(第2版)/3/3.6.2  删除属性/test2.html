@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<script>
+
+//【示例2】如果删除不存在的对象成员，或者非对象成员、数组元素、变量时，则返回true，所以使用delete运算符时，要注意区分成功删除与无效操作。
+var a ={};	//定义对象a
+console.log(delete a);	//返回false，说明不允许删除
+console.log(delete a.z);	//返回true，说明不存在该属性
+console.log(delete b);	//返回true，说明不存在该变量
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>postMessage跨域对话（主叫）</title>
+<meta charset="utf-8">
+<style type="text/css">
+#calling {
+    width:46%;
+    border:solid 1px red;
+    float:left;
+    padding:4px 12px;
+    min-height:304px;
+}
+#called {
+    width:46%;
+    float:right;
+    height:100%;
+    margin-top:-8px;
+}
+.highlight {
+    background-color:#FFFF00;
+} 
+.red {color:red;}
+#iframe {
+    width:100%;
+    overflow:visible;
+    min-height:600px;
+    border:none;
+}
+#caller {
+    float:left;
+    clear:left;
+}
+#call_content {
+    width:300px;
+    height:80px;
+    margin:6px;
+}
+#send {
+    padding:6px;
+    display:block;
+    margin-left:6px;
+    width:300px;
+}
+</style>
+</head>
+<body>
+<div id="calling">
+	<h1>主叫页（index.html）</h1>
+    <div id="info"></div>
+</div>
+<div id="called">
+    <iframe id="iframe" src="http://localhost/called.html"></iframe>
+</div>
+<div id="caller">
+	<textarea id="call_content"></textarea>
+    <button id="send" >发送</button>
+
+</div>
+<script type="text/javascript">
+var EventUtil = {//定义事件处理基本模块
+    addHandler: function (element, type, handler) {//注册事件
+        if (element.addEventListener) {	//兼容DOM模型
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent) {	//兼容IE模型
+            element.attachEvent("on" + type, handler);
+        } else {	//兼容传统模型
+            element["on" + type] = handler;
+        }
+    }
+};
+var info = document.getElementById("info");
+var iframe = document.getElementById("iframe");
+var send = document.getElementById("send");
+// 窗口事件监听：监听message
+EventUtil.addHandler(window, "message", function (event) {
+	// 监测消息来源，非法来源屏蔽
+	if( event.origin != "http://localhost" ){
+         return;
+	}
+	info.innerHTML += '<p>来自<span class="red">'+ event.origin + '</span>的网友说：<span class="highlight">' + event.data + '</span></p>';
+	
+});
+EventUtil.addHandler(send, "click", function (event) {
+	var iframeWindow = window.frames[0];
+	var origin = iframe.getAttribute("src");
+	var call_content = document.getElementById("call_content");
+    if(call_content.value.length <=0) return;
+	iframeWindow.postMessage(call_content.value, origin);
+	info.innerHTML += '<p>来自<span class="red">本页</span>的网友说：<span class="highlight">' + call_content.value + '</span></p>';
+	call_content.value = "";
+});
+
+</script>
+</body>
+</html>

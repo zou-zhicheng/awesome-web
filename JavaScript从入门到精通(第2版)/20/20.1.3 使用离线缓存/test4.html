@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html manifest="cacheData.manifest">
+<head>
+<title></title>
+<meta charset="utf-8">
+</head>
+<body>
+<script>	
+
+var appCache = window.applicationCache;  
+//请求manifest文件时返回404或410，下载失败  
+//或manifest文件在下载过程中源文件被修改会触发error事件  
+appCache.addEventListener('error', handleCacheError, false);  
+function handleCacheError(e) {  
+    alert('Error: Cache failed to update!');  
+};  
+ 
+
+	
+</script>
+</body>
+</html>

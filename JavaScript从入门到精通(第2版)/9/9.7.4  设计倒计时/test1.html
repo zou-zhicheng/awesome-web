@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<h1 id="showtime"></h1>
+<script>
+
+
+
+
+var showtime = function( ) {
+　　var nowtime=new Date(),
+　　　　endtime=new Date("2020/8/8,00:00:00"),//设置结束时间
+　　　　lefttime=parseInt((endtime.getTime()-nowtime.getTime())/1000),
+　　　　d=Math.floor(lefttime/(60*60*24)),
+　　　　h=Math.floor(lefttime/(60*60)%24),
+　　　　m=Math.floor(lefttime/60%60),
+　　　　s=Math.floor(lefttime%60);
+    return d+"天"+h+"小时"+m+"分"+s+"秒";
+}   
+var checkTime = function (i) {
+   if (i<10) {
+      i="0"+i;
+   }
+   return i;
+}
+  
+   
+
+
+
+var div = document.getElementById("showtime");
+setInterval(function(){
+    div.innerHTML = showtime();
+}, 1000);//反复执行函数本身
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+var s = "JavaScript,not JavaScript";
+var r = /(Java)(Script)/gi;
+var a = r.exec(s);
+console.log(RegExp.$_);	//返回字符串"JavaScript,not JavaScript"
+console.log(RegExp["$`"]);	//返回空字符串
+console.log(RegExp["$'"]);	//返回字符串",not JavaScript"
+console.log(RegExp["$&"]);	//返回字符串"JavaScript "
+console.log(RegExp["$+"]);	//返回字符串"Script"
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

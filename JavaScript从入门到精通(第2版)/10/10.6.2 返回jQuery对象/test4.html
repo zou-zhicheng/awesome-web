@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+
+var $ = jQuery = function(){
+	return jQuery.fn.init();    //调用原型方法init()，模拟类型的初始化构造函数
+}
+jQuery.fn = jQuery.prototype = {
+    init : function(){    //在原型的初始化方法中返回原型对象
+        return this;
+    },
+    version: "3.2.1",    //原型属性
+    size: function() {    //原型方法
+        return this.length;
+    }
+}
+
+console.log($().version );    //读取属性，返回"3.2.1"
+console.log($().size() );     //调用方法，返回undefined
+
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

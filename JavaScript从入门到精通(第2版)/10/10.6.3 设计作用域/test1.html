@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+var $ =jQuery = function(){
+    return jQuery.fn.init();
+}
+jQuery.fn = jQuery.prototype = {
+    init : function(){
+        this.length = 0;
+        this._size = function(){
+            return this.length;
+        }
+        return this;
+    },
+    length: 1,
+    version: "3.2.1",    //原型属性
+    size: function() {    //原型方法
+        return this.length;
+    }
+}
+console.log( $().version );    //返回"3.2.1"
+console.log( $()._size() );     //返回0
+console.log( $().size() );     //返回0
+
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<script>
+
+
+//打印2~100之间的素数
+for(var i=2 ; i<100 ; i++){
+	var b = true;
+	for(var j = 2; j < i; j++){
+		if(i%j == 0)//判断i能否被j整除，能被整除则说明不是素数，修改布尔值为false
+		    b = false ;
+	}
+	//打印素数
+	if(b)
+	    document.writeln(i + " ");
+}	
+
+
+
+
+</script>
+
+
+</body>
+</html>

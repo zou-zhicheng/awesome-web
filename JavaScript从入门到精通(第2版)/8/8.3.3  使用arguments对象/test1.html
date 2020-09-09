@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+//【示例1】在下面示例中，函数没有定义形参，但是在函数体内通过arguments对象可以获取调用函数时传入的每一个实参值。
+function f(){	//定义没有形参的函数
+    for(var i = 0; i < arguments.length; i ++ ){ //遍历arguments对象
+        console.log(arguments[i]);	//显示指定下标的实参的值
+    }
+}
+f(3, 3, 6);	//逐个显示每个传递的实参
+
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+ 
+<h1>标题文本</h1>
+<p>段落文本</p>
+<div id="box">盒子</div>
+<script>
+document.onclick = function(e){
+    var e = e || window.event; 			// 标准化事件对象
+    var t = e.target || e.srcElement; 	// 获取发生事件的元素，兼容IE和DOM
+    if(e.ctrlKey && e.shiftKey) 		// 如果同时按下【Ctrl】和【Shift】键
+        t.parentNode.removeChild(t); 	// 移出当前元素
+}
+
+</script>
+
+
+
+</body>
+</html> 

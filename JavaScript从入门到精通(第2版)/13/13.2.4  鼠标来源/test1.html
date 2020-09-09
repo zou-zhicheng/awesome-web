@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<div>div元素</div>
+<script>
+var div = document.getElementsByTagName("div")[0];
+div.onmouseover = function(e){ // 注册mouseover事件处理函数
+    var e = e || window.event; 	// 标准化事件对象，兼容DOM和IE事件模型
+    var o = e.target || e.srcElement; 	// 标准化事件属性，获取当前事件的节点
+    alert(o.tagName); 					// 返回字符串“DIV”
+}
+</script>
+ 
+
+</body>
+</html> 

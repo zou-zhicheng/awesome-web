@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+function f(){
+	return
+	1;
+}
+console.log(f());
+
+
+outloop:for(i in document){
+    switch(i.toString()){
+        case "bgColor":
+            document.write("document." + i + "=" + document[i] + "<br />");
+            break 
+			outloop;
+        default:
+            document.write("没有找到");
+    }
+}
+
+
+
+
+</script>
+
+
+</body>
+</html>

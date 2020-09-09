@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+/*汉诺塔算法函数
+参数说明：n表示金片数；a、b、c表示柱子，注意排列顺序。
+返回说明：当指定金片数，以及柱子名称，该函数将输出整个移动的过程。
+*/
+function f( n, a, b, c ){
+	console.log("n="+ n + ", a=" +a + ", b=" +b + ", c=" +c );
+    if( n == 1 )	//当为1片时，直接移动
+        document.write("移动 【盘子"+n+"】 从 【"+ a + "柱】 到 【" + c + "柱】<br>");
+	//直接让参数a移给c
+    else{
+        f( n - 1, a, c, b );	//调整参数顺序，让参数a移给b
+        document.write("移动 【盘子"+n+"】 从 【" + a + "柱】 到 【" + c + "柱】<br>");
+        f( n - 1, b, a, c ); 	//调整参数顺序，让参数b移给c
+    }
+	console.log("----------" );
+}
+f( 3, "A", "B", "C" );	//调用汉诺塔函数
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

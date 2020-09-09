@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html manifest="cacheData.manifest">
+<head>
+<title></title>
+<meta charset="utf-8">
+</head>
+<body>
+<script>	
+
+//返回应用于当前window对象文档的ApplicationCache对象
+cache = window.applicationCache
+//返回应用于当前shared worker的ApplicationCache对象 [shared worker]
+cache = self.applicationCache
+//返回当前应用的缓存状态，status有五种无符号短整型值的状态，说明如表9.2所示  
+cache.status
+//调用当前应用资源下载过程 
+cache.update()
+//更新到最新的缓存，该方法不会使之前加载的资源突然被重新加载。
+cache.swapCache()
+
+
+	
+</script>
+</body>
+</html>

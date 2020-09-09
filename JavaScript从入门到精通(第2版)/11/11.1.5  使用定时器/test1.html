@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<p>段落文本</p>
+<script>
+//【示例1】下面示例演示了当鼠标移过段落文本时，会延迟半秒钟弹出一个提示对话框，显示当前元素的名称。
+
+var p = document.getElementsByTagName("p")[0];
+p.onmouseover = function(i){
+    setTimeout(function(){
+        console.log(p.tagName)
+    }, 500);
+}
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例1】如果参数为空字符串，则split()方法能够按单个字符进行分切，然后返回与字符串等长的数组。
+var s = "JavaScript";
+var a = s.split("");	// 按字符空隙分割
+console.log( s.length ); 	// 返回值为10
+console.log( a.length ); 	// 返回值为10
+
+//【示例2】如果参数为空，则split()方法能够把整个字符串作为一个元素的数组返回。
+var s = "JavaScript";
+var a = s.split();	// 空分割
+console.log( a.constructor == Array ); 	// 返回true，说明是Array实例
+console.log( a.length ); 	// 返回值为1，说明没有对字符串进行分割
+
+//【示例3】如果参数为正则表达式，则split()方法能够以匹配文本作为分隔符进行切分。
+var s = "a2b3c4d5e678f12g";
+var a = s.split(/\d+/);	// 把匹配的数字为分隔符来切分字符串
+console.log( a ); 	// 返回数组[a,b,c ,d,e, f,g]
+console.log( a.length ); 	// 返回数组长度为7
+
+//【示例4】如果正则表达式匹配的文本位于字符串的边沿，则split()方法也执行分切操作，且为数组添加一个空元素。
+var s = "122a2b3c4d5e678f12g";	// 字符串左侧有匹配的数字
+var a = s.split(/\d+/);	// 把匹配的数字作为分隔符来切分字符串
+console.log( a ); 	// 返回数组[,a,b,c ,d,e, f,g]
+console.log( a.length ); 	// 返回数组长度为8
+
+//【示例5】split()方法支持第二个参数，该参数是一个可选的整数，用来指定返回数组的最大长度。如果设置了该参数，返回的数组长度不会多于这个参数指定的值。如果没有设置该参数，整个字符串都被分割，不考虑数组长度。
+var s = "JavaScript";
+var a = s.split("",4); 	// 按顺序从左到有，仅分切4个元素的数组
+console.log( a ); 	// 返回数组[J,a,v ,a]
+console.log( a.length ); 	// 返回值为4
+
+//【示例6】如果想使返回的数组包括分隔符或分隔符的一个或多个部分，可以使用带子表达式的正则表达式来实现。
+var s = "aa2bb3cc4dd5e678f12g";
+var a = s.split(/(\d)/); 	// 使用小括号包含数字分隔符
+console.log(a); 	// 返回数组[aa,2,bb,3,cc,4,dd,5,e,6,,7,,8,f,1,,2,g]
+
+</script>
+
+</body>
+</html>

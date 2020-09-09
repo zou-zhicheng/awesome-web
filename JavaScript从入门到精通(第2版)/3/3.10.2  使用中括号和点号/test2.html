@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<script>
+
+//【示例2】使用点号运算符（.）可以存取对象属性的值，它比中括号灵活、方便，因为点号运算符右侧可以直接指定属性名称，而不是属性名称的字符串。
+var a ={ x : 1, };	//定义对象a
+console.log(a.x);	//返回1。读取对象属性a的值
+a.x = 2;	//重写对象属性a的值
+console.log(a.x);	//返回2。再次读取对象属性a的值
+
+var b = "x";	//把属性x的标识符名作为字符串存储在变量b中
+var a ={ x : 1 };	//定义对象a
+console.log(a[b]);	//返回1。通过变量间接获取对象a的属性x的值
+console.log(a.b);	//返回undefined。点运算符无法识别变量引用
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+
+<div id="red" class="red blue">红盒子</div>
+<script>
+
+// 所有类名生成的数组
+var classNameArray = document.getElementById("red").className.split(" ");
+for(var i in classNameArray ){	// 遍历数组
+	alert(classNameArray[i]);   	// 当前class名
+}
+
+
+</script>
+
+
+
+
+
+</body>
+</html> 

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+//【示例7】下面示例演示当局部变量与形参变量混在一起使用时的微妙关系。
+function f(x){
+    var x = x;	//把形参x传递给局部变量x
+    console.log(x);
+}
+f(5);	//返回提示为5
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

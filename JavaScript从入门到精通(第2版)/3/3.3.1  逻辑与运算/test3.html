@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//	对象被转换为布尔值时为true。例如，一个空对象与一个布尔值进行逻辑与运算。
+console.log(typeof({} && true))	//返回第二个操作数的值true
+console.log(typeof(true && {}))	//返回第二个操作数的值{}
+
+//	如果操作数中包含null，则返回值总是null。例如，字符串"null"与null类型值进行逻辑与运算，不管位置如何，始终都返回null。
+console.log(typeof("null" && null))	//返回null
+console.log(typeof(null && "null"))	//返回null
+
+//	如果操作数中包含NaN，则返回值总是NaN。例如，字符串"NaN"与NaN类型值进行逻辑与运算，不管位置如何，始终都返回NaN。
+console.log(typeof("NaN" && NaN))	//返回NaN
+console.log(typeof(NaN && "NaN"))	//返回NaN
+
+//	对于Infinity来说，将被转换为true，与普通数值一样参与逻辑与运算。
+console.log(typeof("Infinity" && Infinity)) 	//返回第二个操作数Infinity
+console.log(typeof(Infinity && "Infinity"))	//返回第二个操作数"Infinity"
+
+//	如果操作数中包含undefined，则返回undefined。例如，字符串"undefined"与undefined类型值进行逻辑与运算，不管位置如何，始终都返回undefined。
+console.log(typeof("undefined" && undefined))
+console.log(typeof(undefined && "undefined"))
+
+
+</script>
+
+
+</body>
+</html>

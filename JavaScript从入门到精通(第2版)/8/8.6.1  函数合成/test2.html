@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+//函数合成，从右到左合成函数
+var compose = function() {
+    var _arguments = arguments;//缓存外层参数
+    var length = _arguments.length;//缓存长度
+    var index = length;//定义游标变量
+    //检测参数，如果存在非函数参数，则抛出异常
+    while (index--) {
+        if (typeof _arguments[index] !== 'function') {
+            throw new TypeError('参数必须为函数!');
+        }
+    }
+    return function() {
+        var index = length-1;//定位到最后一个参数下标
+        //如果存在2个及以上参数，则调用最后一个参数函数，并传入内层参数；
+        //否则直接返回第1个参数函数
+        var result = length ? _arguments[index].apply(this, arguments) : arguments[0];
+        //迭代参数函数
+        while ( index-- ) {
+            //把右侧函数的执行结果作为参数传给左侧参数函数，并调用
+            result = _arguments[index].call(this, result);
+        }
+        return result;//返回最左侧参数函数的执行结果
+    }
+}
+// 反向函数合成，即从左到右合成函数
+var composeLeft = function() {
+    return compose.apply(null, [].reverse.call( arguments));
+}
+
+
+
+
+
+var add = function (x) { return x + 5;} 	//加法运算
+var mul = function (x) { return x * 5;} 	//乘法运算
+var sub = function (x) { return x - 5;} 	//减法运算
+var div = function (x) { return x / 5;} 	//除法运算
+
+
+
+var fn = compose(add, mul, sub, div);
+console.log(fn(50));
+var fn = compose(add, compose(mul, sub, div));
+console.log(fn(50));
+var fn = compose(compose(add, mul), sub, div);
+console.log(fn(50));
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

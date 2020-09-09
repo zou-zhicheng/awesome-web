@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style type="text/css">
+li { border:solid 1px red; margin:12px;}
+h2 {border-bottom:double 3px blue;}
+</style>
+
+</head>
+<body>
+
+<h1>单击回答问题</h1>
+<ul>
+    <li>你叫什么？</li>
+    <li>你喜欢JS吗？ </li>
+</ul>
+
+
+<script>
+var ul = document.getElementsByTagName("ul")[0]; 	// 获取列表结构
+var lis = ul.getElementsByTagName("li"); 		// 获取列表结构的所有列表项
+lis[0].onclick = function(){	// 为第二个列表项绑定事件处理函数
+	this.innerHTML = "<h2>我是一名初学者</h2>";	// 替换HTML文本
+}
+lis[1].onclick = function(){	// 为第四个列表项绑定事件处理函数
+	this.outerHTML = "<h2>当然喜欢</h2>";
+	// 用HTML文本覆盖列表项标签及其包含内容
+}
+
+</script>
+
+
+
+
+</body>
+</html> 

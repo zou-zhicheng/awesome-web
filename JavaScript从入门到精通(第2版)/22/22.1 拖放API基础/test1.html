@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title></title> 
+<script type="text/javascript">
+function init(){
+    var source = document.getElementById("drag");
+    var dest = document.getElementById("target");
+    // (1) 拖放开始
+    source.addEventListener("dragstart", function(ev) {
+        // 向dataTransfer对象追加数据
+        var dt = ev.dataTransfer;
+        dt.effectAllowed = 'all';    
+       //(2) 拖动元素为dt.setData("text/plain", this.id); 
+        dt.setData("text/plain", "拖入源对象"); 
+    }, false);
+    // (3) dragend：拖放结束
+    dest.addEventListener("dragend", function(ev) {
+        //不执行默认处理（拒绝被拖放）
+        ev.preventDefault();
+    }, false);
+    // (4) drop:被拖放
+    dest.addEventListener("drop", function(ev) {
+        // 从DataTransfer对象那里取得数据
+        var dt = ev.dataTransfer;
+        var text = dt.getData("text/plain");
+        dest.innerHTML += "<p>" + text + "</p>";
+        //(5) 不执行默认处理（拒绝被拖放）
+        ev.preventDefault();
+        //停止事件传播
+        ev.stopPropagation();
+    }, false);
+}
+//(6) 设置页面属性，不执行默认处理（拒绝被拖放）
+document.ondragover = function(e){e.preventDefault();};
+document.ondrop = function(e){e.preventDefault();};
+</script>
+<style>
+#drag { width: 100px; height: 100px; background-color: #93FB40; border-radius: 12px; text-align:center; line-height:100px; color:#F423CC; }
+#target { width: 200px; height: 200px; border: 1px dashed gray; margin: -100px 12px 12px; float:right;}
+#target  h1{ text-align:center; color:#F423CC; margin:6px 0; font-size:16px; }
+</style>
+</head>
+<body onload="init()">
+<!-- (7) 把draggable属性设为true -->
+<div id="drag" draggable="true">源对象</div>
+<div id="target">
+    <h1>目标对象</h1>
+</div>
+</body>

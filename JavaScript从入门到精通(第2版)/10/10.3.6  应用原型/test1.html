@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+//【示例1】利用原型为对象设置默认值。当原型属性与私有属性同名时，删除私有属性之后，可以访问原型属性，即可以把原型属性值作为初始化默认值。
+function p(x){	//构造函数
+    if(x)	//如果参数存在，则设置属性，该条件是关键
+        this.x = x;	//使用参数初始化私有属性x的值
+}
+p.prototype.x = 0;	//利用原型属性，设置私有属性x的默认值
+var p1 = new p();	//实例化一个没有带参数的对象
+console.log(p1.x);	//返回0，即显示私有属性的默认值
+var p2 = new p(1);	//再次实例化，传递一个新的参数
+console.log(p2.x);	//返回1，即显示私有属性的初始化值
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+<script>
+
+
+</script>
+</head>
+<body>
+
+<input type="text" id="a" />
+<input type="text" id="b" />
+<script>
+var a = document.getElementsByTagName("input")[0];
+var b = document.getElementsByTagName("input")[1];
+a.onchange = function(){		// 为第一个文本框绑定change事件处理函数
+   b.value = this.value; 		// 把第一个文本框中的值传递给第二个文本框
+}
+</script>
+
+
+</body>
+</html> 
+ 

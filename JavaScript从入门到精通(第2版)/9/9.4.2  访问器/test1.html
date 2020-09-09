@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+
+var obj = Object.create(Object.prototype, {
+	_x : {
+		value : 1,
+		writable:true
+	},
+    x: {	//访问器属性
+        get: function( ) {
+			return  this._x ;
+        },
+        set: function(value) {
+			if(typeof value  != "number" ) throw new Error('请输入数字');
+            this._x = value;
+        }
+    }
+});
+console.log(obj.x);	//1
+obj.x = "2";
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

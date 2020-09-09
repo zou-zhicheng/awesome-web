@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例1】定义JavaScript函数时，可以设置零个或多个形参。
+function f(a,b){	//设置形参a和b
+    return a+b;
+}
+var x=1,y=2;	//声明并初始化变量
+console.log(f(x,y));	//调用函数并传递实参
+
+//【示例2】如果函数实参数量少于形参数量，那么多出来的形参的值默认为undefined。
+(function(a,b){	//定义函数，包含两个形参
+    console.log(typeof a);	//返回number
+    console.log(typeof b);	//返回undefined
+})(1);	//调用函数，传递一个实参
+
+
+//【示例3】如果函数实参数量多于形参数量，那么多出来的实参就不能够通过形参标识符访问，函数会忽略掉多余的实参。在下面这个示例中，实参3和4就被忽略掉了。
+(function(a,b){	//定义函数，包含两个形参
+    console.log(a);	//返回1
+    console.log(b);	//返回2
+})(1,2,3,4);	//调用函数，传递四个实参
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

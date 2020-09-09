@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+</script>
+</head> 
+<body>
+
+
+<p>p1</p>
+<p class="main">p2</p>
+<p>p3</p>
+<script>
+var p = document.getElementsByTagName("p");
+for(var i = 0; i < p.length; i ++ ){
+    if(p[i].className == "main") continue; 
+	// 如果class属性值为main，则跳过
+    p[i].style.display = "none";				// 隐藏元素
+}
+</script>
+
+
+
+</body>
+</html> 

@@ -1,0 +1,196 @@
+﻿<html>
+<head>
+<meta charset="utf-8" />
+<title>indexedDB使用实例</title>
+<link rel="stylesheet" href="indexeddb.css" />
+<script>
+//自己封装的操作indexedDB的帮助类 
+// 声明一个数据库操作的构造函数
+function LocalDB(dbName, tableName) {
+	this.dbName = dbName;
+	this.tableName = tableName;
+	this.db = null;
+}
+// 在原型链上注册open方法，完成打开数据库的操作
+LocalDB.prototype.open = function (callback) {
+	var _this = this;
+    // 执行打开数据库的动作
+	var request = window.indexedDB.open(_this.dbName);
+    // 打开成功后的回调
+	request.onsuccess = function (event) {
+        // 获取打开结果：数据库实例
+		_this.db = request.result;
+        // 如果调用方有回调函数的话，就执行回调函数
+        callback && callback();
+	};
+    // 第一次创建数据库时触发该事件
+	request.onupgradeneeded = function (event) {
+        // 获取数据库实例
+		var db = request.result;
+        // 检查是否存在指定的表
+		if (!db.objectStoreNames.contains(_this.tableName)) {
+            // 如果不存在，则创建，并指定一个自增的id作为查询依据
+			db.createObjectStore(_this.tableName, {
+				keyPath: "id",
+                autoIncrement: true
+			});
+		}
+	};
+}
+// 获取数据表的实例
+LocalDB.prototype.getStore = function () {
+	var transaction = this.db.transaction(this.tableName, 'readwrite');
+	var objStore = transaction.objectStore(this.tableName);
+	return objStore;
+}
+// 保存一条数据：支持添加和修改
+LocalDB.prototype.set = function (data, callback) {
+	var objStore = this.getStore();
+	var request = data.id ? objStore.put(data) : objStore.add(data);
+	request.onsuccess = function (event) {
+		callback && callback(event.target.result);
+	};
+}
+// 获取一条数据
+LocalDB.prototype.get = function (id, callback) {
+	var objStore = this.getStore();
+	var request = objStore.get(id);
+	request.onsuccess = function (event) {
+		callback && callback(event.target.result);
+	}
+}
+// 获取表中所有的数据
+LocalDB.prototype.getAll = function (callback) {
+	var objStore = this.getStore();
+    // 打开数据游标
+	var request = objStore.openCursor();
+	request.onsuccess = function (event) {
+		var cursor = event.target.result;				
+		if (cursor) {
+            // 如果游标存在，执行回调并传入当前数据行
+			callback && callback(cursor.value);
+            // 继续下一行数据
+			cursor.continue();
+		}
+	}
+}
+// 删除一条数据
+LocalDB.prototype.remove = function (id) {
+	var objStore = this.getStore();
+	objStore.delete(id);
+}
+</script>
+<style>
+
+.notes, textarea {
+    font-family: Verdana, 'Microsoft YaHei', sans-serif;
+    font-size: 16px;
+}
+
+.notes p {
+    margin: 0;
+}
+
+.notes>div {
+    float: left;
+    position: relative;
+    border: solid 2px greenyellow;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+
+.notes textarea {
+    border: none;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.notes .close {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: red;
+    color: white;
+    border-radius: 50%;
+}
+
+.notes>div.add {
+    border-color: lightgray;
+    text-align: center;
+    cursor: pointer;
+}
+
+.notes .ic_add {
+    font-size: 80px;
+    line-height: 80px;
+    padding-top: 40px;
+    font-weight: bold;
+    color: green;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<!--创建一个便签容器-->
+<div class="notes">
+	<!--添加按钮-->
+	<div class="add">
+		<p class="ic_add">+</p>
+		<p>添加便签</p>
+	</div>
+</div>
+<!--为了简化代码，基于jQuery开发-->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+// 预先定义每一个便签的HTML代码
+var divstr = '<div class="note"><a class="close">X</a><textarea></textarea></div>';
+// 实例化一个便签数据库、数据表
+var db = new LocalDB('db1', 'notes');
+// 打开数据库
+db.open(function(){
+	// 页面初始化时，获取所有已有便签
+	db.getAll(function(data){
+		var div = $(divstr);
+		div.data('id', data.id);
+		div.find('textarea').val(data.content);
+		// 将便签插入到添加按钮前边
+		div.insertBefore(add);
+	});
+});
+// 为添加按钮注册点击事件
+var add = $('.add').on('click', function(){
+	var div = $(divstr);
+	div.insertBefore(add);
+	// 添加一条空数据到数据库
+	db.set({content:''}, function(id){
+		// 将数据库生成的自增id赋值到便签上
+		div.data('id', id);
+	});
+});
+// 监听所有便签编辑域的焦点事件
+$('.notes').on('blur', 'textarea', function(){
+	var div = $(this).parent();
+	// 获取该便签的id和内容
+	var data = { id: div.data('id'), content: $(this).val() };
+	// 写入数据库
+	db.set(data);
+})
+// 监听所有关闭按钮的点击事件
+.on('click', '.close', function(){
+	if(confirm('确定删除此便签吗？')){
+		var div = $(this).parent();
+		// 删除这条便签数据
+		db.remove(div.data('id'));
+		// 删除便签DOM元素
+		div.remove();
+	}
+});
+</script>
+</body>
+</html>

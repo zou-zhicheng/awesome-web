@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例6】下面示例演示如何使用表达式创建对象。
+var o = typeof 56;	//返回数值56的类型
+console.log(
+    (new (	//根据多条件运算式返回值创建对象
+        (o == "string") ? String :
+        (o == "number") ? Number :
+        (o == "boolean") ? Boolean :
+        (o == "array") ? Array :
+        Object
+      )
+    ).toString()	//把创建的对象转换为字符串返回
+)
+
+//使用逻辑运算符，可以进一步的浓缩表达式，代码如下：
+console.log((new ((o == "string") ? String :(o == "number") ? Number :(o == "boolean") ? 
+Boolean :(o == "array") ? Array :Object)).toString())
+
+
+</script>
+
+
+</body>
+</html>

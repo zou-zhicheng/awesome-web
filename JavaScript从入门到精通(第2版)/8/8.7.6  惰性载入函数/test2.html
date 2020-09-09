@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+var addEvent = function(element, type, handle) {
+	//先检测浏览器，然后把合适的操作函数覆盖掉当前addEvent()
+    addEvent = element.addEventListener ? function(element, type, handle) {
+        element.addEventListener(type, handle, false);
+    } : function(element, type, handle) {
+        element.attachEvent("on" + type, handle);
+    };
+    //在第一次执行addEvent函数时，修改了addEvent函数之后，必须执行一次。
+    addEvent(element, type, handle);
+}
+
+
+
+
+
+addEvent(document, "mousemove", function(){
+	console.log("移动鼠标：" + (( this.n)?(++this.n ):(this.n = 1)));
+})
+addEvent(window, "resize", function(){
+	console.log("改变窗口大小：" + (( this.n)?(++this.n ):(this.n = 1)));
+})
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+console.log( Math.floor(2.5) );	//2
+console.log( Math.floor(-2.5) );	//-3
+console.log( Math.ceil(2.5) );	//3
+console.log( Math.ceil(-2.5) );	//-2
+console.log( Math.round(2.5) );	//3
+console.log( Math.round(-2.5) );	//-2
+console.log( Math.round(-2.6) );	//-3
+
+
+//【示例2】下面代码结合Math.floor()和Math.ceil()方法，设计一个数字取整的函数。
+var toInt = function( num ) {
+	var num = Number(num);
+	return num < 0 ? Math.ceil(num) : Math.floor(num);
+}
+
+console.log( toInt( 2.5 ) );	//2
+console.log( toInt( -2.5) );	//-2
+console.log( toInt( "a") );	//NaN
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

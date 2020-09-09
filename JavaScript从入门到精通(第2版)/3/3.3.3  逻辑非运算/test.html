@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例1】下面列举特殊操作数的逻辑非运算值。
+console.log( ! {});	//如果操作数是对象，则返回false
+console.log( ! 0);	//如果操作数是0，则返回true
+console.log( ! (n = 5));	//如果操作数是非0的任何数字，则返回false
+console.log( ! null);	//如果操作数是null，则返回true
+console.log( ! NaN);	//如果操作数是NaN，则返回true
+console.log( ! Infinity);	//如果操作数是Infinity，则返回false
+console.log( ! ( - Infinity)); 	//如果操作数是-Infinity，则返回false
+console.log( ! undefined); 	//如果操作数是undefined，则返回true 
+
+//【示例2】如果对于操作数执行两个逻辑非运算操作，就相当于把操作数转换为布尔值。
+console.log(!0);	//返回true
+console.log(!!0);	//返回false 
+
+
+</script>
+
+
+
+</body>
+</html>

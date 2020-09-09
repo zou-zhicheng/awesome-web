@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//	如果两个操作数都是数字，或者一个是数值，另一个可以被转换成数字，则将根据数字大小进行比较。
+console.log(4>3);	//返回true，直接利用数值大小进行比较
+console.log("4">Infinity);	//返回false，无穷大比任何数字都大
+
+//	如果两个操作数都是字符串，则执行字符串比较。
+console.log("4">"3");	//返回true，根据字符编码表的编号值比较
+console.log("a">"b");	//返回false，a编码为61，b编码为62
+console.log("ab">"cb");	//返回false，c编码为63
+console.log("abd">"abc");	//返回true，d编码为64，
+	//如果前面相同，则比较下个字符，依此类推
+
+//	如果一个操作数为NaN，或者被转换为NaN，则始终返回false。
+console.log("a">"3");	//返回true，字符a编码为61，字符3编码为33
+console.log("a">3);	//返回false，字符a被强制转换为NaN
+
+
+</script>
+
+
+
+</body>
+</html>

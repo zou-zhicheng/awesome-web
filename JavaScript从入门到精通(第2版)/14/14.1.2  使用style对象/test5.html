@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+window.onload = function(){
+	    var box = document.getElementById("box");			//获取盒子的引用
+	    box.onmouseover = function(){						//定义鼠标经过时的事件处理函数
+	        box.style.setProperty("background-color", "blue", "");//设置背景色为蓝色
+	        box.style.setProperty("border", "solid 50px red", "");	//设置边框为50像素的红色实线
+	    }
+	    box.onclick = function(){							//定义鼠标单击时的事件处理函数
+	        box .innerHTML = (box.style.item(0) + ":" + box.style.getPropertyValue("width"));
+													//显示盒子的宽度
+	        box .innerHTML = box .innerHTML + "<br>" +  (box.style.item(1) + ":" + box.style.getPropertyValue("height"));						//显示盒子的高度
+	    }
+	    box.onmouseout = function(){						//定义鼠标移出时的事件处理函数
+	        box.style.setProperty("background-color", "red", "");	//设置背景色为红色
+	        box.style.setProperty("border", "solid 50px blue", "");//设置边框为50像素的蓝色实线
+	    }
+}
+</script> 
+</head>
+<body>
+<div id="box" style="width:100px; height:100px; background-color:red; border:solid 50px blue;"></div>
+</body>
+</html> 

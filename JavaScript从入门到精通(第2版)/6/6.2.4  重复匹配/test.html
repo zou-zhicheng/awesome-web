@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+var s = "ggle gogle google gooogle goooogle gooooogle goooooogle gooooooogle goooooooogle"
+//	如果仅匹配单词ggle和gogle，可以设计：
+var r = /go?gle/g;	//匹配前一项字符o0次或1次
+var a = s.match(r);	//返回数组["ggle", "gogle"]
+console.log(a);
+
+//等效于：
+var r = /go{0,1}gle/g;	//匹配前一项字符o0次或1次
+var a = s.match(r);	//返回数组["ggle", "gogle"]
+console.log(a);
+
+//	如果匹配第4个单词gooogle，可以设计：
+var r = /go{3}gle/g;	//匹配前一项字符o重复显示3次
+var a = s.match(r);	//返回数组["gooogle"]
+console.log(a);
+
+//等效于：
+var r = /gooogle/g;	//匹配字符gooogle
+var a = s.match(r);	//返回数组["gooogle"]
+console.log(a);
+
+//	如果匹配第4个到第6个之间的单词，可以设计：
+var r = /go{3,5}gle/g;	//匹配第4个到第6个之间的单词
+var a = s.match(r);	//返回数组["gooogle", "goooogle", "gooooogle"]
+console.log(a);
+
+//	如果匹配所有单词，可以设计：
+var r = /go*gle/g;	//匹配所有的单词
+var a = s.match(r); 	//返回数组["ggle", "gogle", "google", "gooogle", "goooogle", "gooooogle", "goooooogle", "goooooooogle", "gooooooooogle"]
+console.log(a);
+
+//等效于：
+var r = /go{0,}gle/g;	//匹配所有的单词
+var a = s.match(r); 	//返回数组["ggle", "gogle", "google", "gooogle", "goooogle", "gooooogle", "goooooogle", "goooooooogle", "gooooooooogle"]
+console.log(a);
+
+//	如果匹配包含字符＂o＂的所有单词，可以设计：
+var r = /go+gle/g;	//匹配的单词中字符＂o＂至少出现1次
+var a = s.match(r); 	//返回数组["gogle", "google", "gooogle", "goooogle", "gooooogle", "goooooogle", "goooooooogle", "gooooooooogle"]
+console.log(a);
+
+//等效于：
+var r = /go{1,}gle/g;	//匹配的单词中字符＂o＂至少出现1次
+var a = s.match(r); 	//返回数组["gogle", "google", "gooogle", "goooogle", "gooooogle", "goooooogle", "goooooooogle", "gooooooooogle"]
+console.log(a);
+
+
+
+</script>
+
+</body>
+</html>

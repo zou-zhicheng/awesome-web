@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+
+//基类Base
+function Base( x ){	//构造函数Base
+    this.get = function(){	//私有方法，获取参数值
+        return x;
+    }
+}
+Base.prototype.has = function(){	//原型方法，判断get()方法返回值是否为0
+    return ! ( this.get() == 0 );
+}
+// 父类Parent
+function Parent(){	//构造函数Parent
+    var a = [];	//私有数组a
+    a = Array.apply( a, arguments );	//把参数转换为数组
+    Base.call( this, a.length );	//调用Base类，并把参数数组长度传递给它
+    this.add = function(){	//私有方法，把参数数组补加到数组a中并返回
+        return a.push.apply( a, arguments ); 
+    }
+    this.geta = function(){	//私有方法，返回数组a
+        return a; 
+    }
+}
+Parent.prototype = new Base();	//设置Parent原型为Base的实例，建立原型链
+Parent.prototype.constructor = Parent;	//恢复Parent类原型对象的构造器
+Parent.prototype.str = function(){	//原型方法，把数组转换为字符串并返回
+    return this.geta().toString();
+}
+// 子类Sub
+function Sub(){	//构造函数
+    Parent.apply( this, arguments );	//调用Parent类，并把参数数组长度传递给它
+    this.sort = function(){	//私有方法，以字符顺序对数组进行排序
+        var a = this.geta();	//获取数组的值
+        a.sort.apply( a, arguments ); 
+	//调用数组排序方法sort()对数组进行排序
+    }
+}
+Sub.prototype = new Parent();	//设置Sub原型为Parent实例，建立原型链
+Sub.prototype.constructor = Sub;	//恢复Sub类原型对象的构造器
+// 父类Parent的实例继承类Base的成员
+var parent  = new Parent( 1, 2, 3, 4 );	//实例化Parent类
+console.log( parent.get() );	//返回4，调用Base类的方法get()
+console.log( parent.has() );	//返回true，调用Base类的方法has()
+// 子类Sub的实例继承类Parent和类Base的成员
+var sub  = new Sub( 30, 10, 20, 40 );	//实例化Sub类
+sub.add( 6, 5 );	//调用Parent类方法add()，补加数组
+console.log( sub.geta() )	//返回数组30,10 ,20,40 ,6,5
+sub.sort()	//排序数组
+console.log( sub.geta() )	//返回数组10,20 ,30,40 ,5,6
+console.log( sub.get() )	//返回4，调用Base类的方法get()
+console.log( sub.has() );	//返回true，调用Base类的方法has()
+console.log( sub.str() );	//返回10,20 ,30,40 ,5,6
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

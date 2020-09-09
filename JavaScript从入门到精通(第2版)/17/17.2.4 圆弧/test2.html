@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+
+
+<canvas id="canvas" width="300" height="200" style="border:solid 1px #999;"></canvas>
+
+
+<script>
+draw();
+function draw() {
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	ctx.beginPath(); 
+	ctx.moveTo(20,20); 	// 设置起点
+	ctx.lineTo(100,20);	// 绘制水平直线
+	ctx.arcTo(150,20,150,70,50);	// 绘制曲线
+	ctx.lineTo(150,120);         	// 绘制垂直直线
+	ctx.stroke();                	// 开始绘制
+}
+
+</script>
+
+
+
+</body>
+</html>

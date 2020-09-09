@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+function Book(title,pages){
+    this.title = title;
+    this.pages = pages; 
+    if(typeof Book.isLock == "undefined"){	//创建原型方法的锁，如果不存在则创建
+        Book.prototype.what = function(){
+            console.log(this.title +this.pages);
+        };
+        Book.isLock = true;	//创建原型方法后，把锁锁上，避免重复创建
+    }
+}
+var book1 = new Book("JavaScript程序设计",160);
+var book2 = new Book("C程序设计",240);
+console.log(book1.title);
+console.log(book2.title);
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

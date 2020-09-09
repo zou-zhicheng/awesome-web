@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+
+Array.prototype.each = function( f ){	//数组迭代器，扩展Array原型方法
+    try{	//异常处理，避免不可预测的错误
+        this.i || ( this.i = 0 );	//初始化迭代计数器
+        if( this.length > 0 && f.constructor == Function ){ 
+	//如果数组长度大于0，参数为函数
+            while( this.i < this.length ){	//遍历数组
+                var e = this[this.i];	//获取当前元素
+                if( e && e.constructor == Array ){ //如果元素存在，且为数组
+                    e.each( f );	//递归调用迭代器
+                }else{	//否则，在元素上调用参数函数，并传递值
+                    f.apply( e, [e] );
+                }
+                this.i ++ ;	//递加计数器
+            }
+            this.i = null;	//如果遍历完毕，则清空计数器
+        }
+    }
+    catch( w ){ }	//捕获异常，暂不处理
+    return this	//返回当前数组
+}
+
+
+Array.prototype._filter = Array.prototype.filter || ( Array.prototype.
+filter = function(){	//过滤数组元素方法
+    var b = arguments, a = [];
+    this.each( function(){	//遍历数组
+        if( b[0].call( b[1], this ) )	//如果执行参数函数时，返回值为true
+        a.push( this );	//则把该元素存储到临时数组中
+    });
+    return a;	//最后返回这个临时数组元素
+});
+Object.prototype.filter = Array.prototype._filter;
+
+var a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+var f = function( x ){
+    if( x > 4 ) return true;
+}
+
+var b = a.filter( f );	//调用数组元素过滤方法
+console.log( b );	//返回[5, 6, 7, 8, 9]
+
+
+
+
+</script>
+
+
+</body>
+</html>

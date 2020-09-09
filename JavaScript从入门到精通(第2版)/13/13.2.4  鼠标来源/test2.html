@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<div>div元素</div>
+<script>
+var div = document.getElementsByTagName("div")[0];
+div.onmouseover = function(e){
+    var e = e || window.event;
+    var o = e.relatedTarget || e.fromElement; 
+	// 标准化事件属性，获取与当前事件相关的节点
+    alert(o.tagName);
+}
+div.onmouseout = function(e){
+    var e = e || window.event;
+    var o = e.relatedTarget || e.toElement; 
+	// 标准化事件属性，获取与当前事件相关的节点
+    alert(o.tagName);
+}
+</script> 
+
+
+</body>
+</html> 

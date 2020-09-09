@@ -1,0 +1,34 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<h1>left.htm</h1>
+<dl>
+	<dt>在最高层窗口中访问本框架的方式：</dt>
+	<dd>window.frames[0]</dd>
+    <dd>window.frames["left"]</dd>
+	<dd>top.frames[0]</dd>
+    <dd>top.frames["left"]</dd>
+	<dd>frames[0]</dd>
+    <dd>frames["left"]</dd>    
+</dl>
+<p>单击本页面，让第3个框架窗口（right)背景色为红色</p>
+<script type="text/javascript"> 
+
+window.onload = function(){
+    document.body.onclick = f;
+}
+var f = function(){
+     top.frames[2].document.body.style.backgroundColor = "red";
+}
+
+var name = "left.htm"
+function left(){
+    alert(name);
+}
+
+</script>
+</body>
+</html>

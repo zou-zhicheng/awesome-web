@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//1．escape()和unescape()方法
+
+//【示例1】下面代码使用escape()方法编码字符串。
+var s = "JavaScript中国";
+s = escape(s);
+console.log(s); 	// 返回字符串"JavaScript%u4E2D%u56FD"
+
+//【示例2】下面代码使用unescape()方法解码被escape()方法编码的字符串。
+var s = "JavaScript中国";
+s = escape(s); 	// Unicode编码
+console.log(s); 	// 返回字符串"JavaScript%u4E2D%u56FD"
+s = unescape(s); 	// Unicode解码
+console.log(s); 	// 返回字符串"JavaScript中国"
+
+//【示例3】这种被解码的代码是不能够直接运行的，读者可以使用eval()方法来执行它。
+var s = escape('console.log("JavaScript中国");'); 	// 编码脚本
+var s = unescape( s); 	// 解码脚本
+eval(s); 	// 执行被解码的脚本
+
+//2．encodeURI()和decodeURI()方法
+
+//【示例4】encodeURI()方法能够把URI字符串进行转义处理。
+var s = "JavaScript中国";
+s = encodeURI(s);
+console.log(s);  //返回字符串"JavaScript%E4%B8%AD%E5%9B%BD"
+
+//【示例5】下面代码演示了如何对URL字符串进行编码和解码操作。
+var s = "JavaScript中国";
+s = encodeURI(s); 	// URI编码
+console.log(s); // 返回字符串"JavaScript%E4%B8%AD%E5%9B%BD"
+s = decodeURI(s); 	// URI解码
+console.log(s); 	// 返回字符串" JavaScript中国"
+
+//3．encodeURIComponent()和decodeURIComponent()
+
+//【示例6】下面代码比较URL字符串被encodeURIComponent()方法编码前后的比较。
+var s = "http://www.mysite.cn/navi/search.asp?keyword=URI";
+a = encodeURI(s);
+console.log(a);
+b = encodeURIComponent(s);
+console.log(b);
+
+//使用decodeURIComponent()方法可以对encodeURIComponent()方法编码的结果进行解码。
+var s = "http://www.mysite.cn/navi/search.asp?keyword=URI";
+b = encodeURIComponent(s);
+b = decodeURIComponent(b)
+console.log(b);
+
+</script>
+
+</body>
+</html>

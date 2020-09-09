@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<script>
+document.addEventListener("fullscreenchange", function () {    
+    fullscreenState.innerHTML =(document.fullscreen) ? "全屏显示" : "非全屏显示";
+    btnFullScreen.value=(document.fullscreen) ? "页面非全屏显示": "页面全屏显示";
+}, false);
+document.addEventListener("mozfullscreenchange", function () {
+    fullscreenState.innerHTML =(document.mozFullScreen) ? "全屏显示" : "非全屏显示";
+    btnFullScreen.value=(document.mozFullScreen) ? "页面非全屏显示": "页面全屏显示";
+}, false);
+document.addEventListener("webkitfullscreenchange", function () {
+    fullscreenState.innerHTML =(document.webkitIsFullScreen) ? "全屏显示" : "非全屏显示";
+    btnFullScreen.value=(document.webkitIsFullScreen) ? "页面非全屏显示": "页面全屏显示";
+}, false);
+
+</script>
+</body>
+</html> 

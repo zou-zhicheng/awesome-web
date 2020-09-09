@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script> 
+
+// 获取鼠标指针在元素内的位置
+// 参数：e表示当前事件对象，o表示当前元素
+// 返回值：返回鼠标相对元素的坐标对象，其中属性x表示x轴偏移距离，属性y表示y轴偏移距离
+function getME(e, o){
+    var e = e || window.event;
+    return {
+        x : e.offsetX || (e.layerX - o.offsetLeft),
+        y : e.offsetY || (e.layerY - o.offsetTop)
+    }
+}
+
+
+
+</script>
+</head>
+<body>
+
+<div id="box" style="width:200px;height:200px;border:solid 1px red;float:right;"></div>
+<textarea id="t" cols="15" rows="4" ></textarea>
+
+<script  type="text/javascript">
+
+var t = document.getElementById("t");
+var b = document.getElementById("box");
+
+b.onmousemove = function(e){
+    var m = getME(e);
+    t.value ="mouseX = " + m.x  + "\n" + "mouseY = " + m.y
+}
+</script>
+
+
+
+</body>
+

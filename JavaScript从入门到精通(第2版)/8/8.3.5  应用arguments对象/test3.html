@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+//【示例3】使用arguments可以模拟重载。实现方法：通过arguments.length属性值判断实际参数的个数和类型，决定执行不同的逻辑。
+function sayHello() {
+    switch (arguments.length) {
+        case 0:
+            return "Hello";
+        case 1:
+            return "Hello, " + arguments[0];
+        case 2:
+            return (arguments[1] == "cn" ? "你好，" : "Hello, ") + arguments[0];
+    };
+}
+console.log( sayHello() );	//"Hello"
+console.log( sayHello("Alex") );	// "Hello, Alex"
+console.log( sayHello("Alex", "cn") );	//" 你好，Alex"
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<input type="file" id="file" multiple>
+<input type="button" onclick="saveFile();" value="保存文件"/>
+<script>
+window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange|| window.webkitIDBKeyRange || window.msIDBKeyRange;
+window.IDBCursor = window.IDBCursor || window.webkitIDBCursor || window.msIDBCursor;	
+var dbName = 'test'; //数据库名
+var dbVersion = 20170202; //版本号
+var idb; 
+var dbConnect = indexedDB.open(dbName, dbVersion);
+dbConnect.onsuccess = function(e){ 
+    idb = e.target.result;
+}
+dbConnect.onerror = function(){
+    alert('数据库连接失败');
+};
+dbConnect.onupgradeneeded = function(e){
+    idb = e.target.result; 
+    idb.createObjectStore('files');
+};
+function saveFile()
+{
+    var file = document.getElementById("file").files[0];	 //得到用户选择的第一个文件
+    var tx = idb.transaction(['files'],"readwrite"); //开启事务
+    var store = tx.objectStore('files');
+    var req = store.put(file,'blob');
+    req.onsuccess = function(e){
+        alert("文件保存成功");
+    };
+    req.onerror = function(e){
+        alert("文件保存失败");
+    };
+}
+
+</script>
+</body>
+</html> 

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+</script>
+</head>
+<body>
+<script>
+
+
+var p = document.createElement("p");		// 创建一个p元素
+var h1 = document.createElement("h1");		// 创建一个h1元素
+var txt = document.createTextNode("Hello World");// 创建一个文本节点
+var hello = txt.cloneNode(false); 			// 复制创建的文本节点
+p.appendChild(txt); 			// 把复制的文本节点增加到段落节点中
+h1.appendChild(p); 				// 把段落节点增加到标题节点中
+document.body.appendChild(h1); 	// 把标题节点增加到body节点中
+
+
+</script>
+</body>
+</html> 

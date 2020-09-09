@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+ 
+
+// 获取指定元素的样式属性值
+// 参数：e表示具体的元素，n表示要获取元素的脚本样式的属性名，如"width"、"borderColor"
+// 返回值：返回该元素e的样式属性n的值
+function getStyle(e,n){
+    if(e.style[n]){ 
+	// 如果在Style对象中存在，说明已显式定义，则返回这个值
+        return e.style[n];
+    }
+    else if(e.currentStyle){ 
+	// 否则，如果是IE浏览器，则利用它的私有方法读取当前值
+        return e.currentStyle[n];
+    }
+    // 如果是支持DOM标准的浏览器，则利用DOM定义的方法读取样式属性值
+    else if(document.defaultView && document.defaultView.getComputedStyle){
+        n = n.replace(/([A-Z])/g,"-$1");	// 转换参数的属性名
+        n = n.toLowerCase();
+        var s = document.defaultView.getComputedStyle(e,null); 
+		// 获取当前元素的样式属性对象
+        if(s) 							// 如果当前元素的样式属性对象存在
+            return s.getPropertyValue(n); 	// 则获取属性值
+    }
+    else									// 如果都不支持，则返回null
+        return null;
+}
+
+
+// 设置或切换元素的显示或隐藏
+// 参数：e表示要显示或隐藏的元素，b是一个布尔值，当为ture时，将显示元素e；当为false时，将隐藏元素e。如果省略参数b，则根据元素e的显示状态，进行显示或隐藏切换
+// 返回值：无
+function display(e, b){
+    // 监测第二个参数的类型。如果该参数存在且不为布尔值，则抛出异常
+    if(b && (typeof b != "boolean")) throw new Error("第二个参数应该是布尔值!");
+    var c = getStyle(e, "display");		// 获取当前元素的显示属性值
+    (c != "none") && (e._display = c);
+ 	// 记录元素的显示性质，并存储到元素的属性中
+    e._display = e._display || "";
+	// 如果没有定义显示性质，则赋值为空字符串
+    if(b || (c == "none") ){ 		// 当第二个参数值为true，或者元素隐藏时
+        e.style.display = e._display; 
+	// 则将调用元素的_display属性值恢复元素或显示元素
+    }
+    else{
+        e.style.display = "none";	// 否则隐藏元素
+    }
+}
+
+</script>
+</head>
+<body>
+
+
+<p style="float:right; border:solid 1px red; width:100px;
+height:100px;">p1</p>
+<script>
+var p = document.getElementsByTagName("p")[0];
+display(p); 						// 切换隐藏
+display(p); 						// 切换显示
+display(p); 						// 切换隐藏
+</script>
+
+
+
+</body>
+</html> 

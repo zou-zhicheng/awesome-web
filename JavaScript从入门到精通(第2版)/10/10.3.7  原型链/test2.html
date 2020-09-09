@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例2】在JavaScript中，一切都是对象，函数是第一型。Function和Object都是函数的实例。构造函数的父原型指向Function的原型，Function.prototype的原型是Object的原型，Object的原型也指向Function的原型，Object.prototype是所有原型的顶层。
+Function.prototype.a = function(){	//Function原型方法
+    console.log( "Function" );
+}
+Object.prototype.a = function(){	//Object原型方法
+    console.log( "Object" );
+}
+function f(){	//构造函数f
+    this.a = "a";
+}
+f.prototype = {	//构造函数f的原型方法
+    w : function(){
+        console.log( "w" );
+    }
+}
+console.log( f instanceof Function );	//返回true，说明f是Function的实例
+console.log( f.prototype instanceof Object );	//返回true，说明f的原型也是对象
+console.log( Function instanceof Object );	//返回true，说明Function是Object的实例
+console.log( Function.prototype instanceof Object );//true，说明Function原型是Object的实例
+console.log( Object instanceof Function );	//返回true，说明Object是Function的实例
+console.log( Object.prototype instanceof Function );//false，说明Object.prototype是原型顶层
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+var n = "123" ;
+console.log( typeof new String(n) );		//返回object
+console.log( typeof new Number(n) );		//返回object
+console.log( typeof new Boolean(n) );		//返回object
+console.log( Object.prototype.toString.call( new String(n) ) );		//返回[object String] 
+console.log( Object.prototype.toString.call( new Number(n) ) );		//返回[object Number] 
+console.log( Object.prototype.toString.call( new Boolean(n) ) );		//返回 [object Boolean]
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

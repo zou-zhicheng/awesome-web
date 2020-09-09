@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+// 强健的数据类型检测工具函数
+// 参数：obj表示待检测的值
+// 返回值：返回字符串表示，格式与typeof运算符相同，
+// 如"undefined"、"number"、"boolean"、"string"、"function"、
+// "regexp"、"array"、"date"、"error"、"object"或"null"
+function typeOf(obj){
+    var _toString = Object.prototype.toString; //引用Object的原型方法toString()	
+	//列举所有可能的类型字符串表示，模仿typeof运算符返回值，通过映射，统一字符串表示的值
+    var _type ={
+        "undefined" : "undefined",
+        "number" : "number",
+        "boolean" : "boolean",
+        "string" : "string",
+        "[object Function]" : "function",
+        "[object RegExp]" : "regexp",
+        "[object Array]" : "array",
+        "[object Date]" : "date",
+        "[object Error]" : "error"
+		//... 在这里可以继续展开要检测的类型
+    }
+    return _type[typeof obj] || _type[_toString.call(obj)] || (obj ? "object" : 
+"null");	
+	//通过把值转换为字符串表示，然后匹配_type对象中的键值对，最后处理特殊值null
+}
+
+
+
+ var _toString = Object.prototype.toString;
+console.log( _toString.call(this) );	//返回字符串"function"
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html> 
+<head>
+<meta charset="utf-8">
+<title></title>
+
+</head>
+<body> 
+<form id="form1" enctype="multipart/form-data" method="post" action="upload.php">
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="button" onClick="uploadFile()" value="上传">
+</form>
+<script type="text/javascript">  
+var formData = new FormData();
+for (var i = 0; i < files.length;i++) {
+　　formData.append('files[]', files[i]);
+}
+xhr.send(formData); 
+
+</script>
+</body>
+</html>

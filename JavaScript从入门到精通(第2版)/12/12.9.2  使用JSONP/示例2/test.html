@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>JSONP异步通信协议</title>
+<script type="text/javascript">
+function callback(info)
+{
+    var temp = "";
+    for(var i in info)
+    {
+        if(typeof info[i] != "object")
+        {
+            temp += i + " = \"" + info[i] + "\"<br />";
+        }
+        else if( (typeof info[i] == "object"))
+        {
+            temp += "<br />" + i + " = " + " {<br />";
+            var o = info[i];
+            for(var j in o )
+            {
+                temp += "&nbsp;&nbsp;&nbsp;&nbsp;" + j + " = \"" + o[j] + "\"<br />";
+            }
+            temp += "}";
+        }
+    }
+    var div  = document.getElementById("test");
+    div.innerHTML = temp;
+
+}
+function request(url)
+{
+    if( ! document.script)
+    {
+        document.script = document.createElement("script");
+        document.script.setAttribute("type", "text/javascript");
+        document.script.setAttribute("src", url);
+        document.body.appendChild(document.script);
+    }
+    else
+    {
+        document.script.setAttribute("src", url);
+    }
+
+}
+
+window.onload = function()
+{
+    var b = document.getElementsByTagName("input")[0];
+    b.onclick = function()
+    {
+        var url = "server.php?jsonp=callback&id=1"
+        request(url);
+    }
+}
+
+
+</script>
+</head>
+<body>
+<h1>客户端信息提交页面</h1>
+<input name="submit" type="button" id="submit" value="向服务器发出请求" />
+<div id="test"></div>
+</body>
+</html> 

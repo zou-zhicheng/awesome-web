@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+
+//this用法灵活，其包含的值也是变化多端。例如，下面示例使用call方法不断改变函数内this指代对象。
+
+var x = "window";	//定义全局变量x，初始化为字符串"window"
+function a(){	//定义构造函数a
+    this.x = "a";	//定义私有属性x，初始化为字符a
+}
+function b(){	//定义构造函数b
+    this.x = "b";	//定义私有属性x，初始化为字符b
+}
+function c(){	//定义普通函数，提示变量x的值
+    console.log( x );
+}
+function f(){	//定义普通函数，提示this包含的x的值
+    console.log( this.x );
+}
+f();	//返回字符串"window"，this指向Window对象
+f.call( window ); 	//返回字符串"window"，this指向Window对象
+f.call( new a() ); 	//返回字符a，this指向函数a的实例
+f.call( new b() ); 	//返回字符b，this指向函数b的实例
+f.call( c ); 	//返回undefined，this指向函数c对象
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+
+
+<canvas id="canvas" width="400" height="200" style="border:solid 1px #999;"></canvas>
+
+<script>
+draw();
+function draw() {
+	var ctx = document.getElementById('canvas').getContext('2d'); 
+	//在位置 y=100 绘制蓝色线条
+	ctx.strokeStyle="blue";
+	ctx.moveTo(5,100);
+	ctx.lineTo(395,100);
+	ctx.stroke();
+	
+	ctx.font="20px Arial"
+	
+	//在 y=100 以不同的 textBaseline 值放置每个单词
+	ctx.textBaseline="top";
+	ctx.fillText("Top",5,100);
+	ctx.textBaseline="bottom";
+	ctx.fillText("Bottom",50,100);
+	ctx.textBaseline="middle";
+	ctx.fillText("Middle",120,100);
+	ctx.textBaseline="alphabetic";
+	ctx.fillText("Alphabetic",190,100);
+	ctx.textBaseline="hanging";
+	ctx.fillText("Hanging",290,100);
+}
+
+</script>
+
+
+
+</body>
+</html>

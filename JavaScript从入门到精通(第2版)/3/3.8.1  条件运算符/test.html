@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+
+//【示例】定义变量a，然后检测a是否被赋值，如果赋值则使用该值，否则设置默认值。
+var a = null;	//定义变量a
+typeof a != "undefined" ?  a = a  :  a = 0 ;	//检测变量a是否赋值，否则设置默认值
+console.log(a);	//显示变量a的值，返回null
+
+//条件运算符可以转换为条件结构：
+var a;
+if( typeof a != "undefined" )	//赋值
+    a=a;
+else	//没有赋值
+    a = 0;
+console.log(a);
+
+
+//也可以转换为逻辑表达式：
+var a;
+(typeof a != "undefined") && (a = a) || (a = 0);	//逻辑表达式
+console.log(a);
+
+
+
+</script>
+
+
+
+</body>
+</html>

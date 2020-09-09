@@ -1,0 +1,7 @@
+.form input:valid{
+    background:url("right.jpg") no-repeat 224px 4px;
+}
+ 
+.form input:focus:invalid{
+    background:url("error.jpg") no-repeat 224px 4px;
+};

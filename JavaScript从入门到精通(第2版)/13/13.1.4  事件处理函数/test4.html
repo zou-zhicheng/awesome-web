@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+function btn1(){					//事件处理函数，函数中的this表示调用该函数的当前对象
+    this.style.background = "red";
+}
+function btn2(event){ 					//事件处理函数
+    event = event || window.event; 		//获取事件对象Event
+    var src = event.srcElement ? event.srcElement : event.target; //获取当前事件源
+    src.style.background = "red";			//改变当前事件源的背景色
+}
+</script>
+</head>
+<body>
+<button id="btn1" onclick="btn1();">按 钮 1</button>
+<button id="btn2" onclick="btn2(event);">按 钮 2</button>
+</body>
+</html>  

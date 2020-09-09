@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//	在历史记录中后退
+window.history.back();1
+
+
+//	在历史记录中前进
+window.history.forward();1
+
+
+//	移动到指定的历史记录点
+window.history.go(-1);	//相当于调用back()
+window.history.go(1);	//相当于调用forward()
+
+var num = window.history.length;
+
+//	添加和修改历史记录条目
+//【示例】假设http://mysite.com/foo.html页面将执行下面JavaScript代码。
+var stateObj = { foo: "bar" };
+history.pushState(stateObj, "page 2", "bar.html");
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

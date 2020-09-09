@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+//1．截取指定长度字符串
+
+//【示例1】在下面示例中使用lastIndexOf()获取字符串的最后一个点号的下标位置，然后从其后的位置开始截取4个字符：
+var s = "http://www.mysite.cn/index.html";
+var b = s.substr( s.lastIndexOf( "." )+1, 4 ); // 截取最后一个点号后4个字符
+console.log( b ); 	// 返回子字符串"html"
+
+var b = s.substr( s.lastIndexOf( "." )+1 );
+console.log( b ); 
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

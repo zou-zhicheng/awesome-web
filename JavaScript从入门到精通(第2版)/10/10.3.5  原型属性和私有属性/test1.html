@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+//【示例1】在下面示例中，演示如何定义一个构造函数，并为实例对象定义私有属性。
+function f(){	//声明一个构造类型
+    this.a = 1;	//为构造类型声明一个私有属性
+    this.b = function(){	//为构造类型声明一个私有方法
+        return this.a;
+    };
+}
+var e =new f();	//实例化构造类型
+console.log(e.a);	//调用实例对象的属性a，返回1
+console.log(e.b());	//调用实例对象的方法b，提示1
+
+e.a = 2;
+console.log(e.a);	//2
+console.log(e.b()); //2
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

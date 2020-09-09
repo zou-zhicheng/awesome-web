@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+
+
+<canvas id="canvas" width="300" height="200" style="border:solid 1px #999;"></canvas>
+
+<script>
+draw();
+function draw() {
+	var canvas = document.getElementById('canvas'); 
+	var ctx = canvas.getContext('2d'); 
+	var image = new Image(); 
+	image.src = "images/1.png"; 
+	image.onload = function(){  
+		//平铺比例
+		var scale=5
+		//缩小后图像宽度
+		var n1=image.width/scale;
+	   //缩小后图像高度
+		var n2=image.height/scale;
+	   //平铺横向个数
+		var n3=canvas.width/n1;
+	   //平铺纵向个数
+		var n4=canvas.height/n2;
+		for(var i=0;i<n3;i++)
+			for(var j=0;j<n4;j++)
+				ctx.drawImage(image,i*n1,j*n2,n1,n2);
+	}; 
+}
+
+</script>
+
+
+
+</body>
+</html>

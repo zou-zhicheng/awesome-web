@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+//为Function增加method原型方法
+Function.prototype.method =  typeof Function.prototype.method === "function" ?
+    Function.prototype.method : 	//先检测是否已经存在该方法，否则定义函数
+    function (name, func) {
+        if(!this.prototype[name]){	//检测当前类型中是否存在指定名称的原型
+            this.prototype[name] = func;	//绑定原型方法
+        }
+        return this;	//返回类型
+    };
+String.method('toHTML', function() {	//为String增加toHTML原型方法
+    var entity = {	//过滤的转义字符实体
+        quot : '"',
+        lt : '<',
+        gt : '>'
+    };
+    return function() {	//返回方法的函数体
+        return this.replace(/&([^&;]+);/g, function(a, b) {	//匹配字符串中HTML转义字符
+            var r = entity[b];	//映射转义字符实体
+            return typeof r === 'string' ? r : a;	//替换并返回
+        });
+    };
+}());	//生成闭包体
+
+
+document.writeln('&lt;&quot;&gt;'.toHTML());	//<">
+console.log('&lt;&quot;&gt;' );	//
+console.log('&lt;&quot;&gt;'.toHTML());	//
+
+
+</script>
+
+
+
+
+</body>
+</html>

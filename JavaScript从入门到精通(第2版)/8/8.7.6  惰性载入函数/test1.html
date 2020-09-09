@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+var addEvent = function(element, type, handle) {
+	if(element.addEventListener){
+		element.addEventListener(type, handle, false);
+	}else{
+		element.attachEvent("on" + type, handle);
+	}
+}
+
+addEvent(document, "mousemove", function(){
+	console.log("移动鼠标：" + (( this.n)?(++this.n ):(this.n = 1)));
+})
+addEvent(window, "resize", function(){
+	console.log("改变窗口大小：" + (( this.n)?(++this.n ):(this.n = 1)));
+})
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

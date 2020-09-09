@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+</script>
+<style type="text/css">
+div {
+    border:solid 1px red;
+    margin:6px;
+    padding:6px;
+}
+h2 { margin:6px; padding:0; font-size:16px;}
+
+</style>
+</head>
+<body>
+
+
+<div id="box1"><h2>insertAdjacentHTML(&quot;beforebegin&quot;, &quot;&lt;p&gt;beforebegin&lt;/p&gt;&quot;)</h2>
+</div>
+<div id="box2"><h2>insertAdjacentHTML(&quot;afterbegin&quot;, &quot;&lt;p&gt;afterbegin&lt;/p&gt;&quot;)</h2>
+</div>
+<div id="box3"><h2>insertAdjacentHTML(&quot;beforeend&quot;, &quot;&lt;p&gt;beforeend&lt;/p&gt;&quot;)</h2>
+</div>
+<div id="box4"><h2>insertAdjacentHTML(&quot;afterend&quot;, &quot;&lt;p&gt;afterend&lt;/p&gt;&quot;)</h2>
+</div>
+
+<script>
+
+document.getElementById("box1").insertAdjacentHTML("beforebegin", "<p>beforebegin</p>");
+document.getElementById("box2").insertAdjacentHTML("afterbegin", "<p>afterbegin</p>");
+document.getElementById("box3").insertAdjacentHTML("beforeend", "<p>beforeend</p>");
+document.getElementById("box4").insertAdjacentHTML("afterend", "<p>afterend</p>");
+
+
+</script>
+
+
+
+
+</body>
+</html> 

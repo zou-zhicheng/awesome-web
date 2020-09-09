@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+<form id="myform"  method="post" action="#">
+	<input type="text" size="25" maxlength="50" value="123456">
+</form>
+
+
+<script>
+
+
+var getClipboardText = function(event){
+	var clipboardData =  (event.clipboardData || window.clipboardData);
+	return clipboardData.getData("text");
+}
+var  setClipboardText = function(event, value){
+	if (event.clipboardData){
+		event.clipboardData.setData("text/plain", value);
+	} else if (window.clipboardData){
+		window.clipboardData.setData("text", value);
+	}
+}
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html> 

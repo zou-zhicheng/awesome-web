@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8">
+</head>
+
+<body>
+<script language="javascript" type="text/javascript">
+
+
+var t1 = t2 =  0;
+window.onload = function()
+{
+    var b = document.getElementById("start");
+    var e = document.getElementById("stop");
+    var c = document.getElementById("clear");
+    b.onclick  = start;
+    e.onclick  = stop;
+    c.onclick  = clear;
+}
+
+
+function clear(){
+    cookie("name", null);
+    cookie("sum", null);
+    cookie("rate", null); 
+    var words = document.getElementById("words");
+    words.value = ""    
+}
+function start()
+{
+    var words = document.getElementById("words");
+    words.value = ""
+    if( ! cookie("name")){
+        var _name = prompt("请输入你的用户名？");
+        cookie("name", _name,{expires : 360});
+    }
+    var date = new Date();
+    t1 = date.getTime();
+    words.focus();
+}
+
+function stop()
+{
+    var words = document.getElementById("words");
+    var date = new Date();
+    t2 = date.getTime();
+    var time = (t2- t1) / (1000 * 60);
+    var num = words.value.length;
+    rate = Math.round(num/time);
+    cookie("rate") || cookie("rate", 0, {expires : 360});
+    if( parseInt(cookie("rate")) < rate)
+        cookie("rate", rate, {expires : 360});
+
+    var sum = cookie("sum") ? cookie("sum") : 0;
+    cookie("sum", (parseInt(sum) + num),{expires : 360});
+    var info = "你输入总字数：" + cookie("sum") + "\n" +
+                "本次打字数：" + num + "\n" +
+                "本次打字速度（字/分）：" + rate + "\n" +
+                "最好成绩（字/分）：" + cookie("rate") + "\n";
+    words.value = info;
+}
+
+
+
+function cookie(name, value, options)
+{
+    if (typeof value != 'undefined')
+    {
+        options = options ||
+        {
+        }
+        ;
+        if (value === null)
+        {
+            value = '';
+            options.expires = - 1;
+        }
+        var expires = '';
+        if (options.expires && (typeof options.expires == 'number' || options.expires.toUTCString))
+        {
+            var date;
+            if (typeof options.expires == 'number')
+            {
+                date = new Date();
+                date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
+            }
+            else
+            {
+                date = options.expires;
+            }
+            expires = '; expires=' + date.toUTCString();
+        }
+        var path = options.path ? '; path=' + options.path : '';
+        var domain = options.domain ? '; domain=' + options.domain : '';
+        var secure = options.secure ? '; secure' : '';
+        document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
+    }
+    else
+    {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '')
+        {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i ++ )
+            {
+                var cookie = (cookies[i] || "").replace( /^\s+|\s+$/g, "" );
+                if (cookie.substring(0, name.length + 1) == (name + '='))
+                {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+}
+;
+
+</script>
+<input type="button" name="start" id="start" value="开始测试打字速度" />
+<input type="button" name="stop" id="stop" value="停止测试" />
+<input type="button" name="clear" id="clear" value="清除cookie痕迹" />
+<br />
+<textarea name="words" cols="80" rows="20" id="words"></textarea>
+</body>
+</html>  

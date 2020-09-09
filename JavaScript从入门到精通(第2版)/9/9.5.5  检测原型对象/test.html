@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例1】下面代码为自定义类型函数定义两个原型成员。
+var f = function(){}	// 定义函数
+f.prototype = {	// 函数的原型对象
+    a : 1,
+    b : function(){
+        return 2;
+    }
+}
+console.log(f.prototype.a); 	// 读取函数的原型对象的属性a，返回1
+console.log(f.prototype.b());	// 读取函数的原型对象的属性b，返回2
+
+var o = new f();	// 实例对象
+console.log(o.a); 	// 访问原型对象的属性
+console.log(o.b());	// 访问原型对象的属性
+
+//【示例2】针对下面的示例，可以判断f.prototype就是对象o的原型对象，因为其返回值为true。
+var b = f.prototype.isPrototypeOf(o);
+console.log(b);
+
+//【示例3】下面示例演示了各种特殊对象的原型对象。
+
+var f = function(){}
+console.log(Object.prototype.isPrototypeOf(f)); 	// 返回true
+console.log(Function.prototype.isPrototypeOf(f)); 	// 返回true
+
+console.log(Function.prototype.isPrototypeOf(Object)); 	// 返回true
+console.log(Object.prototype.isPrototypeOf(Function)); 	// 返回true
+
+console.log(Object.prototype.isPrototypeOf(Object.prototype)); 	// 返回false
+console.log(Object.prototype.isPrototypeOf(Function.prototype)); 	// 返回true
+console.log(Function.prototype.isPrototypeOf(Function.prototype));	// 返回false
+console.log(Function.prototype.isPrototypeOf(Object.prototype)); 	// 返回false
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

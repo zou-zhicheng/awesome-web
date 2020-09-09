@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+
+var person = {
+    'first-name': 'zhang',
+    'last-name': 'san',
+    sayName: function () {
+        console.log(this['first-name']+ this['last-name']);
+    }
+};
+console.log('first-name' in person); 			// true
+console.log(person.hasOwnProperty('first-name')); // true
+console.log('toString' in person); 			// true
+console.log(person.hasOwnProperty('toString')); 	// false
+
+
+//【示例1】for/in语句可用来遍历一个对象中的所有属性名，该枚举过程将会列出所有的属性，包括原型属性和私有属性。很多情况下需要过滤掉一些不想要的值，如方法或原型属性。最为常用的过滤器是hasOwnProperty方法，或者使用typeof运算符进行排除。 
+for (var name in person) {   
+    if (typeof person[name] != 'function') 		// 排除所有方法
+        console.log(name+':'+ person[name] );
+} 
+var properties = ['sayName', 'first-name', 'last-name']; 	//使用数组定义枚举顺序  
+for (var  i = 0 ; i < properties.length; i += 1) {   
+    console.log(properties[i]+':'+ person[properties[i]] ); 
+}  
+
+//【示例2】对于下面自定义对象o，使用for/in循环可以遍历它的所有私有属性、原型属性，但是Javascript允许枚举的属性只有a、b和c。
+function F(){
+    this.a =1;
+    this.b =2;
+}
+F.prototype.c =3;
+F.d = 4;
+var o = new F();
+for(var I in o){
+    console.log(I );
+}
+
+
+//【示例3】为了判定指定私有属性是否允许枚举，Object对象定义了propertyIsEnumerable()方法。该方法的返回值为true，则说明指定的私有属性可以枚举，否则是不允许枚举的。
+console.log(o.propertyIsEnumerable("a"));	// 返回值为true，说明可以枚举
+console.log(o.propertyIsEnumerable("b"));	// 返回值为true，说明可以枚举
+console.log(o.propertyIsEnumerable("c"));	// 返回值为false，说明不可以枚举
+console.log(o.propertyIsEnumerable("d"));	// 返回值为false，说明不可以枚举
+var o = F;
+console.log(o.propertyIsEnumerable("d"));	// 返回值为true，说明可以枚举
+</script>
+
+
+
+
+</body>
+</html>

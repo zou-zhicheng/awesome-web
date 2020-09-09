@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+//示例1
+var obj = {}
+obj.f = function( n ){	//定义对象的方法
+    return 10*n;
+}
+var n = obj.f(5);	//调用方法，设置参数为5
+console.log(n);	//返回值50
+
+
+//示例2
+var obj = {	
+    f:function(){	//定义对象的方法
+        console.log(this);	//访问当前对象
+    }
+}
+obj.f();	//此时this指向对象obj
+var f1 = obj.f;	//引用对象obj的方法f
+f1();	//此时this指向对象window
+
+
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+
+//【示例1】下面代码使用in运算符检测属性a、b、c、valueOf是否为对象o的成员。
+var o = {	//定义对象
+    a:1,	//定义属性a
+    b:function(){}	//定义方法b
+}
+console.log("a" in o);	//返回true
+console.log("b" in o);	//返回true 
+console.log("c" in o);	//返回false 
+console.log("valueOf" in o); 	//返回true，继承Object的原型方法
+console.log("constructor" in o); 	//返回true，继承Object的原型属性
+
+//【示例2】下面代码使用instanceof检测数组a是否为Array、Object和Function的实例。
+var a = new Array();	//定义数组
+console.log(a instanceof Array);	//返回true
+console.log(a instanceof Object);	//返回true，Array是Object的子类
+console.log(a instanceof Function);	//返回false
+
+
+</script>
+
+
+
+</body>
+</html>

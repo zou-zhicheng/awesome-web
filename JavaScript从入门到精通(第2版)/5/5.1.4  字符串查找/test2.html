@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+//2．查找字符串的位置
+
+//【示例2】下面代码查询字符串中首个字母a的下标位置 。
+var s = "JavaScript";
+var i = s.indexOf("a");
+console.log(i); 	// 返回值为1，即字符串中第二个字符
+
+//【示例3】下面代码查询URL字符串中首个字母w的下标位置。
+var s = "http://www.mysite.cn/";
+var a = s.indexOf( "www" ); 	// 返回值为7，即第一个字符w的下标位置
+console.log(a);
+
+//【示例4】下面代码分别查询URL字符串中两个点号字符的下标位置。
+var s = "http://www.mysite.cn/";
+var b = s.indexOf( "." ); 	// 返回值为10，即第1个字符.的下标位置
+var e = s.indexOf( ".", b + 1 ); 	// 返回值为17，即第2个字符.的下标位置
+console.log(e);
+
+//【示例5】下面代码按从右到左的顺序查询URL字符串中最后一个点号字符的下标位置。
+var s = "http://www.mysite.cn/index.html";
+var n = s.lastIndexOf( "." ); 	// 返回值为26，即第3个字符.的下标位置
+console.log(n);
+
+//	第二个参数指定起始下标位置，但它按从右到左的顺序执行的。例如：
+var s = "http://www.mysite.cn/index.html";
+var n = s.lastIndexOf( "." , 11 ); 	// 返回值为10，而不是17
+console.log(n);
+
+//	如果查找到，则返回第一次查找的字符串的起始下标值。例如：
+var s = "http://www.mysite.cn/index.html";
+var n = s.lastIndexOf( "www" ); 	// 返回值为7，而不是10
+console.log(n);
+
+
+
+</script>
+
+
+</body>
+</html>

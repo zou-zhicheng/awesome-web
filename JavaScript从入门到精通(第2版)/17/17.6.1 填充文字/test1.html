@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+
+
+<canvas id="canvas" width="300" height="200" style="border:solid 1px #999;"></canvas>
+
+<script>
+draw();
+function draw() {
+	var canvas = document.getElementById('canvas'); 
+	var ctx = canvas.getContext('2d'); 
+	ctx.font="40px Georgia";
+	ctx.fillText("Hi",10,50);
+	ctx.font="50px Verdana";
+	//创建渐变
+	var gradient=ctx.createLinearGradient(0,0,canvas.width,0);
+	gradient.addColorStop("0","magenta");
+	gradient.addColorStop("0.5","blue");
+	gradient.addColorStop("1.0","red");
+	//用渐变填色
+	ctx.fillStyle=gradient;
+	ctx.fillText("Canvas API",10,120);
+
+
+
+}
+
+</script>
+
+
+
+</body>
+</html>

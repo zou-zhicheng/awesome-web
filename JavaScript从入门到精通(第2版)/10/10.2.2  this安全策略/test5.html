@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+// 把构造函数转换为实例对象
+// 参数func表示构造函数，返回构造函数func的实例对象
+function instanceFrom(func){
+    var _arg = [].slice.call(arguments, 1);	//获取构造函数可能需要的初始化参数
+    func.prototype.constructor = func;	//设置构造函数的原型构造器指向自身
+    func.apply(func.prototype, _arg);	//在原型对象上调用构造函数，
+	//此时this指代原型对象，相当实例对象
+    return func.prototype;	//返回原型对象
+}
+
+function F(){
+    this.name = "F";
+}
+var f = instanceFrom(F);
+console.log(f.name);
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

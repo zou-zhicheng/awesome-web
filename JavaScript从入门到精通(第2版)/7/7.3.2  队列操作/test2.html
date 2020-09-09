@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+
+
+//【示例2】将pop()与unshift()方法结合，或者将push()与shift()方法结合使，可以模拟队列操作。下面的示例利用队列模式把数组元素的所有值放大10倍。
+var a = [1,2,3,4,5];	//定义数组
+for(var i in a){	//遍历数组
+    var t = a.pop();	//尾部弹出
+    a.unshift(t*10);	//头部推入，把推进的值放大10倍
+}
+console.log(a);	//返回[10,20,30,40,50]
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

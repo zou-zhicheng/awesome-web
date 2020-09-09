@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+var s = 'javascript is script , is not java.';   // 定义字符串
+var f = function($1){ // 定义替换文本函数，参数为第一个子表达式匹配文本
+    return $1.substring( 0, 1 ).toUpperCase() + $1.substring( 1 ).toLowerCase(); // 把匹配文本的首字母转换为大写
+}
+var a = s.replace( /(\b\w+\b)/g, f ); 	// 匹配文本并进行替换
+console.log( a ); // 返回字符串"Javascript Is Script , Is Not Java."
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

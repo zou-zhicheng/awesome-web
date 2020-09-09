@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>DOM</h1>
+<p>DOM是<cite>Document Object Model</cite>首字母简写，中文翻译为<b>文档对象模型</b>，是<i>W3C</i>组织推荐的处理可扩展标识语言的标准编程接口。</p>
+<ul>
+    <li>D表示文档，HTML文档结构。</li>
+    <li>O表示对象，文档结构的JavaScript脚本化映射。</li>
+    <li>M表示模型，脚本与结构交互的方法和行为。</li>
+</ul>
+<script type="text/javascript">
+function count(n){ 							//定义文档元素统计函数
+    var num = 0; 								// 初始化变量
+    if(n.nodeType == 1)							// 检查是否为元素节点
+    num ++ ;									// 如果是，则计数器加1
+    var son = n.childNodes; 					// 获取所有子节点
+    for(var i = 0; i < son.length; i ++ ){ 		// 循环统一每个子元素
+        num += count (son[i]);			// 递归操作
+    }
+    return num; 						// 返回统计值
+}
+console.log("当前文档包含 " + count(document) + " 个元素");	// 计算元素的总个数
+</script>
+</body>
+</html> 

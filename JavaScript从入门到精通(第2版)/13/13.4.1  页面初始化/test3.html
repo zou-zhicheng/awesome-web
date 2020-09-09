@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<script>
+
+
+//方法二，通过函数嵌套或闭包函数来实现：
+window.onload = function(){					// 事件处理函数
+    f("Hi");									// 调用函数
+}
+function f(a){ 									// 被处理函数
+    alert(a);
+}
+
+window.onload = f("Hi"); 
+function f(a){
+    return function(){
+        alert(a);
+    }
+}
+
+//通过这种方法，可以实现在load事件类型上绑定更多的响应回调函数。
+window.onload = function(){
+    f1();										// 绑定响应函数1
+    f2();										// 绑定响应函数2
+}
+function f1(){
+    alert("f1()")
+}
+function f2(){
+    alert("f2()")
+}
+
+//如果分别绑定load事件处理函数，则就会发生相互覆盖，最终只能够有一个绑定响应函数被调用。
+window.onload = f1;
+function f1(){
+    alert("f1()")
+}
+window.onload = f2;
+function f2(){
+    alert("f2()")
+}
+
+
+//还可以通过事件注册的方式来实现：
+if(window.addEventListener){ 					// 兼容DOM标准
+    window.addEventListener("load",f1,false); 
+	// 为load添加事件处理函数
+    window.addEventListener("load",f2,false); 
+	// 为load添加事件处理函数
+}
+else{											// 兼容IE浏览器
+    window.attachEvent("onload",f1);
+    window.attachEvent("onload",f2);
+}
+
+
+
+</script>
+</body>
+
+
+</html> 

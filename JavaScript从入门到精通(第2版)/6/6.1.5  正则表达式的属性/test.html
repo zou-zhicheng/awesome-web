@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+var s = "JavaScript";	//测试字符串
+var r = /\w/g;	//匹配模式
+console.log("r.global = " + r.global);	//返回true
+console.log("r.ignoreCase = " + r.ignoreCase);	//返回true
+console.log("r.multiline = " + r.multiline);	//返回false
+console.log("r.source = " + r.source);	//返回a
+console.log("r.lastIndex = " + r.lastIndex);	//返回0
+r.exec(s);
+console.log("r.lastIndex = " + r.lastIndex);	//返回1
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+#box { color:green; }
+.red { color:red; }
+.blue { color:blue; }
+</style>
+<link href="style1.css" rel="stylesheet" type="text/css" media="all" />
+<script>
+window.onload = function(){ 
+	    var cssRules = document.styleSheets[0].cssRules || document.styleSheets[0].rules;
+	    var box = document.getElementById("box");
+	    box.innerHTML =  "第一个样式表中第三个样式选择符 = " + cssRules[2].selectorText;
+}
+</script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html> 
+ 

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+
+
+
+<canvas id="canvas" width="300" height="200" style="border:solid 1px #999;"></canvas>
+
+
+<script>
+draw();
+function draw() {
+	var ctx = document.getElementById('canvas').getContext('2d');  
+	// 创建用于图案的新image对象。
+	var img = new Image();
+	img.src = 'images/1.png';
+	img.onload = function(){
+		// 创建图案。  
+		var ptrn = ctx.createPattern(img,'repeat');
+		ctx.fillStyle = ptrn;
+		ctx.fillRect(0,0,600,600);
+	}
+
+}
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+var o ={ x : 1, y : true, z : "true"},	//定义包含3个属性的对象
+    a = [],	//定义空数组
+    n = 0;	//定义临时循环变量，并赋值为0
+for(a[n ++ ] in o);	//遍历对象o，然后把所有属性都赋值到数组中
+
+//显示数组内容
+for(var n in a){	//遍历数组
+    document.write( "a[" + n + "] = " + a[n] + "<br>" );		//显示每个元素的值
+}
+
+
+</script>
+
+
+</body>
+</html>

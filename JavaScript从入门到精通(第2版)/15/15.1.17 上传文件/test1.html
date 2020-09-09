@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html> 
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript">  
+
+function uploadFile() {  
+	var fd = new FormData();  
+	fd.append("fileToUpload", document.getElementById('fileToUpload').files[0]);  
+	var xhr = new XMLHttpRequest();  
+	xhr.addEventListener("load", uploadComplete, false);  
+	xhr.open("POST", "test.php");  
+	xhr.send(fd);  
+}  
+function uploadComplete(evt) {
+	var info = document.getElementById('info'); 
+	/* 当服务器发送响应时，会引发此事件 */  
+	info.innerHTML = evt.target.responseText;  
+}  
+ 
+</script>
+</head> 
+<body>
+<form id="form1" enctype="multipart/form-data" method="post" action="upload.php">
+    <div class="row">
+        <label for="fileToUpload">选择上传文件</label>
+        <input type="file" name="fileToUpload" id="fileToUpload" onChange="fileSelected();">
+    </div>
+    <div class="row">
+        <input type="button" onClick="uploadFile()" value="上传">
+    </div>
+    <div id="info"></div>
+</form>
+</body>
+</html>

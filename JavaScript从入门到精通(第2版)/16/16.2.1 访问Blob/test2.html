@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script>
+function fileUpload(){
+    var file;
+    for(var i=0;i<document.getElementById("file").files.length;i++){
+        file = document.getElementById("file").files[i];
+        if(!/image\/\w+/.test(file.type)){
+            alert(file.name+"不是图像文件！");
+            continue;            
+        }
+        else{
+            //此处可加入文件上传的代码
+            alert(file.name+"文件已上传");
+        }
+    }
+}
+
+</script>
+</head>
+<body>
+<input type="file" id="file" multiple>
+<input type="button" onclick="fileUpload();" value="文件上传"/>
+</body>
+</html> 

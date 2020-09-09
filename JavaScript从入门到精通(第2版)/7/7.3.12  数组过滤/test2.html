@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+
+var f = function(value) {
+    if (typeof value !== 'number')
+        return false;
+    else 
+        return value >= this.min && value <= this.max ;
+}
+
+var a = [6, 12, "15", 16, "the", -12];
+var obj = { min: 10, max: 20 }
+var r = a.filter(f, obj);
+console.log(r);	//12,16
+
+
+
+</script>
+
+
+</body>
+</html>

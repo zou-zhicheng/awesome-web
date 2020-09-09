@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例】注意特殊操作数的除法运算。
+var n = 5;	//定义并初始化任意一个数值
+console.log(NaN / n);	//如果一个操作数是NaN，结果都是NaN
+console.log(Infinity / n);	//Infinity被任意数字除，结果是Infinity或-Infinity，
+	//符号由第二个操作数的符号决定
+console.log(Infinity / Infinity);	//返回NaN
+console.log(n / 0);	//0除一个非无穷大的数字，结果是Infinity或
+	// -Infinity，符号由第二个操作数的符号决定
+console.log(n / -0); 	//返回-Infinity ,解释同上
+
+
+
+</script>
+
+
+
+</body>
+</html>

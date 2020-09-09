@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+
+//【示例2】私有属性可以在实例对象中被修改，但是不同实例对象之间不会相互干扰。
+function f(){	//声明一个构造类型
+    this.a = 1;	//为构造类型声明一个私有属性
+}
+var e =new f();	//实例e
+var g =new f();	//实例g
+console.log(e.a);	//返回值为1，说明它继承了构造函数的初始值
+console.log(g.a);	//返回值为1，说明它继承了构造函数的初始值
+e.a = 2;	//修改实例e的属性a的值
+console.log(e.a);	//返回值为2，说明e的属性a的值改变了
+console.log(g.a);	//返回值为1，说明g的属性a的值没有受影响
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

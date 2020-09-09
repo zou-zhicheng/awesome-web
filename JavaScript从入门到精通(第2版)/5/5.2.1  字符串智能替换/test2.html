@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+
+var s = 'javascript is script , is not java.';   // 定义字符串
+var f = function($1,$2,$3){ 	// 定义替换文本函数，请注意参数的变化
+    return $2.toUpperCase()+$3 ;
+}
+var a = s.replace( /\b(\w)(\w*)\b/g, f ); 
+console.log( a ); 
+
+
+
+
+</script>
+
+
+</body>
+</html>

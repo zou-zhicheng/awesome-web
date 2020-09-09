@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+//	直接量定义
+var a = [1, , 2];
+a.length;	//返回3
+
+var a = [1, 2, ];
+a.length;	//返回2
+
+//	构造函数定义
+var a = new Array(3);	//指定长度的数组
+a.length;	//返回3，产生3个空元素
+
+//	delete删除
+var a = [1, 2, 3];
+delete a[1];
+console.log( a[1] );	// undefined
+console.log( a.length ); 	// 3
+
+//如果使用for语句和length属性遍历数组，空元素都可以被读取，空元素返回值为undefined。
+var a = [, , ,];
+for(var i =0; i<a.length;i++)
+    console.log( a[i]); 	//返回3个undefined
+
+//空元素与元素的值为undefined是两个不同的概念，虽然空元素的返回值也是undefined。但是，使用forEach()方法、for/in语句、以及Object.keys()方法进行遍历时，空元素都会被跳过，但是值为undefined元素，能够正常被迭代。
+var a = [, , undefined,];
+for (var i in a) {
+    console.log(i);	// 返回2，仅读取了第3个元素
+}
+console.log(a.length); 	// 返回3，包含3个元素
+
+
+
+</script>
+
+</body>
+</html>

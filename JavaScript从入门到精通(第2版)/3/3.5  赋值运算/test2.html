@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<script>
+
+//【示例2】在下面复杂的表达式中，逻辑与左侧的操作数是一个赋值表达式，右侧的操作数也是一个赋值表达式。但是左侧赋的是一个简单值，右侧是把一个函数赋值给变量b。在逻辑与运算中，左侧的赋值并没有真正的复制给变量a，当逻辑与运算执行右侧的表达式时，该表达式是把一个函数赋值给变量b，然后利用小括号运算符调用这个函数，返回变量a的值，结果并没有返回变量a的值为6，而是undefined。
+var a;	//定义变量a
+console.log(a = 6 && (b = function(){	//逻辑与运算表达式
+      return a;	//返回变量a的值
+   })()
+);	//结果返回undefined
+
+var a = 6;	//定义并初始化变量a
+b = function(){	//定义函数对象b
+   return a;
+}
+console.log(a && b());	//逻辑与运算，根据a，决定是否调用函数b
+
+</script>
+
+
+</body>
+</html>

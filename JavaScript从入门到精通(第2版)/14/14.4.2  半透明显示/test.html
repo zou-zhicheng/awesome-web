@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+// 设置元素的透明度
+// 参数：e表示要预设置的元素，n表示一个数值，取值范围为0~100，如果省略，则默认为100，即不透明显示元素
+// 返回值：无
+function setOpacity(e, n){
+    var n = parseFloat(n); 		// 把第二个参数转换为浮点数
+    if(n && (n>100) || !n) n=100; 
+	// 如果第二个参数存在且值大于100，或者不存在该参数，则设置其为100
+    if(n && (n<0))  n =0; 		// 如果第二个参数存在且值小于0，则设置其为0
+    if (e.filters){ 			// 兼容IE浏览器
+        e.style.filter = "alpha(opacity=" + n + ")";
+    }
+    else{						// 兼容DOM标准
+        e.style.opacity = n / 100;
+    }
+} 
+
+// 获取元素的透明度
+// 参数：e表示要预设置的元素
+// 返回值：元素的透明度值，范围在1~100之间
+function getOpacity(e){
+    var r;
+    if ( ! e.filters){
+        if (e.style.opacity) return parseFloat(e.style.opacity) * 100;
+    }
+    try{
+        return e.filters.item('alpha').opacity
+    }
+    catch(o){
+        return 100;
+    }
+}
+
+</script>
+</head>
+<body>
+
+
+<div id="box" style="background:red; width:300px; height:200px;"></div>
+<script>
+var box = document.getElementById("box");
+setOpacity(box, 50);
+
+var n = getOpacity(box);
+
+alert(n);
+</script>
+
+
+
+</body>
+</html> 

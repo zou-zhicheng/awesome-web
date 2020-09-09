@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+//【示例3】设计递归调用函数，即在函数内调用自身，这样可以反复调用，但最终返回的都是函数自身。
+function f(){	//定义函数
+    return f;	//返回函数自身
+}
+console.log(f()()()()()()()()()()()());	//返回函数自身
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

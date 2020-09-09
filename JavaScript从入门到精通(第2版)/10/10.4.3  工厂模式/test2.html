@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+
+<script>
+
+function showColor(){	//公共方法，提示汽车颜色
+	console.log(this.color);
+};	
+function Car(color,drive,oil) {	//汽车类
+    var _car = new Object();	//临时对象
+    _car.color = color; 	//初始化颜色
+    _car.drive = drive; 	//初始化驱动轮数
+    _car.oil = oil; 	//初始化百公里油耗
+    _car.showColor = showColor;	//引用外部函数
+    return _car;	//返回实例
+}
+var car1 = Car("red", 4, 8);
+var car2 = Car("blue", 2, 6);
+car1.showColor();	//输出 "red"
+car2.showColor();	//输出 "blue"
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script> 
+
+// 获取指定元素的样式属性值
+// 参数：e表示具体的元素，n表示要获取元素的脚本样式的属性名，如"width"、"borderColor"
+// 返回值：返回该元素e的样式属性n的值
+function getStyle(e,n){
+    if(e.style[n]){ 
+	// 如果在Style对象中存在，说明已显式定义，则返回这个值
+        return e.style[n];
+    }
+    else if(e.currentStyle){ 
+	// 否则，如果是IE浏览器，则利用它的私有方法读取当前值
+        return e.currentStyle[n];
+    }
+    // 如果是支持DOM标准的浏览器，则利用DOM定义的方法读取样式属性值
+    else if(document.defaultView && document.defaultView.getComputedStyle){
+        n = n.replace(/([A-Z])/g,"-$1");	// 转换参数的属性名
+        n = n.toLowerCase();
+        var s = document.defaultView.getComputedStyle(e,null); 
+		// 获取当前元素的样式属性对象
+        if(s) 							// 如果当前元素的样式属性对象存在
+            return s.getPropertyValue(n); 	// 则获取属性值
+    }
+    else									// 如果都不支持，则返回null
+        return null;
+}
+
+
+// 把fromStyle ()函数返回值转换为实际的值
+// 参数：e表示具体的元素，w表示元素的样式属性值，通过getStyle()函数获取，p表示当前元素百分比转换为小数的值，以便在上级元素中计算当前元素的尺寸
+// 返回值：返回具体的数字值
+function fromStyle(e, w, p){ 
+    var p = arguments[2]; 			// 获取百分比转换后的小数值
+    if( ! p) p = 1; 				// 如果不存在，则默认其为1
+    if(/px/.test(w) && parseInt(w) ) return parseInt(parseInt(w) * p); 
+	// 如果元素尺寸的值为具体的像素值，则直接转换为数字，并乘以百分比值，并返回该值
+    else if(/\%/.test(w) && parseInt(w)){ 	// 如果元素宽度值为百分比值
+        var b = parseInt(w) / 100; 			// 则把该值转换为小数值
+        if((p != 1) && p) b *= p; 
+		// 如果子元素的尺寸也是百分比，则乘以转换后的小数值
+        e = e.parentNode; 					// 获取父元素的引用指针
+        if(e.tagName == "BODY") throw new Error("整个文档结构都没有定义固定尺寸，没法计算了，请使用其他方法获取尺寸."); 
+	// 如果父元素是body元素，则抛出异常
+        w = getStyle(e, "width"); 
+		// 调用getStyle()方法，获取父元素的宽度值
+        return arguments.callee(e, w, b); 
+	// 回调函数，把上面的值作为参数进行传递，实现迭代计算
+    }
+    else if(/auto/.test(w)){ 				// 如果元素宽度值为默认值
+        var b = 1; 	// 定义百分比值为1
+        if((p != 1) && p) b *= p; 
+	// 如果子元素的尺寸是百分比，则乘以转换后的小数值
+        e = e.parentNode; 					// 获取父元素的引用指针
+        if(e.tagName == "BODY") throw new Error("整个文档结构都没有定义固定尺寸，没法计算了，请使用其他方法获取尺寸.");
+ 	// 如果父元素是body元素，则抛出异常
+        w = getStyle(e, "width");
+		// 调用getStyle()方法，获取父元素的宽度值
+        return arguments.callee(e, w , b); 	// 回调函数，实现迭代计算
+    }
+    else	
+        throw new Error("元素或其父元素的尺寸定义了特殊的单位.");
+}
+
+</script>
+<script>
+
+// 重设元素的样式属性值
+// 参数：e表示重设样式的元素，o表示要设置的值，它是一个对象，可以包含多个名值对
+// 返回值：重设样式的原属性值，以对象形式返回
+function setCSS(e, o){
+    var a = {};					// 定义临时对象直接量
+    for(var i in o){ 			// 遍历参数对象，传递包含样式设置值
+        a[i] = e.style[i]; 		// 先存储样式表中原来的值
+        e.style[i] = o[i]; 		// 用参数值覆盖原来的值
+    }
+    return a; 					// 返回原样式属性值
+}
+// 恢复元素的样式属性值
+// 参数：e表示重设样式的元素，o表示要恢复的值，它是一个对象，可以包含多个名值对
+// 返回值：无
+function resetCSS(e,o){
+    for(var i in o){ 			// 遍历参数对象
+        e.style[i] = o[i]; 		// 恢复原来的样式值
+    }
+}
+
+// 获取元素的存在宽度
+// 参数：e表示元素
+// 返回值：存在宽度
+function getW(e){
+    // 如果元素没有隐藏显示，则获取它的宽度，如果offsetWidth属性值存在，则返回该值，否则调用自定义扩展函数getStyle()和fromStyle()获取元素的宽度
+    if(getStyle(e,"display") != "none") return e.offsetWidth || 
+fromStyle(getStyle(e,"width"));
+    var r = setCSS( e, {
+	// 如果元素隐藏，则调用setCSS()函数临时显示元素，并存储原始样式属性值
+        display:"",
+        position:"absolute",
+        visibility:"hidden"
+    });
+    var w = e.offsetWidth || fromStyle(getStyle(e,"width"));
+	// 读取元素的宽度值
+    resetCSS(e,r); 				// 调用resetCSS()函数恢复元素的样式属性值
+    return w; 					// 返回存在宽度
+}
+// 获取元素的存在高度
+// 参数：e表示元素
+// 返回值：存在高度
+function getH(e){
+    // 如果元素没有隐藏显示，则获取它的高度，如果offsetHeight属性值存在，则返回该值，否则调用自定义扩展函数getStyle()和fromStyle()获取元素的高度
+    if(getStyle(e,"display") != "none") return e.offsetHeight || 
+fromStyle(getStyle(e,"height"));
+    var r = setCSS( e, {
+	// 如果元素隐藏，则调用setCSS()函数临时显示元素，并存储原始样式属性值
+        display:"",
+        position:"absolute",
+        visibility:"hidden"
+    });
+    var h = e.offsetHeight || fromStyle(getStyle(e,"height"));
+	// 读取元素的高度值
+    resetCSS(e,r); 			// 调用resetCSS()函数恢复元素的样式属性值
+    return h; 				// 返回存在高度
+}
+
+
+</script> 
+</head>
+<body>
+
+
+<textarea id="text" rows="5" cols="25" style="float:right;">
+</textarea>
+<div id="div" style="height:200px;width:200px;border:solid 50px red;
+padding:50px;overflow:auto;">
+    <div id="info" style="height:400px;width:400px;
+border:solid 1px blue;"></div>
+</div>
+<script>
+var div = document.getElementById("div");
+div.scrollLeft = 200; 				// 设置盒子左边滚出区域宽度为200像素
+div.scrollTop = 200; 				// 设置盒子顶部滚出区域高度为200像素
+var text = document.getElementById("text");
+div.onscroll = function(){			// 注册滚动事件处理函数
+    text.value =    "scrollLeft    = " + div.scrollLeft + "\n" +
+                    "scrollTop  = " + div.scrollTop + "\n" +
+                    "scrollWidth = " + div.scrollWidth + "\n" +
+                    "scrollHeight = " + div.scrollHeight ;
+}
+
+</script>
+
+
+</body>
+</html> 

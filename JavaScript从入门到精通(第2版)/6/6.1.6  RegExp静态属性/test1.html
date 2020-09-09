@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+
+<script>
+
+
+
+
+var s = "JavaScript,not JavaScript";
+var r = /(Java)Script/gi;
+var a = r.exec(s);	//执行匹配操作
+console.log(RegExp.input);	//返回字符串"JavaScript,not JavaScript"
+console.log(RegExp.leftContext); 	//返回空字符串，左侧没有内容
+console.log(RegExp.rightContext);	//返回字符串",not JavaScript"
+console.log(RegExp.lastMatch);	//返回字符串"JavaScript "
+console.log(RegExp.lastParen);	//返回字符串"Java"
+
+
+var r = /(Java)(Script)/gi;
+var a = r.exec(s);	//执行匹配操作
+console.log(RegExp.lastParen);	//返回字符串"Script"，而不再是"Java"
+
+
+
+
+</script>
+
+
+
+
+
+</body>
+</html>

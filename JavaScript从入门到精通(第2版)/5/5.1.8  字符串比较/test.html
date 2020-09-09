@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+//【示例1】小写字母a的编码为97，大写字母A的编码为65，则字符"a"就大于"A"。
+console.log( "a" > "A" ); 	// 返回true
+
+
+//【示例2】下面代码把字符串"JavaScript"转换为数组，然后按本地字符顺序进行排序。
+var s = "JavaScript";	// 定义字符串直接量
+var a = s.split( "" ); 	// 把字符串转换为数组
+var s1 = a.sort( function( a, b ) {	// 对数组进行排序
+    return a.localeCompare( b ) 	// 将根据前后字符在本地的约定进行排序
+});
+a = s1.join( "" ); 	// 然后再把数组还原为字符串
+console.log( a ); 	// 返回字符串"aaciJprStv"
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+
+<script>
+
+
+//2．截取起止下标位置字符串
+
+//【示例2】下面代码使用substring()方法截取URL字符串中网站主机名信息。
+var s = "http://www.mysite.cn/index.html";
+var a = s.indexOf( "www" ); 	// 获取起始点下标
+var b = s.indexOf( "/", a ); 	// 获取结束点后下标
+var c = s.substring( a, b ); 	// 返回字符串www.mysite.cn 
+var d = s.slice( a, b ); 	// 返回字符串www.mysite.cn
+console.log( c );  
+console.log( d ); 
+
+//【示例3】下面代码比较substring()方法和slice()方法用法不同。
+var s = "http://www.mysite.cn/index.html";
+var a = s.indexOf( "www" ); 	// 获取起始点下标
+var b = s.indexOf( "/", a ); 	// 获取结束点后下标
+var c = s.substring( b, a ); 	// 返回字符串www.mysite.cn
+var d = s.slice( b, a ); 	// 返回空字符串
+console.log( c );  
+console.log( d );  
+
+//【示例4】下面代码比较substring()方法和slice()方法用法不同。
+var s = "http://www.mysite.cn/index.html";
+var a = s.indexOf( "www" ); 	// 获取起始点下标
+var b = s.indexOf( "/", a ); 	// 获取结束点后下标
+var l = s.length; 	// 获取字符串的长度
+var c = s.substring( a-l , b-l ); 	// 返回空字符串
+var d = s.slice( a-l , b-l ); 	// 返回子字符串www.mysite.cn
+
+
+console.log( c );  
+console.log( d ); 
+
+</script>
+
+
+</body>
+</html>

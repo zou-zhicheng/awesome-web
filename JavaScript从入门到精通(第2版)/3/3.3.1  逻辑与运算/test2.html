@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<script>
+
+
+var n = 3;
+(n == 1) && console.log(1);
+(n == 2) && console.log(2);
+(n == 3) && console.log(3);
+( ! n) && console.log("null");
+//上面代码等效于下面多重分支结构：
+var n = 3;	//定义变量
+switch (n){	//指定判断的变量
+   case 1 :	//条件1
+      console.log(1);
+      break;	//结束结构
+   case 2 :	//条件2
+      console.log(2);
+      break;	//结束结构
+   case 3 :	//条件3
+      console.log(3);
+      break;	//结束结构
+   default :	//默认条件
+      console.log("null");
+}
+
+
+</script>
+
+
+</body>
+</html>

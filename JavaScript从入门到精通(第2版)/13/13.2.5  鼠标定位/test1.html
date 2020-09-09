@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+
+<div id="div1">鼠标跟随</div>
+<script>
+var div1 = document.getElementById("div1");
+document.onmousemove = function(event){
+    pos(div1, 10, 20,event);
+}
+</script>
+ 
+<script>
+
+var pos = function(o, x, y,event){ 	// 鼠标定位赋值函数
+    var posX = 0, posY = 0; 			// 临时变量值
+    var e = event || window.event; 		// 标准化事件对象
+    if(e.pageX || e.pageY){ 			// 获取鼠标指针的当前坐标值
+        posX = e.pageX;
+        posY = e.pageY;
+    }
+    else if(e.clientX || e.clientY){
+        posX = e.clientX + document.documentElement.scrollLeft + 
+document.body.scrollLeft;
+        posY = e.clientY + document.documentElement.scrollTop + 
+document.body.scrollTop;
+    }
+    o.style.position = "absolute";		// 定义当前对象为绝对定位
+    o.style.top = (posY + y) + "px";
+	// 用鼠标指针的y轴坐标和传入偏移值设置对象y轴坐标
+    o.style.left = (posX + x) + "px";
+	// 用鼠标指针的x轴坐标和传入偏移值设置对象x轴坐标
+}
+
+
+</script>
+
+
+</body>
+</html> 

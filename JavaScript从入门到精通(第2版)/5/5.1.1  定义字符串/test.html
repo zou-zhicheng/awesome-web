@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+</head>
+<body>
+<script>
+
+
+
+//1. 字符串直接量
+
+//【示例1】任何被引号包含的文本都为字符串型数据。
+var s = "true";	// 把布尔值转换为字符串直接量
+var s = "123";	// 把数值转换为字符串直接量
+var s = "[1,2,3]"; 	// 把数组转换为字符串直接量
+var s = "{x:1,y:2}";	// 把对象转换为字符串直接量
+var s = "console.log('Hello,World')"; 	// 把可执行表达式转换为字符串直接量
+
+//【示例2】单引号和双引号可以配合使用，定义特殊形式的字符串。
+var s = 'console.log("Hello,World")';
+
+//【示例3】由于一些字符包含多重语义，被包含在字符串中，会破坏字符串，通过转义字符，可以避免歧义。转移字符的方法：在字符前面加反斜杠。
+var s = "\"";	// 有效的引号字符串
+
+//【示例4】对于字符串化脚本，可以调用全局方法eval()执行字符串代码。
+var s = "console.log('Hello,World')"; 	// 表达式字符串
+eval(s); 	// 执行表达式字符串
+
+//2. 构造字符串
+
+//【示例5】下面代码使用new运算符调用String()构造函数，将创建一个字符串型对象。
+var s = new String();	// 创建一个空字符串对象，并赋值给变量s
+var s = new String("我是构造字符串");// 创建字符串对象，初始化之后赋值给变量s
+
+//【示例6】下面代码比较了构造字符串和字符串直接量的数据类型不同。
+var s1 = new String( 1 ); 	// 构造字符串
+var s2 = "1";	// 定义字符串直接量
+console.log( typeof s1 ); 	// 返回object，说明是引用型对象
+console.log( typeof s2 ); 	// 返回string，说明是值类型字符串
+
+//【示例7】String()也可以作为普通函数使用，把参数转换为字符串类型的值返回。
+var s = String( 123456 ); 	// 包装字符串
+console.log( s ); 	// 返回字符串"123456"
+console.log( typeof s );	// 返回string，说明是简单的值
+
+//【示例8】String()允许传入多个参数，但是仅处理第一个参数，并把它转换为字符串返回。
+var s = String( 1, 2, 3, 4, 5, 6 ); 	// 带有多个参数
+console.log( s ); 	// 返回字符串"1"
+console.log( typeof s ); 	// 返回string，数值被转换为字符串
+
+//【示例9】下面变量n在构造函数内经过多次计算之后，最后值递增为5。
+var n = 1; 	// 初始化变量
+var s = new String( ++ n, ++ n, ++ n, ++ n); // 字符串构造处理
+console.log( s ); 	// 返回2
+console.log( n ); 	// 返回5
+console.log( typeof s ); 	// 返回object，说明是引用类型对象
+console.log( typeof n ); 	// 返回number，说明是数值类型
+
+//3. 使用字符编码
+
+//【示例10】下面代码演示了如何把一组字符串编码转换为字符串。
+var a = [35835, 32773, 24744, 22909], b = [];// 声明一个字符编码的数组
+for( var i in a ){ 	// 遍历数组
+    b.push( String.fromCharCode( a[i] ) ); // 把每个字符编码都转换为字符串存入数组
+}
+console.log( b.join( "" ) ); 	// 返回字符串"读者您好"
+var b = String.fromCharCode( 35835, 32773, 24744, 22909 ) ; // 传递多个参数
+var a = [35835, 32773, 24744, 22909], b = [];
+var b = String.fromCharCode.apply( null, a ); // 动态调用fromCharCode()方法，并传递数组
+console.log( b ); 	// 返回字符串"读者您好"
+
+
+
+
+
+</script>
+
+</body>
+</html>

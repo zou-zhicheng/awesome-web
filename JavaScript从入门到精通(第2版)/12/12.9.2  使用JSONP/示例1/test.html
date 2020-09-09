@@ -1,0 +1,56 @@
+﻿<html>
+<head>
+<title>异步信息交互</title>
+<meta charset="utf-8">
+<script type="text/javascript">
+function callback(info){
+    var temp = "";
+    for(var i in info){
+        if(typeof info[i] != "object") {
+            temp += i + " = \"" + info[i] + "\"<br />";
+        } else if( (typeof info[i] == "object") && (info[i].constructor == Array)){
+            temp += "<br />" + i + " = " + "<br /><br />";
+            var a = info[i];
+            for(var j = 0; j < a.length; j ++ ){
+                var o = a[j];
+                for(var e in o){
+                    temp += "&nbsp;&nbsp;&nbsp;&nbsp;" + e + " = \"" + o[e] + "\"<br />";
+                }
+                temp +=  "<br />";
+            }
+        }
+    }
+    var div  = document.getElementById("test");
+    div.innerHTML = temp;
+
+}
+function request(url){
+    if( ! document.script){
+        document.script = document.createElement("script");
+        document.script.setAttribute("type", "text/javascript");
+        document.script.setAttribute("src", url);
+        document.body.appendChild(document.script);
+    } else {
+        document.script.setAttribute("src", url);
+    }
+
+}
+
+window.onload = function(){
+    var b = document.getElementsByTagName("input")[0];
+    b.onclick = function(){
+        var url = "server.js"
+        request(url);
+    }
+}
+
+
+</script>
+
+</head>
+<body>
+<h1>客户端信息提交页面</h1>
+<input name="submit" type="button" id="submit" value="向服务器发出请求" />
+<div id="test"></div>
+</body>
+</html> 
