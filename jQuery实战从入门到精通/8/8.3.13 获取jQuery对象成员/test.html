@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-2.1.0.js" type="text/javascript"></script>
+<script type="text/javascript"> 
+$(function(){
+    var $li = $("li");	//获取jQuery对象
+    var li = $li.get();	//转换为DOM集合
+    li.reverse();	//调用数组方法，颠倒数组元素顺序
+    $("ul").html(li);	//重叠ul的选项列表结构
+})
+</script>
+<title>test</title>
+</head>
+<body>
+<ul>
+   <li>1</li>
+   <li>2</li>
+   <li>3</li> 
+</ul>
+</body>
+</html>

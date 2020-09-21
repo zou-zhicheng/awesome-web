@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link href="jquery-mobile/jquery.mobile.theme-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="jquery-mobile/jquery.mobile.structure-1.3.0.min.css" rel="stylesheet" type="text/css">
+<script src="jquery-mobile/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile-1.3.0.min.js" type="text/javascript"></script>
+<script>
+$(function(){
+})
+$(document).ready(function(e){
+    alert("触发$(document).ready事件");
+})
+$(document).live("mobileinit", function(){
+    alert("触发mobileinit事件");
+});
+$(document).delegate("#page1", "pageinit", function(){
+    alert("触发页面1的pageinit事件");
+})
+$(document).delegate("#page1", "pageshow", function(){
+    alert("触发页面1的pageshow事件");
+})
+$(document).delegate("#page2", "pageinit", function(){
+    alert("触发页面2的pageinit事件");
+})
+</script>
+<style type="text/css"></style>
+</head>
+<body>
+<div data-role="page" id="page1">
+    <div data-role="header">
+        <h1>第一页</h1>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+            <li><a href="#" onClick="$(document).trigger('mobileinit')">触发mobileinit事件</a></li>
+            <li><a href="#page2">进入第2页</a></li>
+        </ul>
+    </div>
+</div>
+<div data-role="page" id="page2">
+    <div data-role="header">
+        <h1>第二页</h1>
+    </div>
+    <div data-role="content"> <a data-role="button" href="#page1">返回第1页</a> </div>
+</div>
+</body>
+</html> 

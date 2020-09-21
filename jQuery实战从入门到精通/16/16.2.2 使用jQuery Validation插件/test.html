@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Validation</title>
+<script type="text/javascript" src="jquery/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="plugins/jquery.validate.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("form").validate();
+})
+</script>
+<style type="text/css"></style>
+</head>
+<body>
+<h1>jQuery Validation表单验证</h1>
+<form action="" method="POST" class="niceform p1">
+    <div>
+        <label>姓 名:</label>
+        <input type="text" name="inputtext" class="required" minlength="2"/>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input id="cemail" name="email" class="required email" />
+    </div>
+    <div>
+        <label> URL :</label>
+        <input id="curl" name="url" class="url" value="" />
+    </div>
+    <div class="clear"></div>
+</form>
+</body>
+</html>

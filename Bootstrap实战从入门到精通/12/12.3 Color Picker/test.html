@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript" src="bootstrap/js/jquery-1.9.1.js" ></script>
+<script type="text/javascript" src="colorpicker/js/bootstrap-colorpicker.js" ></script>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="colorpicker/img/colorpicker.css">
+<style type="text/css">
+body{
+    padding:12px;
+}
+.color{width:200px;}
+.input-group-addon i{
+    display:inline-block;
+    width:20px;
+    height:20px;
+}
+</style>
+<script type="text/javascript">
+$(function(){
+	     $('.color').colorpicker()                              
+});       
+</script>
+</head>
+<body>
+
+<div class="input-group color" data-color="rgb(255, 146, 180)" data-color-format="rgb">
+	<input type="text" class="form-control" size="16" value="" >
+	<span class="input-group-addon add-on"><i style="background-color: rgb(255, 146, 180)"></i></span>
+</div>
+
+
+
+</body>
+</html>

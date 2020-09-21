@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jqDock</title>
+<link href="plugins/jqDock.css" rel="stylesheet" type="text/css" media="all">
+<script type="text/javascript" src="jquery/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="plugins/fisheye-iutil.js"></script>
+<script type="text/javascript" src="plugins/jquery.jqDock.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	  	var jqDockOpts = {align: 'left', duration: 200, labels: 'tc', size: 48, distance: 85};
+		$('#dock').jqDock(jqDockOpts);
+})
+</script>
+</head>
+<body>
+<h1>jqDock码头导航</h1>
+<div id="dock">
+    <div class="dock-container">
+        <a class="dock-item" href="#"><span>Home</span><img src="images/dock/home.png" alt="home"></a> 
+        <a class="dock-item" href="#"><span>Email</span><img src="images/dock/email.png" alt="contact"></a> 
+        <a class="dock-item" href="#"><span>Port</span><img src="images/dock/portfolio.png" alt="portfolio"></a> 
+        <a class="dock-item" href="#"><span>Music</span><img src="images/dock/music.png" alt="music"></a> 
+        <a class="dock-item" href="#"><span>Video</span><img src="images/dock/video.png" alt="video"></a> 
+        <a class="dock-item" href="#"><span>History</span><img src="images/dock/history.png" alt="history"></a> 
+        <a class="dock-item" href="#"><span>Calendar</span><img src="images/dock/calendar.png" alt="calendar"></a> 
+        <a class="dock-item" href="#"><span>Links</span><img src="images/dock/link.png" alt="links"></a> 
+        <a class="dock-item" href="#"><span>RSS</span><img src="images/dock/rss.png" alt="rss"></a> 
+        <a class="dock-item" href="#"><span>RSS2</span><img src="images/dock/rss2.png" alt="rss"></a>    
+    </div>
+</div>
+</body>
+</html>

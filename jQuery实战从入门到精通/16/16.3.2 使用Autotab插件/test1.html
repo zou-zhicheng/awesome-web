@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Autotab</title>
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="plugins/jquery.autotab-1.1b.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#autotab').submit(function(){
+		return false;
+	});
+	$('#autotab :input').autotab_magic();
+})
+</script>
+<style type="text/css"></style>
+</head>
+<body>
+<h1>Autotab自动Tab文本框</h1>
+<p id="info">
+<form action="" method="post" id="autotab">
+    <label>请输入验证码：
+        <input type="text" name="num1" id="num1" maxlength="3" size="3" />
+        -
+        <input type="text" name="num2" id="num2" maxlength="3" size="3" />
+        -
+        <input type="text" name="num3" id="num3" maxlength="4" size="4" />
+        -
+        <input type="text" name="num4" id="num4" maxlength="3" size="3" />
+        -
+        <input type="text" name="num5" id="num5" maxlength="3" size="3" />
+        -
+        <input type="text" name="num6" id="num6" maxlength="4" size="4" />
+    </label>
+</form>
+</p>
+</body>
+</html>

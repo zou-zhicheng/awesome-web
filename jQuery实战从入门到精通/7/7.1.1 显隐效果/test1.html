@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+$(function(){
+    $("p").hide().hide();
+    $("div").hide().show();
+    $("span").eq(0).hide();
+    $("span")[1].style.display = "none";
+    $("span").show();
+})
+</script>
+</head>
+<body>
+<p>P元素</p>
+<div>DIV元素</div>
+<span>SPAN元素1</span>
+<span>SPAN元素2</span>
+<span style="display:none;">SPAN元素3</span>
+</body>
+</html>

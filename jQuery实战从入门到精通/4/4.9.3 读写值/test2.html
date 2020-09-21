@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+$(function(){
+    $("button").eq(0).click(function(){
+        alert($("#s1").val() + $("#s2").val() +$("input").val()+ $(":radio").val());
+    })
+    $("button").eq(1).click(function(){
+        $("#s1").val("单选2");
+        $("#s2").val(["多选2", "多选3"]);
+        $("input").val(["6", "8"]);
+    })
+})
+</script>
+</head>
+<body>
+<form action="" method="get">
+    <select id="s1">
+      <option value="1" selected="selected">单选1</option>
+      <option value="2">单选2</option>
+    </select>
+    <select id="s2" size="3" multiple="multiple">
+      <option value="3" selected="selected">多选1</option>
+      <option value="4">多选2</option>
+      <option value="5" selected="selected">多选3</option>
+    </select>
+    <input type="checkbox" value="6"/>复选框1
+    <input type="checkbox" value="7" checked="checked"/>复选框2<br />
+    <input type="radio" value="8"/>单选按钮1
+    <input type="radio" value="9" checked="checked"/>单选按钮2<br /><br />
+    <button>显示各个表单对象的值</button>
+    <button>设置各个表单对象的值</button>
+</form>
+</body>
+</html>

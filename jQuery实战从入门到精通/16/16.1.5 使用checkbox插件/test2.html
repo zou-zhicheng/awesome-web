@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>checkbox</title>
+<link href="plugins/jquery.checkbox.css" rel="stylesheet" type="text/css" media="all" />
+<link href="plugins/jquery.safari-checkbox.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="plugins/jquery.checkbox.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('input:checkbox').checkbox({
+		empty: 'images/empty.png',
+		cls:'jquery-safari-checkbox'
+	});
+	$('#check').click(function(){
+		jQuery('#check1').attr('disabled', jQuery('#check1').attr('disabled') ? false: true );
+	});
+})
+</script>
+<style type="text/css">
+</style>
+</head>
+<body>
+<h1>checkbox复选框</h1>
+<form action="" method="post" id="autotab" class="p1">
+    <label>你喜欢什么？<br />
+        <input name="checkbox.1.1" type="checkbox" id="check" checked>玩电脑（如
+        <input name="checkbox.1.2" type="checkbox" id="check1">上网）
+        <input name="checkbox.1.3" type="checkbox" disabled>睡觉（当然不用选了）
+        <input name="checkbox.1.4" type="checkbox" disabled checked>运动（是人都喜欢运动）
+    </label>
+</form>
+</body>
+</html>

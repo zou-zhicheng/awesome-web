@@ -1,0 +1,27 @@
+<!doctype html>
+<html> 
+<head>
+<meta charset="utf-8">
+<title>jQuery browser plugin detection</title>
+<script type="text/javascript" src="jquery/jquery-1.3.2.js"></script>
+<script type="text/javascript" src="plugins/jquery.plugin.1.0.3.js"></script>
+<script type="text/javascript">
+$(function(){
+	var dbg = "当前浏览器支持：<br />";
+	$.browser.flash && (dbg +="Flash<br />");
+	$.browser.sl && (dbg +="Silverlight<br />");
+	$.browser.pdf && (dbg +="PDF<br />");
+	$.browser.java && (dbg +="Java<br />");
+	$.browser.qtime && (dbg +="Quicktime<br />");
+	$.browser.wmp && (dbg +="Windows Media Player<br />");
+	$.browser.shk && (dbg +="Shockwave<br />");
+	$.browser.rp && (dbg +="Realplayer<br />");
+	$(".info").html(dbg);
+})
+</script>
+</head>
+<body>
+<h1>浏览器插件检测</h1>
+<p class="info"></p>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+(function($){
+    $.extend($.fn,{
+        color : function(options){
+            var options = $.extend({
+                bcolor : "white",
+                fcolor : "black"
+            },options);
+			return this.each(function(){
+				$(this).css("color", options.fcolor);
+				$(this).css("backgroundColor", options.bcolor);
+			})
+        }
+    })		  
+})(jQuery);
+$(function(){
+	$("h1").color({
+		bcolor : "#eea",
+		fcolor : "red"
+	});
+})
+</script>
+<style type="text/css">
+</style>
+</head>
+<body>
+<h1>标题文本</h1>  
+</body>
+</html>

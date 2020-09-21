@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+    $("input[type='button']").click(function(){	//匹配提交按钮，并绑定事件处理函数
+        var i = 0;		//初始化临时变量
+        $("input[type='text']").each(function(){//枚举每个文本框，获其值，然后相加
+            i += parseInt($(this).val());
+        });
+        $('label').text(i);		//显示结果
+    });
+    $('input:lt(2)')//匹配非提交按钮，以及<label>标签，通过链式语法定义样式
+        .add('label')
+        .css('border','none')
+        .css('borderBottom','solid 1px navy')
+        .css('textAlign','center')
+        .css('width','3em')
+        .css({'width':'30px'});
+});
+</script>
+<title></title>
+</head>
+<body>
+<input type="text" value="" /> + 
+<input type="text" value="" />
+<input type="button" value="=" />
+<label></label>
+</body>
+</html>

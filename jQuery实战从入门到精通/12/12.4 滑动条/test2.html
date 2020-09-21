@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="jqueryui/jquery-ui.css" rel="stylesheet">
+<!--jQuery UI组件结构-->
+<script src="jqueryui/external/jquery/jquery.js"></script>
+<script src="jqueryui/jquery-ui.js"></script>
+<script type="text/javascript" >
+	$(function() {
+		$( "#slider" ).slider({
+			range: "min",
+			value: 50,
+			min: 1,
+			max: 120,
+			slide: function( event, ui ) {
+				$( "#value" ).val( ui.value );
+			}
+		});
+		$( "#value" ).val( $( "#slider" ).slider( "value" ) );
+	});
+</script>
+<style type="text/css">
+
+</style>
+<title></title>
+</head>
+<body>
+<p>
+	<label for="value">当前值:</label>
+	<input type="text" id="value"  />
+</p>
+
+<div id="slider"></div>
+</body>
+</html>

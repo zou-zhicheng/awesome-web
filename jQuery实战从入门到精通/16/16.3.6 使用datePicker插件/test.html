@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>datePicker</title>
+<link href="plugins/datePicker.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="jquery/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="plugins/date.js"></script>
+<script type="text/javascript" src="plugins/jquery.datePicker.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#date').datePicker();
+})
+</script>
+<style type="text/css">
+/* located in demo.css and creates a little calendar icon
+ * instead of a text link for "Choose date"
+ */
+a.dp-choose-date {
+    float: left;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 5px 3px 0;
+    display: block;
+    text-indent: -2000px;
+    overflow: hidden;
+    background: url(images/calendar.png) no-repeat;
+}
+a.dp-choose-date.dp-disabled {
+    background-position: 0 -20px;
+    cursor: default;
+}
+/* makes the input field shorter once the date picker code
+ * has run (to allow space for the calendar icon
+ */
+input.dp-applied {
+    width: 140px;
+    float: left;
+}
+form { height:80px; }
+#dp-popup h2 { background:none; }
+form label { float: left; }
+</style>
+</head>
+<body>
+<h1>datePicker日期选择器</h1>
+<form action="" method="POST" class="p1">
+    <label>添加日期：</label>
+    <input value=""  type="text" name="date"  id="date" />
+</form>
+</body>
+</html>

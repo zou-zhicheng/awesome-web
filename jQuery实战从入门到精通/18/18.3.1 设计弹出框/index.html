@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link href="jquery-mobile/jquery.mobile.theme-1.3.0.min.css" rel="stylesheet" type="text/css">
+<link href="jquery-mobile/jquery.mobile.structure-1.3.0.min.css" rel="stylesheet" type="text/css">
+<script src="jquery-mobile/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile-1.3.0.min.js" type="text/javascript"></script>
+<script>
+</script>
+<style type="text/css"></style>
+</head>
+<body>
+<div data-role="page">
+    <div data-role="header">
+        <h1>弹出框</h1>
+    </div>
+    <div data-role="content">
+        <a href="#popup1" data-rel="popup" data-role="button">右边关闭</a>
+        <a href="#popup2" data-rel="popup" data-role="button">左边关闭</a>
+        <a href="#popup3" data-rel="popup" data-role="button" >禁用关闭</a>
+        <a href="#popup4" data-rel="popup" data-role="button">右边关闭（带标题）</a>
+        <a href="#popup5" data-rel="popup" data-role="button">左边关闭（带标题）</a>
+        <a href="#popup6" data-rel="popup" data-role="button" >禁用关闭（带标题）</a>
+        <div data-role="popup" id="popup1" class="ui-content" style="max-width:280px">
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+            <p><img src="images/p6.jpg" width="100%" /></p>
+        </div>
+        <div data-role="popup" id="popup2" class="ui-content" style="max-width:280px">
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>
+            <p><img src="images/p5.jpg" width="100%" /></p>
+        </div>
+        <div data-role="popup" id="popup3" class="ui-content" style="max-width:280px" data-dismissible="false">
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>
+            <p><img src="images/p4.jpg" width="100%" /></p>
+        </div>
+        <div data-role="popup" id="popup4" class="ui-content" style="max-width:280px">
+            <div data-role="header" data-theme="a" class="ui-corner-top">
+                <h1>弹出框</h1>
+            </div>
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+            <p>点击右侧按钮可以关闭对话框</p>
+        </div>
+        <div data-role="popup" id="popup5" class="ui-content" style="max-width:280px">
+            <div data-role="header" data-theme="a" class="ui-corner-top">
+                <h1>弹出框</h1>
+            </div>
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>
+            <p>点击左侧按钮可以关闭对话框</p>
+        </div>
+        <div data-role="popup" id="popup6" class="ui-content" style="max-width:280px" data-dismissible="false">
+            <div data-role="header" data-theme="a" class="ui-corner-top">
+                <h1>弹出框</h1>
+            </div>
+            <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>
+            <p>点击屏幕空白区域无法关闭</p>
+        </div>
+    </div>
+</div>
+</body>
+</html> 

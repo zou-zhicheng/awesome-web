@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jQuery/jquery.js" type="text/javascript"></script>
+<script src="jQuery/jquery.tablednd_0_5.js" type="text/javascript"></script>
+<script type="text/javascript" >
+$(function(){
+	$("#table1").tableDnD({
+		onDragClass: "drag",
+	    onDrop: function(table, row) {
+            var rows = table.tBodies[0].rows;
+            var debugStr = "当前拖动行是："+row.id+"<br />拖动后顺序是：";
+            for (var i=0; i<rows.length; i++) {
+                debugStr += rows[i].id+" ";
+            }
+	        $("#debugArea").html(debugStr);
+	    },
+		onDragStart: function(table, row) {
+			$("#debugArea").html("当前拖动行是："+row.id);
+		}
+	});
+})
+</script>
+<style type="text/css">
+table {
+    border: solid 1px #6CF;
+    width: 100%;
+    border-collapse: collapse;
+}
+td { border: solid 1px #6CF; }
+.drag { background-color: #6CF; }
+</style>
+<title></title>
+</head>
+<body>
+<h1>《游子吟》</h1>
+<h2>孟郊</h2>
+<table id="table1">
+    <tr id="1">
+        <td>1</td>
+        <td>慈母手中线，</td>
+    </tr>
+    <tr id="2">
+        <td>2</td>
+        <td>游子身上衣。</td>
+    </tr>
+    <tr id="3">
+        <td>3</td>
+        <td>临行密密缝，</td>
+    </tr>
+    <tr id="4">
+        <td>4</td>
+        <td>意恐迟迟归。</td>
+    </tr>
+    <tr id="5">
+        <td>5</td>
+        <td>谁言寸草心，</td>
+    </tr>
+    <tr id="6">
+        <td>6</td>
+        <td>报得三春晖。</td>
+    </tr>
+</table>
+<div id="debugArea"></div>
+</body>
+</html>

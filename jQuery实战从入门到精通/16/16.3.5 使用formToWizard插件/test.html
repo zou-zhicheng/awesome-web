@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>formToWizard</title>
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="plugins/formToWizard.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#form1").formToWizard({ submitButton: 'SaveAccount' })
+})
+</script>
+<style type="text/css">
+#wrap { margin:1em 4em; font-size:12px; padding:1em 1em; border:solid 1px #fff; }
+fieldset { border:none; width:320px; }
+legend { font-size:18px; margin:0px; padding:10px 0px; color:#b0232a; font-weight:bold; }
+label { display:block; margin:15px 0 5px; }
+input[type=text], input[type=password] { width:300px; padding:5px; border:solid 1px #000; }
+.prev, .next { background-color:#b0232a; padding:5px 10px; color:#fff; text-decoration:none; }
+.prev:hover, .next:hover { background-color:#000; text-decoration:none; }
+.prev { float:left; }
+.next { float:right; }
+#steps { list-style:none; width:100%; overflow:hidden; margin:0px; padding:0px; }
+#steps li { font-size:24px; float:left; padding:10px; color:#b0b1b3; }
+#steps li span { font-size:11px; display:block; }
+#steps li.current { color:#000; }
+#makeWizard { background-color:#b0232a; color:#fff; padding:5px 10px; text-decoration:none; font-size:18px; }
+#makeWizard:hover { background-color:#000; }
+</style>
+</head>
+<body>
+<h1>formToWizard表单填充向导</h1>
+<div id="wrap">
+    <form id="form1" action="">
+        <fieldset>
+            <legend>登录信息</legend>
+            <label for="Name">昵称</label>
+            <input id="Name" type="text" />
+            <label for="Email">Email</label>
+            <input id="Email" type="text" />
+            <label for="Password">密码</label>
+            <input id="Password" type="password" />
+        </fieldset>
+        <fieldset>
+            <legend>公司信息</legend>
+            <label for="CompanyName">公司名称</label>
+            <input id="CompanyName" type="text" />
+            <label for="Website">公司网址</label>
+            <input id="Website" type="text" />
+            <label for="CompanyEmail">公司邮箱</label>
+            <input id="CompanyEmail" type="text" />
+        </fieldset>
+        <fieldset>
+            <legend>个人信息</legend>
+            <label for="NameOnCard">真实姓名</label>
+            <input id="NameOnCard" type="text" />
+            <label for="CardNumber">身份证号</label>
+            <input id="CardNumber" type="text" />
+            <label for="CreditcardMonth">发卡日期</label>
+            <select id="CreditcardMonth">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+            <select id="CreditcardYear">
+                <option value="2009">2009</option>
+                <option value="2010">2010</option>
+                <option value="2011">2011</option>
+            </select>
+            <label for="Address1">地址1</label>
+            <input id="Address1" type="text" />
+            <label for="Address2">地址2</label>
+            <input id="Address2" type="text" />
+            <label for="City">城市</label>
+            <input id="City" type="text" />
+            <label for="Country">国家</label>
+            <select id="Country">
+                <option value="CA">Canada</option>
+                <option value="US">United States of America</option>
+                <option value="GB">United Kingdom (Great Britain)</option>
+                <option value="AU">Australia</option>
+                <option value="JP">Japan</option>
+            </select>
+        </fieldset>
+        <div>
+            <input id="SaveAccount" type="button" value="提交表单" />
+        </div>
+    </form>
+</div>
+</body>
+</html>

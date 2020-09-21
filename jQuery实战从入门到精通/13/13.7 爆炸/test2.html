@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="jqueryui/jquery-ui.css" rel="stylesheet">
+<script src="jqueryui/external/jquery/jquery.js"></script>
+<script src="jqueryui/jquery-ui.js"></script>
+<script type="text/javascript" >
+$(function() {  
+	$("img").click(function () {
+		  $(this).effect("explode", {
+			  pieces: 16,
+			  mode: "show"
+		  }, 1000);
+	});
+
+});
+</script>
+<style type="text/css">
+
+</style>
+<title></title>
+</head>
+<body>
+<img src="images/1.jpg" width="300" />
+</body>
+</html>

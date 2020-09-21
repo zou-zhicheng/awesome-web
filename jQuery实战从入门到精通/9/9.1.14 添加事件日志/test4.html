@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+(function($){
+    $.extend($.fn,{
+        log : function(msg){
+			if(typeof msg == "object"){
+				var str = "{ ";
+				$.each(msg, function(name, value){
+					str += name + " : " + value + ", ";
+				});
+				str = str.substring(0,str.length-2);
+				str += " }";
+				msg = str;
+			}
+			return this.each(function(){
+				var $this = $(this);
+				while($this.length){
+					var $logbox = $this.find(".logbox");
+					if($logbox.length){
+						 var html = jQuery('<div class="log"></div>').text(msg);
+						 $logbox.append(html);	
+						 break;
+					}
+					$this =  $this.parent();
+				}		  
+			});
+        }
+    })
+})(jQuery);
+
+$(function(){
+    $("h1").mouseout(function(event){
+        $(this).log({
+            nodeName : this.nodeName.toLowerCase(), 
+            eventType : event.type
+        });
+    });
+	$("p").mouseover(function(event){
+        $(this).log({
+            nodeName : this.nodeName.toLowerCase(), 
+            eventType : event.type
+        });
+	});
+	$("input").click(function(event){
+		var e = event.type;
+		$(this).log(this.nodeName.toLowerCase() + "." + e);
+	});	
+})
+</script>
+<style type="text/css">
+</style>
+</head>
+<body>
+<h1>标题文本</h1>
+<input type="button" value="提交按钮" />
+<p>段落文本</p>
+<div class="logbox"></div>
+</body>
+</html>

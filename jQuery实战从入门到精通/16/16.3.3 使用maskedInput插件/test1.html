@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>maskedInput</title>
+<script type="text/javascript" src="jquery/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="plugins/jquery.maskedinput-1.2.2.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('#date').mask('99/99/9999');
+    $('#phone').mask('(999) 999-9999');
+})
+</script>
+<style type="text/css">
+label { display:block; margin:4px; }
+</style>
+</head>
+<body>
+<h1>maskedInput屏蔽输入框</h1>
+<form id="form1" action="" class="p1">
+    <label>日期：
+        <input id="date" type="text" tabindex="1" />
+        99/99/9999</label>
+    <label>电话：
+        <input id="phone" type="text" tabindex="3" />
+        (999) 999-9999</label>
+</form>
+</div>
+</body>
+</html>

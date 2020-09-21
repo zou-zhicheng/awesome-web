@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet"  type="text/css">
+<link href="bootstrap/css/bootstrap-theme.css.no" rel="stylesheet"  type="text/css">
+<script src="bootstrap/jquery-1.9.1.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<style type="text/css">
+body { padding: 10px 10px; }
+a { margin-right: 250px; margin-top: 80px; }
+</style>
+<script type="text/javascript">
+$(function(){  
+	$('a').popover();
+});
+</script>
+</head>
+<body>
+<a href="#" class="btn btn-large btn-success"  title="弹出框标题" data-content="这里将显示弹出框的正文内容">默认效果</a> 
+<a href="#" class="btn btn-large btn-success" data-placement="top"  title="弹出框标题" data-content="这里将显示弹出框的正文内容">顶部显示</a> 
+<a href="#" class="btn btn-large btn-success" data-placement="bottom" title="弹出框标题" data-content="这里将显示弹出框的正文内容">底部显示</a> 
+<a href="#" class="btn btn-large btn-success" data-placement="left" title="弹出框标题" data-content="这里将显示弹出框的正文内容">左侧显示</a>
+</body>
+</html>

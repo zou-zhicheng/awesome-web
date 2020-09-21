@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-2.1.0.js" type="text/javascript"></script>
+<script type="text/javascript"> 
+$(function(){
+	function fn1() {
+		console.log(1)
+	}
+	function fn2() {
+		console.log(2)
+	}
+	var callbacks = $.Callbacks();//定义Callbacks对象
+	// 方式1
+	callbacks.add(fn1);
+	// 方式2 一次添加多个回调函数
+	callbacks.add(fn1, fn2);
+	// 方式3 传数组
+	callbacks.add([fn1, fn2]);
+	// 方式4 函数和数组掺和
+	callbacks.add(fn1, [fn2]);
+
+})
+</script>
+<title>test</title>
+</head>
+<body>
+</body>
+</html>

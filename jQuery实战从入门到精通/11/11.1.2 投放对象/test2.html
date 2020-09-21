@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="jqueryui/jquery-ui.css" rel="stylesheet">
+<!--jQuery UI组件结构-->
+<script src="jqueryui/external/jquery/jquery.js"></script>
+<script src="jqueryui/jquery-ui.js"></script>
+<script type="text/javascript" >
+
+$(function() {
+	$( "#draggable" ).draggable();
+
+	$( "#droppable, #droppable-inner" ).droppable({
+		activeClass: "ui-state-hover",
+		hoverClass: "ui-state-active",
+		drop: function( event, ui ) {
+			$( this )
+				.addClass( "ui-state-highlight" )
+				.find( "> p" )
+					.html( "完成投放操作" );
+			return false;
+		}
+	});
+
+	$( "#droppable2, #droppable2-inner" ).droppable({
+		greedy: true,
+		activeClass: "ui-state-hover",
+		hoverClass: "ui-state-active",
+		drop: function( event, ui ) {
+			$( this )
+				.addClass( "ui-state-highlight" )
+				.find( "> p" )
+					.html( "完成投放操作" );
+		}
+	});
+});
+
+</script>
+<style type="text/css">
+#draggable { width: 80px; height: 40px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+#droppable, #droppable2 { width: 230px; height: 120px; padding: 0.5em; float: left; margin: 10px; }
+#droppable-inner, #droppable2-inner { width: 170px; height: 60px; padding: 0.5em; float: left; margin: 10px; }
+</style>
+<title></title>
+</head>
+<body>
+<div id="draggable" class="ui-widget-content">
+    <p>拖动对象</p>
+</div>
+<div id="droppable" class="ui-widget-header">
+    <p>目标外框1</p>
+    <div id="droppable-inner" class="ui-widget-header">
+        <p>目标内框1</p>
+    </div>
+</div>
+<div id="droppable2" class="ui-widget-header">
+    <p>目标外框2</p>
+    <div id="droppable2-inner" class="ui-widget-header">
+        <p>目标内框2</p>
+    </div>
+</div>
+</body>
+</html>

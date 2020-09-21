@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="jqueryui/jquery-ui.css" rel="stylesheet">
+<!--jQuery UI组件结构-->
+<script src="jqueryui/external/jquery/jquery.js"></script>
+<script src="jqueryui/jquery-ui.js"></script>
+<script type="text/javascript" >
+$(function() {
+	$( "#selectable" ).selectable();
+});
+</script>
+<style type="text/css">
+#feedback { font-size: 1.4em; }
+#selectable .ui-selecting { background: #FECA40; }
+#selectable .ui-selected { background: #F39814; color: white; }
+#selectable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#selectable li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+</style>
+<title></title>
+</head>
+<body>
+<ol id="selectable">
+    <li class="ui-widget-content">列表项目1</li>
+    <li class="ui-widget-content">列表项目2</li>
+    <li class="ui-widget-content">列表项目3</li>
+    <li class="ui-widget-content">列表项目4</li>
+    <li class="ui-widget-content">列表项目5</li>
+    <li class="ui-widget-content">列表项目6</li>
+</ol>
+</body>
+</html>

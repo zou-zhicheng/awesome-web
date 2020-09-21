@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+var a = {    				//对象直接量
+    name : "zhu",
+    pass : 123
+}
+var b = {    				//对象直接量
+    name : "wang",
+    pass : 456,
+    age : 1
+}
+var c = jQuery.extend(a,b);     	//合并对象a和b
+$(function(){
+    for(var name in c){     	//遍历对象c，显示合并后的对象c的具体属性和值
+        $("div").html($("div").html()  + "<br />"+ name + ":" +  c[name]);
+    }
+})
+</script>
+<style type="text/css">
+</style>
+</head>
+<body>
+<div></div>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+(function($){
+    $.extend($,{
+        fixedWidth : function(str, length, char){
+			str = str.toString();
+			if(!char) char = "...";
+			var num = length - lengthB(str);
+			if(num < 0 ){
+				str = substringB(str, length - lengthB(char) ) + char ;
+			}
+			return str;			
+			function substringB(str, length){
+				var num = 0, len = str.length, tenp = ""; 
+			    if( len ){
+       				for( var i = 0; i < len; i ++ ){
+						if(num > length) break;
+            			if(str.charCodeAt( i ) > 255 ){
+                			num += 2;
+							tenp += str.charAt( i );
+            			}else{
+                			num ++ ;
+							tenp += str.charAt( i );
+            			}
+        			}
+        			return tenp;
+    			}else{
+        			return null;
+    			}
+			}
+			function lengthB(str){
+				var num = 0, len = str.length; 
+			    if( len ){
+       				for( var i = 0; i < len; i ++ ){
+            			if(str.charCodeAt( i ) > 255 ){
+                			num += 2;
+            			}else{
+                			num ++ ;
+            			}
+        			}
+        			return num;
+    			}else{
+        			return 0;
+    			}
+			}
+        }	
+    })
+})(jQuery);
+
+$(function(){
+	var $a = $("li a");
+	$a.each(function(){
+		var str = $(this).text();
+		str = jQuery.fixedWidth(str, 30);
+		$(this).text(str);			  
+	});
+})
+</script>
+<style type="text/css">
+</style>
+</head>
+<body>
+<ul style="width:240px; border:solid 1px red; padding-left:1.5em;">
+    <li><a href="#">互联网创业“喧嚣”渐散 青年创客做深细分市场 18:45</a></li>
+    <li><a href="#">“互联网+食品安全”食品安全信息占网络谣言高达45% 09:25</a></li>
+    <li><a href="#">金融风控的理性革新，区块链与大数据相得益彰 09:31</a></li>
+    <li><a href="#">酒店加盟精细化服务时代的到来,尚客优连锁酒店如何随风摆 11:20</a></li>
+    <li><a href="#">Some US Students Learn Mandarin With China's Help 13:43</a></li>
+    <li><a href="#">A Rough Road for Toyota 17:14</a></li>
+</ul>
+</body>
+</html>

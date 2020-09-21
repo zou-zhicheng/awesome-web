@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="jqueryui/jquery-ui.css" rel="stylesheet">
+<!--jQuery UI组件结构-->
+<script src="jqueryui/external/jquery/jquery.js"></script>
+<script src="jqueryui/jquery-ui.js"></script>
+<script type="text/javascript" >
+	$(function() {
+		$( "#tabs" ).tabs();
+		$( ".tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *" )
+			.removeClass( "ui-corner-all ui-corner-top" )
+			.addClass( "ui-corner-bottom" );
+	});
+</script>
+<style type="text/css">
+#tabs { height: 300px; }
+.tabs-bottom { position: relative; }
+.tabs-bottom .ui-tabs-panel { height: 240px; overflow: auto; }
+.tabs-bottom .ui-tabs-nav { position: absolute !important; left: 0; bottom: 0; right:0; padding: 0 0.2em 0.2em 0; }
+.tabs-bottom .ui-tabs-nav li { margin-top: -2px !important; margin-bottom: 1px !important; border-top: none; border-bottom-width: 1px; }
+.ui-tabs-selected { margin-top: -3px !important; }
+</style>
+<title></title>
+</head>
+<body>
+<div id="tabs"  class="tabs-bottom">
+    <ul>
+        <li><a href="#tabs-1">新闻</a></li>
+        <li><a href="#tabs-2">社区</a></li>
+        <li><a href="#tabs-3">联系</a></li>
+    </ul>
+    <div id="tabs-1">
+        <p><img src="images/pic1.jpg" height="200" /></p>
+    </div>
+    <div id="tabs-2">
+        <p><img src="images/pic2.jpg" height="200" /></p>
+    </div>
+    <div id="tabs-3">
+        <p><img src="images/pic3.jpg" height="200" /></p>
+    </div>
+</div>
+</body>
+</html>

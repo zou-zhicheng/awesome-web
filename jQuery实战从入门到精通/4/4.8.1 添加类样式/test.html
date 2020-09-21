@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+$(function(){
+   $("p:last").addClass("selected");
+   $("p").eq(1).addClass("highlight");   
+})
+</script>
+<style>
+.selected { font-weight:bold; }
+.highlight { background:yellow; }
+</style>
+</head>
+<body>
+<p>温暖一生的故事，寄托一生的梦想。</p>
+<p>感动一生的情怀，执著一生的信念。</p>
+<p>成就一生的辉煌，炮烙一生的记忆。</p>
+</body>
+</html>

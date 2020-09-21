@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+$(function(){
+    $("div").bind("click.a", function(){
+        $("body").append("<p>click.a事件</p>");
+    });
+    $("div").bind("click.b", function(){
+        $("body").append("<p>click.b事件</p>");
+    });    
+    $("input").click(function(){
+        $("div").unbind(".a");	//注销命名空间为a的事件
+    });
+})
+</script>
+</head>
+<body>
+<div>jQuery命名空间</div>
+<input type="button" value="删除事件"  />
+</body>
+</html>

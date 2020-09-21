@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="jqueryui/jquery-ui.css" rel="stylesheet">
+<!--jQuery UI组件结构-->
+<script src="jqueryui/external/jquery/jquery.js"></script>
+<script src="jqueryui/jquery-ui.js"></script>
+<script type="text/javascript" >
+
+$(function(){
+		$( "#draggable" ).draggable();
+		$( "#droppable" ).droppable({
+			drop: function( event, ui ) {
+				$( this )
+					.addClass( "ui-state-highlight" )
+					.find( "p" )
+					.html( "完成投放" );
+			}
+		});
+})
+
+</script>
+<style type="text/css">
+#draggable { width: 100px; height: 100px; }
+#droppable { width: 150px; height: 150px; }
+</style>
+<title></title>
+</head>
+<body>
+<div id="draggable" class="ui-widget-content">
+    <p>拖动目标</p>
+</div>
+<div id="droppable" class="ui-widget-header">
+    <p>投放区域</p>
+</div>
+</body>
+</html>

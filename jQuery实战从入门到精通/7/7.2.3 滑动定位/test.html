@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+$(function(){
+    $("button").click(function(){
+        $("p").animate({
+            left:200, 
+            top:200, 
+            opacity: .5
+        }, 2000, "linear", function(){alert("动画完成");} );
+    })
+})
+</script>
+</head>
+<body>
+<button>控制按钮</button>
+<p style="position:relative"><img src="images/1.jpg" height="300" /></p>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="bootstrap/css/bootstrap.css" rel="stylesheet"  type="text/css">
+<link href="bootstrap/css/bootstrap-theme.css.no" rel="stylesheet"  type="text/css">
+<script src="bootstrap/jquery-1.9.1.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<style type="text/css">
+body { padding: 20px 40px; }
+a{margin:50px;}
+</style>
+<script type="text/javascript">
+$(function(){
+	$('a').tooltip({
+		html:true,
+		title:"<img src='images/logo.gif' />",
+		placement:"right",
+		delay: { show: 1000, hide: 500 }
+	}) 
+}); 
+
+</script>
+</head>
+<body>
+
+
+<a href="http://www.baidu.com/" class="btn btn-info btn-lg">百度</a> 
+<a href="http://www.baidu.com/" class="btn btn-info btn-lg" title="百度一下，你就知道">百度</a> 
+<a href="http://www.baidu.com/" class="btn btn-info btn-lg" title="http://www.baidu.com/">百度</a> 
+<a href="http://www.baidu.com/" class="btn btn-info btn-lg" title="<img src='images/logo.gif' />">百度</a>
+
+
+</body>
+</html>

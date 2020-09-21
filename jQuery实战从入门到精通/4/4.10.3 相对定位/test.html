@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+$(function(){
+    var o1 = $("div").eq(0).position();	//获取元素的相对偏移位置
+    $("div").eq(0).html( "left: " + o1.left + "<br />top: " + o1.top ); 	//显示相对偏移位置
+    var o2 = $("div").eq(2).position();	//获取元素的相对偏移位置
+    $("div").eq(2).html( "left: " + o2.left + "<br />top: " + o2.top ); 	//显示相对偏移位置
+})
+</script>
+<style type="text/css">
+body { padding:0; margin:0; }
+div { height:60px; width:200px; border:solid 10px red; }
+</style>
+</head>
+<body>
+<div>盒子1</div>
+<div style="position:relative; float:right; width:300px; height:100px; border-color:blue;">
+    <div>盒子2</div>
+</div>
+</body>
+</html>

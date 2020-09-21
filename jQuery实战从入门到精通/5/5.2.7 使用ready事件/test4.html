@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+function addLoadEvent(func){
+    var oldOnload = window.onload;	//把window.onload事件处理函数的值存入变量ondowload
+    if (typeof window.onload != 'function'){//如果window.onload事件没有绑定任何事件处理函数，则为
+	//其添加新的事件处理函数
+        window.onload = func;
+    }else{	//如果window.onload事件已绑定事件处理函数，
+	//则重新绑定事件处理函数，在事件处理函数中
+//先执行原来已绑定的事件处理函数，然后调用新添加的事件处理函数
+        window.onload = function(){
+            oldOnload();
+            func();
+        }
+    }
+} 
+
+addLoadEvent(function(){
+    alert("一次调用load事件");
+});
+addLoadEvent(function(){
+    alert("二次调用load事件");
+});
+addLoadEvent(function(){
+    alert("三次调用load事件");
+});
+
+</script>
+</head>
+<body>
+</body>
+</html>

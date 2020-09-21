@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>validationEngine</title>
+<link href="plugins/validationEngine.jquery.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="jquery/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="plugins/jquery.validationEngine-en.js"></script>
+<script type="text/javascript" src="plugins/jquery.validationEngine.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("form").validationEngine();
+})
+</script>
+<style type="text/css"></style>
+</head>
+<body>
+<h1>validationEngine表单验证</h1>
+<form action="" method="POST" class="niceform p1">
+    <fieldset>
+        <legend>电话验证</legend>
+        <label> +103-304-340-4300-043<br/>
+            +1 305 768 23 34 ext 23<br/>
+            +1 (305) 768-2334 extension 703<br/>
+            +1 (305) 768-2334 x703<br/>
+            <span>Telephone : </span>
+            <input value="+1 305 768 23 34 ext 23"  class="validate[required,custom[phone]] text-input" type="text" name="telephone"  id="telephone" />
+        </label>
+    </fieldset>
+</form>
+</body>
+</html>

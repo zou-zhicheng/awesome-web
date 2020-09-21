@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+jQuery.fn.test = function(){
+    this.each(function(){    	//遍历所有匹配的元素，此处的this表示对象集合，即jQuery对象
+        alert(this.nodeName); 	//显示当前元素的结点名称，此处的this表示元素对象
+    });
+}
+
+$(function(){
+    $("input").click(function(){ 	//绑定click事件
+        $(this).test();    		//在当前的jQuery对象上调用test()方法
+    });
+})
+
+</script>
+<style type="text/css">
+</style>
+</head>
+<body>
+<input type="button" value="jQuery插件扩展测试" />
+</body>
+</html>

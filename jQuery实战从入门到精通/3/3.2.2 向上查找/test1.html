@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+    $("img").parents().css({"border":"solid 1px red","margin":"10px"}) ;
+    alert($("img").parents().length);	//返回4，分别是span、div、body和html
+})
+
+</script>
+<style type="text/css">
+img {height:200px;}
+</style>
+<title></title>
+</head>
+<body>
+<div>
+    <span>
+        <img src="images/bg.jpg" />
+    </span>
+    <img src="images/bg.jpg" />
+</div>
+</body>
+</html>

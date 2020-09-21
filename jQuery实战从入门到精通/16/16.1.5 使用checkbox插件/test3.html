@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>checkbox</title>
+<link href="plugins/jquery.checkbox.css" rel="stylesheet" type="text/css" media="all" />
+<link href="plugins/jquery.safari-checkbox.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="plugins/jquery.checkbox.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('input:radio').checkbox({
+		empty: 'images/empty.png'
+	});
+})
+</script>
+<style type="text/css">
+</style>
+</head>
+<body>
+<h1>单选按钮组</h1>
+<form action="" method="post" id="autotab" class="p1">
+    <label>你现在住在哪里？<br />
+		<input name="radio.1" value="1" type="radio">北京&nbsp;&nbsp;
+		<input name="radio.1" value="2" type="radio" checked>上海&nbsp;&nbsp;
+		<input name="radio.1" value="3" type="radio">广州&nbsp;&nbsp;
+ 		<input name="radio.1" value="4" type="radio">其他       
+    </label>
+</form>
+</body>
+</html>

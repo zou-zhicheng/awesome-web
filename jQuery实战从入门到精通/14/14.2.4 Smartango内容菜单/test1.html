@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Smartango context menu</title>
+<link href="plugins/contextmenu.css" rel="stylesheet" type="text/css" media="all">
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="plugins/jquery.contextmenu.js"></script>
+<script type="text/javascript">
+function getsizex(e,el) {
+    var img = $(el);
+    if(img.size()>0) {
+		  var top = $(window).scrollTop() + ($(window).height()/2 - 30);
+		  var left = $(window).scrollLeft() + ($(window).width()/2 - 200);
+		  var sdiv = $("<div/>")
+		      .html(img.width())
+		      .css({"position":'absolute','margin':'auto',
+			    "opacity":0.5,'top':top,'left':left,
+			    'width':'100px','z-index':1000,'color':'#fff',
+			    'text-shadow': 'rgba(0,0,0,.4) 0 2px 0',
+			    'font-size':'28px','font-weight':'bolder','background':'#000','text-align':'center'});
+		  $("body").append(sdiv);
+		  sdiv.animate({"opacity":'1.0'},2000,
+			       function(){sdiv.remove();});
+    }
+}
+function getsizey(e,el) {
+    var img = $(el);
+    if(img.size()>0) {
+		  var top = $(window).scrollTop() + ($(window).height()/2 - 30);
+		  var left = $(window).scrollLeft() + ($(window).width()/2 - 200);
+		  var sdiv = $("<div/>")
+		      .html(img.height())
+		      .css({"position":'absolute','margin':'auto',
+			    "opacity":0.5,'top':top,'left':left,
+			    'width':'100px','z-index':1000,'color':'#fff',
+			    'text-shadow': 'rgba(0,0,0,.4) 0 2px 0',
+			    'font-size':'28px','font-weight':'bolder','background':'#000','text-align':'center'});
+		  $("body").append(sdiv);
+		  sdiv.animate({"opacity":'1.0'},2000,
+			       function(){sdiv.remove();});
+    }
+}
+function zoomout(e,el) {
+    var img = $(el);
+	img.height(img.height()/2); 
+	img.width(img.width()/2); 	
+}
+function zoomin(e,el) {
+    var img = $(el);
+	img.height(img.height()*2); 
+	img.width(img.width()*2); 	
+}
+function getsrc(e,el) {
+    alert(el.src);
+}
+function showfullsize(e,el) {
+    var img = $(el);
+    if(img.size()>0) {
+	var top = window.pageYOffset ;//+ ($(window).height()/2 - 30);
+	var left = window.pageXOffset ;//+ ($(window).width()/2 - 200);
+	var sdiv = $("<img>").attr('src',img.attr('src'))
+	    .css({"position":'absolute','margin':'auto',
+		  "opacity":0.2,'top':top,'left':left,
+		  'z-index':1000});
+	$("body").append(sdiv);
+	sdiv.animate({"opacity":'1.0'},3000)
+	    .click(function(){$(this).remove();});
+    }
+}
+$(function(){
+	    $(".info img").contextmenu({
+			'图像宽度':getsizex,
+			'图像高度':getsizey,			
+			'缩小图像':zoomout,
+			'放大图像':zoomin,
+			'查看图像源':getsrc,
+			'浏览原图（再次单击可清除）':showfullsize
+		}, 
+		'right',
+		''); 
+			 
+})
+</script>
+</head>
+<body>
+<h1>Smartango内容菜单</h1>
+<p class="info">
+<img src="images/pic1.jpg" width="204"> 
+<img src="images/pic2.jpg" width="204"> 
+<img src="images/pic3.jpg" width="204"> 
+<img src="images/pic4.jpg" width="204"> 
+<img src="images/pic5.jpg" width="204"> 
+</p>
+</body>
+</html>

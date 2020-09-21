@@ -1,0 +1,19 @@
+<!doctype html>
+<html> 
+<head>
+<meta charset="utf-8">
+<title>Force redraw</title>
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="plugins/jquery.forceredraw-1.0.3.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("p.info").css({ color: "#ff0011", background: "blue" }); ; 
+	$("p.info").forceRedraw(true); 
+})
+</script>
+</head>
+<body>
+<h1>强制浏览器重新渲染页面</h1>
+<p class="info"></p>
+</body>
+</html>

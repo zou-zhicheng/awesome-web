@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+.red {color:red;}
+.blue {color:blue;}
+</style>
+</head>
+<body>
+<div class="content">
+    <ul>
+        <li>首页</li>
+        <li class="red">财经</li>
+        <li class="blue">娱乐</li>
+        <li class="red">时尚</li>
+        <li class="blue">互联网</li>
+    </ul>
+</div>
+<script type="text/javascript">
+
+var l1 = document.querySelector(".content ul li");
+document.write(l1.textContent);
+
+var lis =  document.querySelectorAll(".content ul li");
+
+var red =  document.querySelectorAll("li.red");
+var red1 =  document.getElementsByClassName("red");
+
+
+
+</script>
+
+</body>
+</html>

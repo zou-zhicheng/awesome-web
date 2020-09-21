@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="jqueryui/jquery-ui.css" rel="stylesheet">
+<!--jQuery UI组件结构-->
+<script src="jqueryui/external/jquery/jquery.js"></script>
+<script src="jqueryui/jquery-ui.js"></script>
+<script type="text/javascript" >
+
+$(function() {
+	$( "#draggable" ).draggable({ axis: "y" });
+	$( "#draggable2" ).draggable({ axis: "x" });
+	$( "#draggable3" ).draggable({ containment: "#containment-wrapper", scroll: false });
+	$( "#draggable4" ).draggable({ containment: "#demo-frame" });
+	$( "#draggable5" ).draggable({ containment: "parent" });
+});
+</script>
+<style type="text/css">
+.draggable { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+#draggable, #draggable2 { margin-bottom:20px; }
+#draggable { cursor: n-resize; }
+#draggable2 { cursor: e-resize; }
+#containment-wrapper { width: 95%; height:150px; border:2px solid #ccc; padding: 10px; }
+</style>
+<title></title>
+</head>
+<body>
+<div class="demo">
+<div id="draggable" class="draggable ui-widget-content">
+    <p>垂直移动</p>
+</div>
+<div id="draggable2" class="draggable ui-widget-content">
+    <p>水平移动</p>
+</div>
+<div id="containment-wrapper">
+    <div id="draggable3" class="draggable ui-widget-content">
+        <p>框内移动</p>
+    </div>
+    <div id="draggable4" class="draggable ui-widget-content">
+        <p>外框内移动</p>
+    </div>
+    <div class="draggable ui-widget-content">
+        <p id="draggable5" class="ui-widget-header">内框内移动</p>
+    </div>
+</div>
+</body>
+</html>

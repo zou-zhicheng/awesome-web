@@ -1,0 +1,33 @@
+<!doctype html>
+<html> 
+<head>
+<meta charset="utf-8">
+<title>Advanced Browser Check</title>
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="plugins/jQuery Browser.js"></script>
+<script type="text/javascript">
+var dbg = '';
+for ( var k in $.browser ) {
+    if ( typeof( $.browser[k] ) == 'function' ) {
+        continue;
+    }
+    if ( typeof( $.browser[k] ) !== 'object' ) {
+        dbg += k + '\t: ' + $.browser[k] + '<br />';
+    }
+    else {
+        dbg += k + ': ' + ( ( $.browser[k] ) ? true : false ) + '<br />';
+        for ( var kk in $.browser[k] ) {
+            dbg += '\t  ' + k + '.' + kk + '\t= ' + $.browser[k][kk] + '<br />';
+        }
+    }
+}
+$(function(){
+	$(".info").html(dbg);
+})
+</script>
+</head>
+<body>
+<h1>检查当前浏览器</h1>
+<p class="info"></p>
+</body>
+</html>

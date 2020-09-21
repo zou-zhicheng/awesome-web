@@ -1,0 +1,23 @@
+<!doctype html>
+<html> 
+<head>
+<meta charset="utf-8">
+<title>Advanced Browser Check</title>
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="plugins/jQuery Browser.js"></script>
+<script type="text/javascript">
+var infos = $.browser.fileinfo('path/tothefile/filename.ext');
+var dbg = '';
+for (var k in infos) {
+  dbg += k+': '+infos[k]+'<br />';
+}
+$(function(){
+	$(".info").html(dbg);
+})
+</script>
+</head>
+<body>
+<h1>获取文件信息</h1>
+<p class="info"></p>
+</body>
+</html>

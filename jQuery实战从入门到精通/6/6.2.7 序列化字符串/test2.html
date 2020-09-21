@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>test</title>
+<script src="jquery/jquery-1.11.0.js" type="text/javascript"></script>
+<script type="text/javascript" >
+$(function(){
+    $("#submit").click(function(){
+        //var array = $("form").serializeArray();			//注意，不能够直接在form元素上调用该方法
+        var array = $("input, select, :radio").serializeArray();	//在表单域对象上调用serializeArray()方法，
+//返回包含传递表单域和值的JSON对象
+        var str = "[ <br />"
+        for(var i = 0; i<array.length; i++){				//遍历数组格式的JSON对象
+            str += "    {"
+            for(var name in array[i]){		   			//遍历数组元素对象
+                str += name + ":" + array[i][name]  + ","	//组合为JSON格式字符串
+            }
+            str = str.substring(0,str.length-1);			//清除最后一个字符
+            str += "},<br />";
+        }
+        str = str.substring(0,str.length-7);	 			//清除最后7个字符
+        str += "<br />]";
+        $("p").html(str);	              			//显示返回的JSON结构字符串
+        return false;
+    });
+})
+</script>
+<style type="text/css">
+</style>
+</head> 
+<body>
+<form action="#" method="post">
+    姓名：<input  type="text" name="user" /><br />
+    性别：
+    <input type="radio" name="sex" value="man" checked="checked" />男
+    <input type="radio" name="sex" value="men" />女<br /> 
+    年级：
+    <select name="grade">
+        <option value="1">一</option>
+        <option value="2">二</option>
+        <option value="3">三</option>
+    </select><br />
+    科目：
+    <select name="kemu" size="6" multiple="multiple">
+        <option value="yuwen">语文</option> 
+        <option value="shuxue">数学</option>
+        <option value="waiyu">外语</option> 
+        <option value="wuli">物理</option>
+        <option value="huaxue">化学</option> 
+        <option value="jisuanji">计算机</option> 
+    </select><br />
+    兴趣：
+    <input type="checkbox" name="love" value="yundong" />运动
+    <input type="checkbox" name="love" value="wenyi" />文艺
+    <input type="checkbox" name="love" value="yinyue" />音乐
+    <input type="checkbox" name="love" value="meishu" />美术
+    <input type="checkbox" name="love" value="youxi" />游戏<br />
+    <input type="submit" value="提交" id="submit" />  
+</form>
+<p></p>
+</html>

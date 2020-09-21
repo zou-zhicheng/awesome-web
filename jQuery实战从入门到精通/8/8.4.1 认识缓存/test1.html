@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-2.1.0.js" type="text/javascript"></script>
+<script type="text/javascript"> 
+$(function(){
+    //被引用的数据
+    var userInfo = [{
+       "name" : "张三",
+       "age" : 12,
+       "grade" :1
+    },{
+       "name" : "李四",
+       "age" : 13,
+       "grade" : 2
+    }];
+    //绑定事件，调用方法读取数据
+    $("input").eq(0).click(function(){
+        showInfo("张三") 
+    });
+    $("input").eq(1).click(function(){
+        showInfo("李四") 
+    });
+    function getData(name){  			//根据name字段名，检索数据
+       for (var i in userInfo){ 			//遍历数据对象
+          if (userInfo[i].name == name){ 	//过滤数据
+             return userInfo[i];
+             break;
+          }
+       }
+    }
+    function showInfo(name){    		//显示数据
+       var info = getData(name);
+       alert('姓名:' + info.name + '\n' + '年龄:' + info.age + '\n' + '年级:' + info.grade);
+    }
+})
+</script>
+<title>test</title>
+</head>
+<body>
+<input type="button" value="显示张三的资料" /> 
+<input type="button" value="显示李四的资料" />
+</body>
+</html>

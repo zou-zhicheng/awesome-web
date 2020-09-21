@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+.red {color:red;}
+.blue {color:blue;}
+</style>
+</head>
+<body>
+<div class="content">
+    <ul>
+        <li>首页</li>
+        <li class="red">财经</li>
+        <li class="blue">娱乐</li>
+        <li class="red">时尚</li>
+        <li class="blue">互联网</li>
+    </ul>
+</div>
+<script type="text/javascript">
+
+
+//方法一
+var lis =  document.querySelectorAll("li.red, li.blue");
+//方法二
+var result = [], lis1 = document.getElementsByTagName('li'), classname = '';
+for(var i = 0, len = lis1.length; i < len; i++) {
+    classname = lis1[i].className;
+    if(classname === 'red' || classname === 'blue') {
+        result.push(lis1[i]);
+    }
+}
+
+
+
+</script>
+
+</body>
+</html>

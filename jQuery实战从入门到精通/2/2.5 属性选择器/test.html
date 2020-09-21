@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+    var a1 = $("a[href$='.pdf']");
+    a1.html(function(){
+        return "<img src='images/pdf.gif' />  " + $(this).attr("href");
+    });
+    var a2 = $("a[href$='.rar']");
+    a2.html(function(){
+        return "<img src='images/rar.gif' />  " + $(this).attr("href");
+    });
+    var a3 = $("a[href$='.jpg'],a[href$='.bmp'],a[href$='.gif'],a[href$='.png']");
+    a3.html(function(){
+        return "<img src='images/jpg.gif' />  " + $(this).attr("href") ;
+    });
+    var a4 = $("a[href^='http:']");
+    a4.html(function(){
+        return "<img src='images/html.gif' />  " + $(this).attr("href") ;
+    });
+})
+</script>
+<style type="text/css">
+a img { border:none;}
+</style>
+<title></title>
+</head>
+<body>
+<a href="1.pdf">参考手册.pdf</a><br />
+<a href="2.pdf">权威指南.pdf</a><br />
+<a href="3.rar">压缩包.rar</a><br />
+<a href="4.jpg">图片文件1</a><br />
+<a href="5.bmp">图片文件2</a><br />
+<a href="6.gif">图片文件3</a><br />
+<a href="7.png">图片文件4</a><br />
+<a href="http://www.baidu.com/">百度</a><br />
+<a href="http://www.sohu.com/">搜狐</a><br />
+</body>
+</html>

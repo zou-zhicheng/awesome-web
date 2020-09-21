@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+$(function() {
+	
+	$('fieldset').each(function(index) {
+		var heading = $('legend', this).remove().text();
+		$('<h3></h3>')
+		.text(heading)
+		.prependTo(this);
+	});	
+	
+})
+</script>
+<style type="text/css"></style>
+<title></title>
+</head>
+<body>
+<form id="contact" action="index.html" method="get">
+    <fieldset>
+        <legend>个人信息</legend>
+        <ol>
+            <li>
+                <label for="name">姓名</label>
+                <input class="required" type="text" name="name" id="name">
+                <span>(必填)</span></li>
+            <li>
+                <label for="email">邮箱</label>
+                <input class="required" type="text" name="email" id="email">
+                <span>(必填)</span></li>
+            <li>如何保持联系? (至少选择一种)
+                <ul>
+                    <li>
+                        <label>
+                            <input type="checkbox" name="by-contact-type" value="Email" id="by-email">
+                            Email</label>
+                        <input class="conditional" type="text" name="email" id="email">
+                        <span>(当勾选前面复选框后，则必须填写Email信息)</span></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" name="by-contact-type" value="Phone" id="by-phone">
+                            电话</label>
+                        <input class="conditional" type="text" name="phone" id="phone">
+                        <span>(当勾选前面复选框后，则必须填写电话号码)</span></li>
+                    <li>
+                        <label>
+                            <input type="checkbox" name="by-contact-type" value="QQ" id="by-qq">
+                            QQ</label>
+                        <input class="conditional" type="text" name="qq" id="qq">
+                        <span>(当勾选前面复选框后，则必须填写QQ号码)</span></li>
+                </ul>
+            </li>
+        </ol>
+    </fieldset>
+</form>
+</body>
+</html>

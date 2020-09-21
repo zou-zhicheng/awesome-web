@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="jquery/jquery-3.1.1.js" type="text/javascript"></script>
+<script type="text/javascript" >
+$(function(){
+    $("button").click(function(){
+        $("p").animate({ 
+            width: "200%",
+            height: "200%", 
+            fontSize: "5em",
+            height: 'toggle',
+            opacity: 'toggle'
+        }, 1000 );
+    })
+})
+</script>
+</head>
+<body>
+<button>控制按钮</button>
+<p><img src="images/1.jpg" height="300" /></p>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>passwordStrength</title>
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="plugins/passwordStrength.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('input[name="password"]').passwordStrength();
+})
+</script>
+<style type="text/css">
+.is0{background:url(plugins/progressImg1.png) no-repeat 0 0;width:138px;height:7px;margin:10px 0 0 104px;}
+.is10{background-position:0 -7px;}
+.is20{background-position:0 -14px;}
+.is30{background-position:0 -21px;}
+.is40{background-position:0 -28px;}
+.is50{background-position:0 -35px;}
+.is60{background-position:0 -42px;}
+.is70{background-position:0 -49px;}
+.is80{background-position:0 -56px;}
+.is90{background-position:0 -63px;}
+.is100{background-position:0 -70px;}
+ 
+#autotab input { width:138px; }
+</style>
+</head>
+<body>
+<h1>passwordStrength密码强度指标</h1>
+<form action="" method="post" id="autotab" class="p1">
+    <label>请输入密码：
+    	<input type="password" name="password" />
+        <div id="passwordStrengthDiv" class="is0"></div>
+    </label>
+</form>
+</body>
+</html>

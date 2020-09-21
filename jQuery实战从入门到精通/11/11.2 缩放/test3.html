@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="jqueryui/jquery-ui.css" rel="stylesheet">
+<!--jQuery UI组件结构-->
+<script src="jqueryui/external/jquery/jquery.js"></script>
+<script src="jqueryui/jquery-ui.js"></script>
+<script type="text/javascript" >
+
+$(function() {
+	$( "#resizable" ).resizable({
+		containment: "#container"
+	});
+});
+
+
+</script>
+<style type="text/css">
+#container { width: 300px; height: 300px; }
+#container h3 { text-align: center; margin: 0; margin-bottom: 10px; }
+#resizable { background-position: top left; width: 150px; height: 150px; }
+#resizable, #container { padding: 0.5em; }
+</style>
+<title></title>
+</head>
+<body>
+<div id="container" class="ui-widget-content">
+    <h3 class="ui-widget-header">新闻版块</h3>
+    <div id="resizable" class="ui-state-active">
+        <h3 class="ui-widget-header">国际新闻</h3>
+    </div>
+</div>
+</body>
+</html>
