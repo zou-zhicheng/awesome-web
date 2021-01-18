@@ -50,7 +50,13 @@ https://item.jd.com/12510935.html
 
 ## Bootstrap实战从入门到精通
 
+## Vue.js从入门到项目实战
 
+刘汉伟 著
+
+清华大学出版社
+
+https://item.jd.com/12513015.html
 
 # [HTTP](HTTP/index.md)
 
