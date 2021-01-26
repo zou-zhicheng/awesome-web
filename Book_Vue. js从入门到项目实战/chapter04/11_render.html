@@ -22,6 +22,7 @@
 <div id="app">
   <!-- 将实例中 fields & goods 传入组件 -->
   <fly-table :fields="fields" :goods="goods">
+    <!-- 插槽模板是狭槽，它是一个空壳子，因为它的显示与隐藏以及最后用什么样的HTML模板显示由父组件控制 -->
     <span slot="title">Fly Table Component</span>
   </fly-table>
 </div>
@@ -94,7 +95,7 @@
           }
         }, [
           createElement('tr', [
-            this.fields.map(field => createElement('th', field.prop))
+            this.fields.map(field => createElement('th', field.label))
           ]),
           this.goods.map(item => createElement('tr', {
             style: {
@@ -142,7 +143,7 @@
             prop: 'price'
           },
           {
-            label: '',
+            label: '操作',
             prop: 'operate'
           }
         ],

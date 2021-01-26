@@ -4,6 +4,24 @@
   <title></title>
 </head>
 <body>
+<div id="app">
+  <h3>数据</h3>
+  <h4>message</h4>
+  <input type="text" v-model="message" style="width: 240px;">
+  <h4>noSpaceMsg</h4>
+  <input type="text" v-model="noSpaceMsg" style="width: 240px;">
+  <h2>数据变化之前
+    <i style="color: #ababab;font-size: 14px;">
+      * 指令v-once可以限制视图不再响应数据变化
+    </i>
+  </h2>
+  <p v-once>{{ message }}</p>
+  <p v-once>{{ noSpaceMsg }}</p>
+  <h2>数据变化之后</h2>
+  <p>{{ message }}</p>
+  <p>{{ noSpaceMsg }}</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
 <script type="text/javascript">
   let vm = new Vue({
     el: '#app',
@@ -15,8 +33,15 @@
       }
     },
     watch: { // 使用watch实现：当元数据变化时，同步衍生数据的状态
+      // 函数名必须是data中的变量名
       message (newValue, oldValue) { // newValue: 修改后的值, oldValue: 修改前的值
+        console.log("message.oldValue = " + oldValue)
+        console.log("message.newValue = " + newValue)
         this.noSpaceMsg = this.message.replace(/\s/g, '')
+      },
+      noSpaceMsg (newValue, oldValue) { // newValue: 修改后的值, oldValue: 修改前的值
+        console.log("noSpaceMsg.oldValue = " + oldValue)
+        console.log("noSpaceMsg.newValue = " + newValue)
       }
     }
   })

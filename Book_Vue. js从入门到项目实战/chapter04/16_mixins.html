@@ -31,6 +31,7 @@
       }
     },
     mounted () {
+      // 全部调用且优先调用mixin的钩子函数
       console.log('mixin mounted')
     },
     methods: {
@@ -47,6 +48,7 @@
       supplyUpper: value => value.toUpperCase()
     },
     watch: { // 监听器
+      // 全部调用且优先调用mixin的钩子函数
       text (value) {
         console.log('mixin text: ' + value)
       }
@@ -65,6 +67,7 @@
       console.log('instance mounted')
     },
     methods: {
+      // 优先采用组件 data, methods, components, directives
       toggleText () {
         this.text = 'instance text'
       }

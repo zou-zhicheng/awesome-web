@@ -27,6 +27,8 @@
     },
     computed: {
       noSpaceMsg: {
+        // 通过vm.message设置会自动触发
+        // 通过vm.noSpaceMsg设置也会自动触发
         set (value) {
           this.message = value
         },

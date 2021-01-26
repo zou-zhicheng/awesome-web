@@ -6,15 +6,16 @@
 <body>
 <div id="app">
   <!-- 自定义组件v-model -->
-  <custom-screen v-model="text"></custom-screen>
+  <custom-screen v-model="component_value"></custom-screen>
   <br>
   <!-- 原生元素v-model -->
-  <input type="text" v-model="text">
+  <input type="text" v-model="component_value">
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
 <script type="text/javascript">
   Vue.component('custom-screen', {
     // 使用value属性接收外部传入的值
+    // 这里必须使用value, 使用其他的不行
     props: ['value'],
     methods: {
       handleReset () {
@@ -31,7 +32,7 @@
   })
   let vm = new Vue({
     el: '#app',
-    data: () => ({ text: '' })
+    data: () => ({ component_value: 'I Like Girls' })
   })
 </script>
 </body>
