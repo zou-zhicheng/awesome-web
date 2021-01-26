@@ -5,6 +5,7 @@
 </head>
 <body>
 <style>
+  /* 命名规则是 .name-enter */
   .list-enter, .list-leave-to {
     opacity: 0;
     transform: translateY(30px);
@@ -17,6 +18,9 @@
 <div id="app">
   <button @click="addNewItem()">添加元素</button>
   <br>
+  <!-- 默认为span -->
+  <!-- <transition-group name="list"> -->
+  <!-- 默认为span, 通过tag属性更改 -->
   <transition-group name="list" tag="ul">
     <li
       v-for="item in list"

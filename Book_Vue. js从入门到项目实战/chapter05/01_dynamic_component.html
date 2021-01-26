@@ -27,8 +27,8 @@
 </style>
 <div id="app">
   <ul class="tabs">
-    <li class="per-tab" @click="toggleView('Home')">Home</li><!--
-    --><li class="per-tab" @click="toggleView('About')">About</li>
+    <li class="per-tab" @click="toggleView('Home')">Home</li>
+    <li class="per-tab" @click="toggleView('About')">About</li>
   </ul>
   <div class="tab-content">
     <component :is="view"></component> <!-- view为变量 -->
