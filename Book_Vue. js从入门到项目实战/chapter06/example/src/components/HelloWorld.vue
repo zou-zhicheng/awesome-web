@@ -2,8 +2,8 @@
   <div class="hello">
     <h2>count: {{ count }}</h2>
     <h2>ten times: {{ tenTimesCount }}</h2>
-    <button @click="addCountAsync(50)">add Count</button>
-    <button @click="addCount(20)">add Count2</button>
+    <button @click="addCountAsync(50)">add Count Async</button>
+    <button @click="addCount(20)">add Count</button>
   </div>
 </template>
 

@@ -17,11 +17,11 @@
         <!-- 嵌套路由-->
         <li @click="redirectByPath('/about/author')">About - Author</li>
         <!-- 嵌套路由, 动态路由, 当使用path时, params参数不生效 -->
-        <li @click="redirectByPath('/about/email', { email: lonelydawn@sina.com' })">About - Email</li>
+        <li @click="redirectByPath('/about/email', { email: 'lonelydawn@sina.com' })">About - Email</li>
         <!-- 嵌套路由, 动态路由, 可以直接将参数写入path -->
-        <li @click="redirectByPath('/about/email/lonelydawn@sina.com')">About - Email</li>
+        <li @click="redirectByPath('/about/email/lonelydawn@sina.com')">About - Email2</li>
         <!-- 嵌套路由, 动态路由, 使用命名路由跳转视图 -->
-        <li @click="redirectByName('Email', { email: 'singledawn@sina.com' })">About - Email</li>
+        <li @click="redirectByName('Email', { email: 'singledawn@sina.com' })">About - Email3</li>
       </ul>
     </li>
   </ul>
