@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<title>10_props</title>
+	<head>
+		
+	</head>
+	<body>
+		<style type="text/css"></style>
+		<div id="app">
+			<h3>{{message}}<h3>
+			<custom-input v-model="message"></custom-input>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('custom-input', {
+				props: ['message'],
+				template: `
+				<div>
+				<input v-bind:value='message' v-on:input="$emit('input', $event.target.value)">
+				</div>
+				`
+			})
+			let vm = new Vue({
+				el: "#app",
+				data: function(){
+					return {
+						message: "hello world"
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<title>03_props_array</title>
+	<head>
+		
+	</head>
+	<body>
+		<style type="text/css"></style>
+		<div id="app">
+			<h3>array 静态传递</h3>
+			<blog-post v-for="blog in blogs" v-bind:key="blog.id" ids="[0,1,2,3,4,5,6,7,8,9]"></blog-post>
+			<!-- 即便数组是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
+			<!-- 这是一个 JavaScript 表达式而不是一个字符串。-->
+			<h3>array v-bind静态传递</h3>
+			<blog-post v-for="blog in blogs" v-bind:key="blog.id" v-bind:ids="[0,1,2,3,4,5,6,7,8,9]"></blog-post>
+			<h3>array 动态传递</h3>
+			<blog-post v-for="blog in blogs" v-bind:key="blog.id" v-bind:ids="blog.ids"></blog-post>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('blog-post', {
+				props: ['ids'],
+				template: `
+				<div>array: {{ids}}</div>
+				`
+			})
+			let vm = new Vue({
+				el: "#app",
+				data: function(){
+					return {
+						blogs: [{
+							ids: [1, 11, 21],
+							title: "title1",
+							content: "content1",
+							is_published: true,
+							publish_at: "2021-01-29 11:01",
+						}, {
+							ids: [2,12,22],
+							title: "title2",
+							content: "content2",
+							is_published: true,
+							publish_at: "2021-01-29 11:02"
+						},{
+							ids: [3,13,23],
+							title: "title3",
+							content: "content3",
+							is_published: false,
+							publish_at: "2021-01-29 11:03"
+						}]
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

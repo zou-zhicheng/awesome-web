@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<title>07_props</title>
+	<head>
+		
+	</head>
+	<body>
+		<style type="text/css"></style>
+		<div id="app" :style="{ fontSize: postFontSize + 'em' }">
+			<blog-post v-for="blog in blogs" v-bind:key="blog.id" v-bind:post="blog" v-on:enlarge-text="enlarge_text"></blog-post>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('blog-post', {
+				props: ["post"],
+				template: `
+				<div>
+					<h3>{{ post.title }}</h3>
+					<button v-on:click="$emit('enlarge-text')">enlarge text</button>
+					<div>{{ post.content }}</div>
+					<div>{{post.publish_at}}</div>
+				</div>
+				`
+			})
+			let vm = new Vue({
+				el: "#app",
+				data: function(){
+					return {
+						blogs: [{
+							id: 1,
+							title: "title1",
+							content: "content1",
+							publish_at: "2021-01-29 11:01"
+						}, {
+							id: 2,
+							title: "title2",
+							content: "content2",
+							publish_at: "2021-01-29 11:02"
+						},{
+							id: 3,
+							title: "title3",
+							content: "content3",
+							publish_at: "2021-01-29 11:03"
+						},{
+							id: 4,
+							title: "title4",
+							content: "content4",
+							publish_at: "2021-01-29 11:04"
+						},{
+							id: 5,
+							title: "title5",
+							content: "content5",
+							publish_at: "2021-01-29 11:05"
+						}],
+						postFontSize: 1
+					}
+				},
+				methods: {
+					enlarge_text(){
+						this.postFontSize += 1
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

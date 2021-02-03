@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<title>04_props</title>
+	<head>
+		
+	</head>
+	<body>
+		<style type="text/css"></style>
+		<div id="app">
+			<blog-post v-bind:title="blog.title" v-bind:content="blog.content"></blog-post>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('blog-post', {
+				props: ["title", "content"],
+				template: '<div><h3>{{ title }}</h3><div><pre>{{ content }}</pre></div></div>'
+			})
+			let vm = new Vue({
+				el: "#app",
+				data: function(){
+					return {
+						blog: {
+							title: "hello world",
+							content: "this is a very simple welcome in most situation"							
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

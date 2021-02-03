@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<title>01_user_define_v-model</title>
+	<head></head>
+	<body>
+		<style type="text/css"></style>
+		<div id="app">
+			<h3>{{price}}</h3>
+			<input-price v-model="price"></input-price>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('input-price', {
+				template: "<input type='text'>"
+			});
+			let vm = new Vue({
+				el: "#app",
+				data: {
+					price: "15"
+				}
+			});
+		</script>
+	</body>
+</html>

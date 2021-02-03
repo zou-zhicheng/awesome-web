@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<title>05_props_validator</title>
+	<head>
+		
+	</head>
+	<body>
+		<style type="text/css"></style>
+		<div id="app">
+			<prop_validator v-bind:prop1="propA" v-bind:prop2="propB" v-bind:prop3="propC" v-bind:prop5="propE" v-bind:prop6="propF"></prop_validator>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('prop_validator', {
+				props: {
+					// 基础的类型检查 (`null` 和 `undefined` 会通过任何类型验证)
+					prop1: Number,
+					// 多个可能的类型
+					prop2: [String, Number],
+					// 必填的字符串
+					prop3: {
+					  type: String,
+					  required: true
+					},
+					// 带有默认值的数字
+					prop4: {
+					  type: Number,
+					  default: 100
+					},
+					// 带有默认值的对象
+					prop5: {
+					  type: Object,
+					  // 对象或数组默认值必须从一个工厂函数获取
+					  default: function () {
+					    return { message: 'hello' }
+					  }
+					},
+					// 自定义验证函数
+					prop6: {
+					  validator: function (value) {
+					    // 这个值必须匹配下列字符串中的一个
+					    return ['success', 'warning', 'danger'].indexOf(value) !== -1
+					  }
+					}
+				},
+				template: `
+				<div>
+				prop1: {{prop1}}
+				<br>
+				prop2: {{prop2}}
+				<br>
+				prop3: {{prop3}}
+				<br>
+				prop4: {{prop4}}
+				<br>
+				prop5: {{prop5}}
+				<br>
+				prop6: {{prop6}}
+				</div>
+				`
+			})
+			let vm = new Vue({
+				el: "#app",
+				data: function(){
+					return {
+						propA: 123,
+						propB: "456",
+						propC: "789",
+						propD: "propD",
+						propE: "propE",
+						propF: "hello world",
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

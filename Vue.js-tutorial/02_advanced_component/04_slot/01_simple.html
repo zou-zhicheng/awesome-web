@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<title>01_slot_simple</title>
+	<head></head>
+	<body>
+		<style type="text/css"></style>
+		<div id="app">
+			<navigation-link url="http://www.baidu.com">
+			 	百度一下
+			</navigation-link>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('input-price', {
+				// 5、将父组件的value值通过props传递给子组件
+				// 1、当有数据输入时触发了该组件的input事件
+				template: `
+					<a v-bind:href="url">
+					  <slot></slot>
+					</a>
+				`,
+				props: ["url"]
+			});
+			let vm = new Vue({
+				el: "#app"
+			});
+		</script>
+	</body>
+</html>

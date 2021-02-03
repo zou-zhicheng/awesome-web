@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<title>02_data_object</title>
+	<head>
+		
+	</head>
+	<body>
+		<style type="text/css"></style>
+		<div id="app">
+			{{message}}
+			<br>
+			<button-counter></button-counter>
+			<button-counter></button-counter>
+			<button-counter></button-counter>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('button-counter', {
+				data: {
+					counter: 0
+				},
+				template: '<button v-on:click="counter++">you clicked me {{counter}} times.</button>'
+			})
+			let vm = new Vue({
+				el: "#app",
+				data: function(){
+					return {
+						message: "hello world"
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

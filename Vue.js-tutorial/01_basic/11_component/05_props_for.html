@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<title>05_props</title>
+	<head>
+		
+	</head>
+	<body>
+		<style type="text/css"></style>
+		<div id="app">
+			<blog-post v-for="blog in blogs" v-bind:key="blog.id" v-bind:title="blog.title" v-bind:content="blog.content"></blog-post>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
+		<script type="text/javascript">
+			Vue.component('blog-post', {
+				props: ["title", "content"],
+				template: '<div><h3>{{ title }}</h3><div><pre>{{ content }}</pre></div></div>'
+			})
+			let vm = new Vue({
+				el: "#app",
+				data: function(){
+					return {
+						blogs: [{
+							id: 1,
+							title: "hello world",
+							content: "this is a very simple welcome in most situation"							
+						}, {
+							id: 2,
+							title: "title2",
+							content: "content2"		
+						},{
+							id: 3,
+							title: "title3",
+							content: "content3"		
+						},{
+							id: 4,
+							title: "title4",
+							content: "content4"		
+						},{
+							id: 5,
+							title: "title5",
+							content: "content5"		
+						}]
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
