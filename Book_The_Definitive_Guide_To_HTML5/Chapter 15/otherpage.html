@@ -4,16 +4,12 @@
         <title>Other Page</title>
     </head>
     <body>
-        <h1>Other Page</h1>
-        <p id="msg"></p>
+        <p>The X-coordinate is <b><span id="xco">??</span></b></p>
+        <p>The Y-coordinate is <b><span id="yco">??</span></b></p>
         <script>
-            var sel = "No selection made";
-            if (window.location.search == "?banana") {
-                sel = "Selection: Banana";
-            } else if (window.location.search == "?apple") {
-                sel = "Selection: Apple";
-            }
-            document.getElementById("msg").innerHTML = sel;            
+            var coords = window.location.href.split('?')[1].split(',');
+            document.getElementById('xco').innerHTML = coords[0];
+            document.getElementById('yco').innerHTML = coords[1];            
         </script>
     </body>
 </html>
