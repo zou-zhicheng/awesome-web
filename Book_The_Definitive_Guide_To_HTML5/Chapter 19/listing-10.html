@@ -6,7 +6,23 @@
         <meta name="description" content="A simple example"/>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <style type="text/css">
-            textarea {
+            #textarea1 {
+                 border: medium solid black;
+                 background-color: lightgray;
+                 background-image: url(banana.png);
+                 background-size: 60px 60px;
+                 background-repeat: repeat;
+                 background-attachment: fixed;
+            }
+            #textarea2 {
+                 border: medium solid black;
+                 background-color: lightgray;
+                 background-image: url(banana.png);
+                 background-size: 60px 60px;
+                 background-repeat: repeat;
+                 background-attachment: local;
+            }
+            #textarea3 {
                  border: medium solid black;
                  background-color: lightgray;
                  background-image: url(banana.png);
@@ -18,7 +34,24 @@
     </head>
     <body>
     <p>
-        <textarea rows="8" cols="30">
+        <textarea id="textarea1" rows="8" cols="30">
+        background-attachment: fixed;
+        There are lots of different kinds of fruit - there are over 500 varieties
+        of banana alone. By the time we add the countless types of apples, oranges,
+        and other well-known fruit, we are faced with thousands of choices.
+        </textarea>
+    </p>
+    <p>
+        <textarea id="textarea2" rows="8" cols="30">
+        background-attachment: local;
+        There are lots of different kinds of fruit - there are over 500 varieties
+        of banana alone. By the time we add the countless types of apples, oranges,
+        and other well-known fruit, we are faced with thousands of choices.
+        </textarea>
+    </p>
+    <p>
+        <textarea id="textarea3" rows="8" cols="30">
+        background-attachment: scroll;
         There are lots of different kinds of fruit - there are over 500 varieties
         of banana alone. By the time we add the countless types of apples, oranges,
         and other well-known fruit, we are faced with thousands of choices.

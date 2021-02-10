@@ -29,6 +29,7 @@
         <script>
             var tableBody = document.getElementById("fruitsBody");
 
+            // 竟然可以添加很多次, 并且id都是newrow
             document.getElementById("add").onclick = function() {
               var row = tableBody.appendChild(document.createElement("tr"));
               row.setAttribute("id", "newrow");
@@ -38,6 +39,7 @@
                 .appendChild(document.createTextNode("Purple"));
             };
 
+            // 当添加很多次之后, 有许多id="newrow"的行, 点删除竟然没次只删除1行, 而不是删除所有
             document.getElementById("remove").onclick = function() {
                 var row = document.getElementById("newrow");
                 row.parentNode.removeChild(row);

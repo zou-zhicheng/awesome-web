@@ -38,28 +38,37 @@
             textblock.addEventListener("mouseout", handleBubbleMouseEvent, false);
             
             function handleBubbleMouseEvent(e) {
+                console.log("handleBubbleMouseEvent")
                if (e.type == "mouseover" && e.eventPhase == Event.BUBBLING_PHASE) {
+                    console.log("handleBubbleMouseEvent: mouseover, BUBBLING_PHASE")
                     e.target.style.textTransform = "uppercase";
                } else if (e.type == "mouseout" && e.eventPhase == Event.BUBBLING_PHASE) {
+                    console.log("handleBubbleMouseEvent: mouseout, BUBBLING_PHASE")
                     e.target.style.textTransform = "none";
                }
             }
 
             function handleDescendantEvent(e) {
+              console.log("handleDescendantEvent") 
               if (e.type == "mouseover" && e.eventPhase == Event.CAPTURING_PHASE) {
+                    console.log("handleDescendantEvent: mouseover, BUBBLING_PHASE")
                     e.target.style.border = "thick solid red";
-                    e.currentTarget.style.border = "thick double black";
+                    e.currentTarget.style.border = "thick double green";
               } else if (e.type == "mouseout" && e.eventPhase == Event.CAPTURING_PHASE) {
+                    console.log("handleDescendantEvent: mouseout, BUBBLING_PHASE")
                     e.target.style.removeProperty("border");
                     e.currentTarget.style.removeProperty("border");
               }
             }
         
             function handleMouseEvent(e) {
+                console.log("handleMouseEvent") 
                 if (e.type == "mouseover") {
-                    e.target.style.background='black'; 
-                    e.target.style.color='white';
+                    console.log("handleMouseEvent: mouseover")
+                    e.target.style.background='yellow'; 
+                    e.target.style.color='blue';
                 } else {
+                    console.log("handleMouseEvent: other")
                     e.target.style.removeProperty('color');
                     e.target.style.removeProperty('background');                    
                 }

@@ -411,3 +411,350 @@ listing-05.html 与 listing-11.html的区别
 
 # 第16章: 理解CSS
 
+## 盒模型
+
+### W3C 盒子模型(标准盒模型)
+
+![box_model](Chapter 16/box_model.jpg)
+
+<img src="Chapter 16/box_model3.jpg" alt="box_model3" style="zoom:45%;" />
+
+### IE 盒子模型(怪异盒模型)
+
+![box_model2](Chapter 16/box_model2.jpg)
+
+## 选择器
+
+![ CSS选择器](Chapter 16/ CSS选择器.png)
+
+![css_selector](Chapter 16/css_selector.png)
+
+
+
+# 第17章: 使用CSS选择器(上)
+
+
+
+# 第18章: 使用CSS选择器(下)
+
+
+
+# 第19章: 使用边框和背景
+
+```css
+border-width: 5px;
+border-style: solid;
+border-color: black;
+
+border-radius: 20px / 15px;
+border-radius: 50% 20px 25% 5em / 25% 15px 40px 55%
+
+background-color: lightgray;
+background-image: url(banana.png);
+background-size: 40px 40px;
+background-repeat: repeat;
+background-origin: border-box;
+background-clip: content-box;
+
+outline: thick solid red;
+```
+
+
+
+# 第20章: 使用盒模型
+
+```css
+display: block;
+display: inline;
+display: inline-block;
+display: run-in;
+display: none;
+```
+
+
+
+# 第21章: 创建布局
+
+```css
+top: 5px;
+left:150px;
+/* static relative absolute fixed*/
+position: static;
+z-index: 1;
+
+display: table;
+display: table-row;
+display: table-cell;
+```
+
+
+
+# 第22章: 设置文本样式
+
+```CSS
+white-space: pre-line;
+direction: rtl;
+word-spacing: 10px;
+letter-spacing: 2px;
+line-height: 3em;
+word-wrap: break-word;
+text-indent: 15%;
+text-decoration: line-through;
+text-transform: uppercase;
+text-shadow: 5px 5px 20px black;
+font-family: "HelveticaNeue Condensed", monospace;
+font-size: larger;
+font-weight: bold;
+font-style: italic;
+```
+
+
+
+# 第23章: 过渡, 动画和变换
+
+```css
+
+```
+
+
+
+# 第24章: 其他CSS属性和特性
+
+```CSS
+color: rgba(255, 255, 255, 0.7);     
+opacity: 0.4;
+cursor: progress;
+```
+
+
+
+# 第四部分: 使用DOM
+
+# 第25章: 理解DOM
+
+- Document
+- Window
+- Position
+- History
+- DOM CSS
+- DOM 事件
+
+# 第26章: 使用Document对象
+
+```javascript
+document.getElementById("pressme")
+document.getElementsByName("p");
+document.getElementsByTagName("p");
+document.getElementsByClassName("p");
+
+document.URL
+// CSS1Compat
+document.compatMode
+// 
+document.referrer
+// document.location
+document.location.protocol
+//
+document.location.hash = "banana";
+document.location.assign("http://apress.com");
+```
+
+
+
+# 第27章: 使用Window对象
+
+```javascript
+window.outerWidth;
+window.outerHeight;
+window.innerWidth;
+window.innerHeight;
+window.screen.width;
+window.screen.height;
+
+window.print();
+window.close();
+window.scrollTo(0, 400);
+
+window.alert("This is an alert");
+window.confirm("This is a confirm - do you want to proceed?");
+window.prompt("Enter a word", "hello");
+// chrome测试没反应
+window.showModalDialog("http://apress.com");
+
+window.history.forward();
+window.history.back();
+// chrome测试未通过
+window.history.go("http://www.apress.com");
+
+// 
+window.history.pushState("", "", "?" + e.target.id);
+// 示例未运行成功
+/* 
+listing-08.html:25 Uncaught DOMException: Failed to execute 'pushState' on 'History': A history state object with URL 'file:///Users/jameszou/awesome/awesome-web/Book_The_Definitive_Guide_To_HTML5/Chapter%2027/otherpage.html?banana' cannot be created in a document with origin 'null' and URL 'file:///Users/jameszou/awesome/awesome-web/Book_The_Definitive_Guide_To_HTML5/Chapter%2027/listing-08.html'.
+    at HTMLButtonElement.buttons.<computed>.onclick (file:///Users/jameszou/awesome/awesome-web/Book_The_Definitive_Guide_To_HTML5/Chapter%2027/listing-08.html:25:36)
+buttons.<computed>.onclick @ listing-08.html:25
+*/
+// file:///Users/jameszou/awesome/awesome-web/Book_The_Definitive_Guide_To_HTML5/Chapter%2027/otherpage.html?banana 打开正常
+window.history.pushState("", "", "otherpage.html?" + e.target.id);
+
+window.history.replaceState("", "", "otherpage?" + e.target.id);
+
+timeoutID = window.setTimeout(funtion(){alert("hello world")}, 5000)
+window.clearTimeout(timeoutID);
+intervalID = window.setInterval(funtion(){alert("hello world")}, 2000);
+window.clearInterval(intervalID);
+```
+
+listing-10.html 没看懂
+
+listing-11.html 没看懂
+
+listing-14.html 没看懂
+
+listing-15.html 没看懂
+
+
+
+# 第28章: 使用DOM元素
+
+```javascript
+element.innerHTML = ""
+element.className = ""
+element.classList
+element.classList.toggle("newclass")
+element.hasAttribute("attr")
+element.getAttribute("attr")
+element.setAttribute("attr", "value")
+element.dataset
+element.attributes
+
+elment.isSameNode(element2)
+elment.isEqualNode(element2)
+
+table_row_element.innerHTML
+table_row_element.outerHTML
+table_row_element.insertAdjacentHTML("afterbegin", "<td>After Begin</td>");
+```
+
+
+
+# 第29章: 为DOM元素设置样式
+
+```javascript
+document.styleSheets;
+
+style_sheet.href
+style_sheet.title
+style_sheet.type
+// TYPE LINK
+style_sheet.ownerNode.tagName
+style_sheet.media.length
+style_sheet.media.mediaText
+style_sheet.media.item(index)
+
+style_sheet.disabled = true
+
+style_sheet.cssRules
+```
+
+listing-04.html 有些没看懂
+
+# 第30章: 使用事件
+
+```javascript
+onmouseover
+onmouseout
+onfocus
+onblur
+
+```
+
+
+
+# 第31章: 使用元素专属对象
+
+
+
+# 第五部分: 高级功能
+
+# 第32章: 使用Ajax(第1部分)
+
+
+
+# 第33章: 使用Ajax(第2部分)
+
+
+
+# 第34章: 使用多媒体
+
+```html
+<video width="360" height="240" src="timessquare.webm"
+       autoplay controls preload="none" muted>
+  Video cannot be displayed
+</video>
+
+<video controls width="360" height="240">
+  <source src="timessquare.webm" type="video/webm" />
+  <source src="timessquare.ogv" type="video/ogg" />
+  <source src="timessquare.mp4" type="video/mp4" />
+  Video cannot be displayed
+</video>
+
+<audio controls src="mytrack.mp3" autoplay>
+  Audio content cannot be played
+</audio>
+```
+
+
+
+# 第35章: 使用canvas元素(第1部分)
+
+```javascript
+var ctx = document.getElementById("canvas").getContext("2d");
+ctx.fillRect();
+ctx.strokeRect();
+
+```
+
+
+
+# 第36章: 使用canvas元素(第2部分)
+
+
+
+# 第37章: 使用拖放
+
+
+
+# 第38章: 使用地理定位
+
+```javascript
+navigator.geolocation.watchPosition(displayPositionFuction, handleErrorFunction, options);
+```
+
+
+
+# 第39章: 使用web存储
+
+```javascript
+localStorage.setItem(key, value);
+localStorage.clear();
+localStorage.length;
+var key = localStorage.key(i);
+localStorage[key];
+
+sessionStorage.setItem(key, value);
+sessionStorage.clear();
+sessionStorage.length;
+var key = sessionStorage.key(i);
+sessionStorage[key];
+```
+
+
+
+# 第40章: 创建离线web应用程序
+
+```javascript
+window.navigator.onLine
+```
+

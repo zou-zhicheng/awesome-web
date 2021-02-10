@@ -7,7 +7,7 @@
     </head>
     <body>
         <p id="cookiedata">
-            
+            cookiedata at the beginning
         </p>
         <button id="write">Add Cookie</button>
         <button id="update">Update Cookie</button>
@@ -16,7 +16,7 @@
             var cookieCount = 0;
             document.getElementById("update").onclick = updateCookie;
             document.getElementById("write").onclick = createCookie;
-            readCookies();
+            // readCookies();
 
             function readCookies() {
                 document.getElementById("cookiedata").innerHTML = document.cookie;

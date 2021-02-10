@@ -24,6 +24,9 @@
             document.getElementById("pressme").onclick = function() {
                 var textElem = elem.firstChild;
                 results.innerHTML = "The element has " + textElem.length + " chars\n";
+                // chrome 下测试报错
+                // listing-09.html:26 Uncaught TypeError: elem.replaceWholeText is not a function
+                // at HTMLButtonElement.document.getElementById.onclick (listing-09.html:26)
                 textElem.replaceWholeText("This is a new string ");
             };
         </script>

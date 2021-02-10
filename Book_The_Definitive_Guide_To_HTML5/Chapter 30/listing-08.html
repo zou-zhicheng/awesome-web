@@ -48,6 +48,8 @@
                     e.target.style.removeProperty("border");
                     e.currentTarget.style.removeProperty("border");
               }
+              // 阻止事件流向目标
+              e.stopPropagation()
             }
         
             function handleMouseEvent(e) {
