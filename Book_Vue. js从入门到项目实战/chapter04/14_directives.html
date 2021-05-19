@@ -5,9 +5,9 @@
 </head>
 <body>
 <div id="app">
-  <h1 v-some.upper>{{ title }}</h1>
-  <h1 v-some.lower>{{ title }}</h1>
-  <h1 v-style="style">{{ title }}</h1>
+  <h1 v-direct2.upper>{{ title }}</h1>
+  <h1 v-direct2.lower>{{ title }}</h1>
+  <h1 v-direct1="style">{{ title }}</h1>
   <button @click="handleStyle">修改v-style</button>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
@@ -30,9 +30,9 @@
       }
     },
     directives: {
-      style: { // 用于为节点绑定样式
+      direct1: { // 用于为节点绑定样式
         bind (el, binding, vnode) {
-          console.log("--------style.bind--------")
+          console.log("--------direct1.bind--------")
           console.log('%c--------- bind参数：el, binding, vnode ---------', 'font-size: 18px;')
           console.log('%o\n\n%o\n\n%o', el, binding, vnode)
           let styles = binding.value // 获取指令绑定的值
@@ -48,8 +48,8 @@
       },
       // 在bind和update时触发相同行为，且无需定义其他钩子函数，
       // 指令可以简写为以下形式
-      some (el, binding) {
-        console.log("--------some.function--------")
+      direct2 (el, binding) {
+        console.log("--------direct2.function--------")
         let text = el.innerText
         let modifiers = binding.modifiers
         if (modifiers.upper) { // 如果带有upper后缀，则大写文本

@@ -16,6 +16,20 @@ The Definitive Guide to HTML5
 
 ​	Book_The_Definitive_Guide_To_HTML5
 
+## [JavaScript学习指南(第3版)](Book_Learning_JavaScript_3rd/README.md)
+
+https://item.jd.com/12123997.html
+
+JavaScript学习指南 第3版(异步图书出品)
+
+初学者喜爱的JavaScript语言学习指南 基于新ECMAScript 6.0 (ES6)标准
+
+[美] [Ethan](https://book.jd.com/writer/Ethan_1.html)，[Brown](https://book.jd.com/writer/Brown_1.html)，[布朗](https://book.jd.com/writer/布朗_1.html) 著，[娄佳](https://book.jd.com/writer/娄佳_1.html)，[袁慎建](https://book.jd.com/writer/袁慎建_1.html) 译
+
+源代码目录
+
+​	Book_Learning_JavaScript_3rd
+
 ## JavaScript权威指南(第5版)
 
 源代码目录:
@@ -57,6 +71,10 @@ https://item.jd.com/12510935.html
 清华大学出版社
 
 https://item.jd.com/12513015.html
+
+## 极客时间 vue开发实战
+
+在目录 geektime-vue 下
 
 # [HTTP](HTTP/index.md)
 
@@ -114,7 +132,6 @@ Vuejs结合element ui的项目
 # [AdminLTE](AdminLTE/adminlte.md)
 
 使用AdminLTE框架的一些心得
-
 
 
 
